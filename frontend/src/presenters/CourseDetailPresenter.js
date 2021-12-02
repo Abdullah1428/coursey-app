@@ -3,7 +3,7 @@ import CourseDetail from '../views/CourseDetail'
 
 import axios from 'axios'
 
-const CourseDetailPresenter = ({ courseModel }) => {
+const CourseDetailPresenter = (props) => {
   const [courseDetail, setCourseDetail] = useState({})
 
   useEffect(() => {
@@ -12,9 +12,9 @@ const CourseDetailPresenter = ({ courseModel }) => {
 
       const { data } = await axios.get(apUrl)
 
-      courseModel.setCourseDetails(data)
+      props.courseModel.setCourseDetails(data)
 
-      setCourseDetail(courseModel.getCourseDetails())
+      setCourseDetail(props.courseModel.getCourseDetails())
     }
 
     getCourseDataFromAPI()
