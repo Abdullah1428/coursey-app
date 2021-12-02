@@ -1,0 +1,29 @@
+{
+  "name": "coursey-backend",
+  "version": "1.0.0",
+  "description": "backend for coursey",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gits-15.sys.kth.se:ayushman/coursey-app.git"
+  },
+  "author": "Abdullah, Ayushman, Simon, David",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.2.0",
+    "express-validator": "^6.13.0"
+  },
+  "devDependencies": {
+    "concurrently": "^6.4.0",
+    "nodemon": "^2.0.15"
+  }
+}
