@@ -15,7 +15,7 @@ const NavigationBar = () => {
         expand='lg'
         collapseOnSelect
       >
-        <Container>
+        <>
           <LinkContainer to='/'>
             <Navbar.Brand>Coursey</Navbar.Brand>
           </LinkContainer>
@@ -42,7 +42,7 @@ const NavigationBar = () => {
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
-        </Container>
+        </>
       </Navbar>
     </>
   )
