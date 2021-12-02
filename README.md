@@ -18,7 +18,7 @@ Created by:
 
 In the `coursey-app/frontend` folder, run: `npm install`
 
-In the `coursey-app/backend` folder, run: `npm install`
+In the `coursey-app` folder, run: `npm install`
 
 ## To start the app
 
