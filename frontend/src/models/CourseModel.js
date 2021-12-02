@@ -18,7 +18,7 @@ class CourseModel {
     this.courseUrl = `https://www.kth.se/student/kurser/kurs/${
       this.courseCode ? this.courseCode : ''
     }`
-    this.examiner = []
+    this.examiners = []
   }
 
   setCourseDetails = (courseDetail) => {
@@ -40,24 +40,24 @@ class CourseModel {
     this.courseUrl = `https://www.kth.se/student/kurser/kurs/${
       this.courseCode ? this.courseCode : ''
     }`
-    this.examiner = courseDetail.examiner
+    this.examiners = courseDetail.examiners
   }
 
   getCourseDetails = () => {
-    courseCode = this.courseCode
-    title = this.title
-    titleOther = this.titleOther
-    departmentCode = this.departmentCode
-    department = this.department
-    cancelled = this.cancelled
-    deactivated = this.deactivated
-    recruitmentText = this.recruitmentText
-    credits = this.credits
-    creditUnitLabel = this.creditUnitLabel
-    creditUnitAbbr = this.creditUnitAbbr
-    state = this.state
-    courseUrl = this.courseUrl
-    examiner = this.examiner
+    let courseCode = this.courseCode
+    let title = this.title
+    let titleOther = this.titleOther
+    let departmentCode = this.departmentCode
+    let department = this.department
+    let cancelled = this.cancelled
+    let deactivated = this.deactivated
+    let recruitmentText = this.recruitmentText
+    let credits = this.credits
+    let creditUnitLabel = this.creditUnitLabel
+    let creditUnitAbbr = this.creditUnitAbbr
+    let state = this.state
+    let courseUrl = this.courseUrl
+    let examiners = this.examiners
 
     let courseDetail = {
       courseCode,
@@ -73,9 +73,11 @@ class CourseModel {
       creditUnitAbbr,
       state,
       courseUrl,
-      examiner,
+      examiners,
     }
 
     return courseDetail
   }
 }
+
+export default CourseModel

@@ -8,7 +8,11 @@ import NavigationBar from './components/NavigationBar'
 import Footer from './components/Footer'
 import CourseDetailPresenter from './presenters/CourseDetailPresenter'
 
+import CourseModel from './models/CourseModel'
+
 function App() {
+  const courseModel = new CourseModel()
+
   return (
     <Router>
       <header>
@@ -17,7 +21,11 @@ function App() {
       <Container>
         <main className='py-3'>
           <div className='text-center'>all other screens</div>
-          <Route path={'/course/:id'} component={CourseDetailPresenter} exact />
+          <Route
+            path={'/course/:id'}
+            render={() => <CourseDetailPresenter courseModel={courseModel} />}
+            exact
+          />
         </main>
       </Container>
       <footer>
