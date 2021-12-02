@@ -1,4 +1,5 @@
-import './App.css'
+import "./App.css";
+import CourseDetail from "./views/CourseDetail";
 
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
@@ -25,4 +26,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
