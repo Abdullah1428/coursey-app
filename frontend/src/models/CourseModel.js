@@ -3,14 +3,16 @@ class CourseModel {
     this.courseCode = ''
     this.title = ''
     this.titleOther = ''
-    this.departmentCode = ''
     this.department = {
       code: '',
       name: '',
     }
+    this.publicSyllabusVersions = []
     this.cancelled = false
     this.deactivated = false
     this.recruitmentText = ''
+    this.supplementaryInfo = ''
+    this.prerequisites = ''
     this.credits = 0
     this.creditUnitLabel = 'Credits'
     this.creditUnitAbbr = 'hp'
@@ -25,14 +27,16 @@ class CourseModel {
     this.courseCode = courseDetail.course.courseCode
     this.title = courseDetail.course.title
     this.titleOther = courseDetail.course.titleOther
-    this.departmentCode = courseDetail.course.departmentCode
     this.department = {
       code: courseDetail.course.department.code,
       name: courseDetail.course.department.name,
     }
+    this.publicSyllabusVersions = courseDetail.publicSyllabusVersions
     this.cancelled = courseDetail.course.cancelled
     this.deactivated = courseDetail.course.deactivated
     this.recruitmentText = courseDetail.course.recruitmentText
+    this.supplementaryInfo = courseDetail.course.supplementaryInfo
+    this.prerequisites = courseDetail.course.prerequisites
     this.credits = courseDetail.course.credits
     this.creditUnitLabel = courseDetail.course.creditUnitLabel
     this.creditUnitAbbr = courseDetail.course.creditUnitAbbr
@@ -47,11 +51,13 @@ class CourseModel {
     let courseCode = this.courseCode
     let title = this.title
     let titleOther = this.titleOther
-    let departmentCode = this.departmentCode
     let department = this.department
+    let publicSyllabusVersions = this.publicSyllabusVersions
     let cancelled = this.cancelled
     let deactivated = this.deactivated
     let recruitmentText = this.recruitmentText
+    let supplementaryInfo = this.supplementaryInfo
+    let prerequisites = this.prerequisites
     let credits = this.credits
     let creditUnitLabel = this.creditUnitLabel
     let creditUnitAbbr = this.creditUnitAbbr
@@ -63,11 +69,13 @@ class CourseModel {
       courseCode,
       title,
       titleOther,
-      departmentCode,
       department,
+      publicSyllabusVersions,
       cancelled,
       deactivated,
       recruitmentText,
+      supplementaryInfo,
+      prerequisites,
       credits,
       creditUnitLabel,
       creditUnitAbbr,
