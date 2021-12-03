@@ -19,8 +19,7 @@ function App() {
         <NavigationBar />
       </header>
       <Container>
-        <main className='py-3'>
-          <div className='text-center'>all other screens</div>
+        <main className="py-3">
           <Route
             path={'/course/:id'}
             render={() => <CourseDetailPresenter courseModel={courseModel} />}

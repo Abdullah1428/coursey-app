@@ -3,8 +3,8 @@ html {
 }
 
 .container {
-  background-color: #262626;
-  width: 1400px;
+  border: 2px solid #000;
+  max-width: 1000px;
 }
 
 main {
