@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import Courses from '../views/Courses';
+import CoursesView from '../views/CoursesView';
 import Loader from '../components/Loader';
 
 const CoursesPresenter = () => {
@@ -19,7 +19,7 @@ const CoursesPresenter = () => {
     getAllCoursesFromAPI();
   }, []);
 
-  return <>{!courseList ? <Loader /> : <Courses courses={courseList} />}</>;
+  return <>{!courseList ? <Loader /> : <CoursesView courses={courseList} />}</>;
 };
 
 export default CoursesPresenter;

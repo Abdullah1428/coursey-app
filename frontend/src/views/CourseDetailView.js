@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import FeedbackCard from '../components/FeedbackCard.js';
 
-const CourseDetail = (props) => {
+const CourseDetailView = (props) => {
   return (
     <div>
       <Row>
@@ -19,7 +19,7 @@ const CourseDetail = (props) => {
       <Row>
         <Col>
           <Row>
-            <Image src='https://via.placeholder.com/300' fluid rounded />
+            <Image src="https://via.placeholder.com/300" fluid rounded />
           </Row>
           <Row>
             <h4>Course Information</h4>
@@ -107,4 +107,4 @@ const CourseDetail = (props) => {
   );
 };
 
-export default CourseDetail;
+export default CourseDetailView;

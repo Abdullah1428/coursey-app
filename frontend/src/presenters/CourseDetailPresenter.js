@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import CourseDetail from '../views/CourseDetail';
+import CourseDetailView from '../views/CourseDetailView';
 import Loader from '../components/Loader';
 
 const CourseDetailPresenter = (props) => {
@@ -28,7 +28,7 @@ const CourseDetailPresenter = (props) => {
       {!courseDetail ? (
         <Loader />
       ) : (
-        <CourseDetail courseDetail={courseDetail} />
+        <CourseDetailView courseDetail={courseDetail} />
       )}
     </>
   );
