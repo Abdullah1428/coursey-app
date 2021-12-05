@@ -12,11 +12,7 @@ const CourseDetailPresenter = (props) => {
       const PORT = process.env.PORT || 5000;
       let apUrl = `'http://0.0.0.0:${PORT}/api/course/DH2642'`;
 
-      console.log(
-        `"Port in use at the backend: " + ${
-          process.env.PORT ? process.env.PORT : 5000
-        }`
-      );
+      console.log('Port in use at the backend: ' + PORT);
 
       const { data } = await axios.get(apUrl);
 
