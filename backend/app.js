@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('frontend/build'));
 
   app.get('*', (req, res) => {
-    __dirname = path.resolve();
+    const __dirname = path.resolve();
     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
   });
 }
