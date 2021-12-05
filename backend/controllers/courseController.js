@@ -1,7 +1,7 @@
-import asyncHandler from 'express-async-handler'
-import { validationResult } from 'express-validator'
+import asyncHandler from 'express-async-handler';
+import { validationResult } from 'express-validator';
 
-import axios from 'axios'
+import axios from 'axios';
 
 /*
  *   @desc   get course detail
@@ -9,23 +9,42 @@ import axios from 'axios'
  *   @access Private
  */
 const getCourseDetail = asyncHandler(async (req, res) => {
-  const errors = validationResult(req)
+  const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() })
+    return res.status(400).json({ errors: errors.array() });
   }
 
   const KTH_COURSE_DETAIL_API =
-    'https://www.kth.se/api/kopps/v2/course/DH2642/detailedinformation?l=en'
+    'https://www.kth.se/api/kopps/v2/course/DH2642/detailedinformation?l=en';
 
   const config = {
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
+  };
+
+  const { data } = await axios.get(KTH_COURSE_DETAIL_API, config);
+
+  return res.json(data);
+});
+
+const getAllCourses = asyncHandler(async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
   }
 
-  const { data } = await axios.get(KTH_COURSE_DETAIL_API, config)
+  const KTH_COURSES_API = 'https://www.kth.se/api/kopps/v2/courses';
 
-  return res.json(data)
-})
+  const config = {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+  };
 
-export { getCourseDetail }
+  const { data } = await axios.get(KTH_COURSES_API, config);
+
+  return res.json(data);
+});
+
+export { getCourseDetail, getAllCourses };

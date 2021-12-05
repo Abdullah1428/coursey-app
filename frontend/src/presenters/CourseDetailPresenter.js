@@ -9,12 +9,9 @@ const CourseDetailPresenter = (props) => {
 
   useEffect(() => {
     const getCourseDataFromAPI = async () => {
-      const PORT = process.env.PORT || 80;
-      let apUrl = `/api/course/DH2642`;
+      let apiUrl = '/api/course/DH2642';
 
-      console.log('Port in use at the backend: ' + PORT);
-
-      const { data } = await axios.get(apUrl);
+      const { data } = await axios.get(apiUrl);
 
       console.log(data);
 
