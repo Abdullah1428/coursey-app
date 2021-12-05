@@ -9,7 +9,9 @@ const CourseDetailPresenter = (props) => {
 
   useEffect(() => {
     const getCourseDataFromAPI = async () => {
-      let apUrl = 'http://localhost:5000/api/course/DH2642';
+      let apUrl = `'http://localhost:${
+        process.env.PORT ? process.env.PORT : 5000
+      }/api/course/DH2642'`;
 
       const { data } = await axios.get(apUrl);
 
