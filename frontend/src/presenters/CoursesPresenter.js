@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import CoursesView from '../views/CoursesView';
+import Courses from '../views/Courses';
 import Loader from '../components/Loader';
 
 const CoursesPresenter = () => {
   const [courseList, setCourseList] = useState(null);
 
   useEffect(() => {
-    const getAllCoursesFromAPI = async () => {
-      let apiUrl = '/api/courses';
+    const getCourseDataFromAPI = async () => {
+      let apUrl = '/api/courses';
 
-      const { data } = await axios.get(apiUrl);
-
+      const { data } = await axios.get(apUrl);
+      console.log(data);
       setCourseList(data);
     };
 
-    getAllCoursesFromAPI();
+    getCourseDataFromAPI();
   }, []);
 
-  return <>{!courseList ? <Loader /> : <CoursesView courses={courseList} />}</>;
+  return <>{!courseList ? <Loader /> : <Courses courses={courseList} />}</>;
 };
 
 export default CoursesPresenter;

@@ -34,7 +34,7 @@ const getAllCourses = asyncHandler(async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const KTH_COURSES_API = 'https://www.kth.se/api/kopps/v2/courses';
+  const KTH_COURSE_DETAIL_API = 'https://www.kth.se/api/kopps/v2/courses';
 
   const config = {
     headers: {
@@ -42,7 +42,7 @@ const getAllCourses = asyncHandler(async (req, res) => {
     },
   };
 
-  const { data } = await axios.get(KTH_COURSES_API, config);
+  const { data } = await axios.get(KTH_COURSE_DETAIL_API, config);
 
   return res.json(data);
 });

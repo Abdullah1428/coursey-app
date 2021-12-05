@@ -21,7 +21,7 @@ const CourseDetailPresenter = (props) => {
     };
 
     getCourseDataFromAPI();
-  }, []);
+  }, [props.courseModel]);
 
   return (
     <>
