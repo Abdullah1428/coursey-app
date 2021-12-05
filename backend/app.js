@@ -1,8 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import path from 'path';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
 
 import courseRoutes from './routes/courseRoutes.js';
 
@@ -21,9 +18,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('frontend/build'));
 
   app.get('*', (req, res) => {
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = dirname(__filename);
-    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+    res.sendFile(__dirname + '/frontend/build/' + 'index.html');
   });
 }
 
