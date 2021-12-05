@@ -9,9 +9,8 @@ const CourseDetailPresenter = (props) => {
 
   useEffect(() => {
     const getCourseDataFromAPI = async () => {
-      let apUrl = `'http://localhost:${
-        process.env.PORT ? process.env.PORT : 5000
-      }/api/course/DH2642'`;
+      const PORT = process.env.PORT || 5000;
+      let apUrl = `'http://0.0.0.0:${PORT}/api/course/DH2642'`;
 
       console.log(
         `"Port in use at the backend: " + ${
