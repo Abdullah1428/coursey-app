@@ -1,10 +1,9 @@
-import Image from 'react-bootstrap/Image'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import FeedbackCard from '../components/FeedbackCard.js'
+import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import FeedbackCard from '../components/FeedbackCard.js';
 
 const CourseDetail = (props) => {
-  console.log(props)
   return (
     <div>
       <Row>
@@ -20,7 +19,7 @@ const CourseDetail = (props) => {
       <Row>
         <Col>
           <Row>
-            <Image src="https://via.placeholder.com/300" fluid rounded />
+            <Image src='https://via.placeholder.com/300' fluid rounded />
           </Row>
           <Row>
             <h4>Course Information</h4>
@@ -105,7 +104,7 @@ const CourseDetail = (props) => {
         </Col>
       </Row>
     </div>
-  )
-}
+  );
+};
 
-export default CourseDetail
+export default CourseDetail;
