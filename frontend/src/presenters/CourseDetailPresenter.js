@@ -10,7 +10,7 @@ const CourseDetailPresenter = (props) => {
   useEffect(() => {
     const getCourseDataFromAPI = async () => {
       const PORT = process.env.PORT || 80;
-      let apUrl = `'http://0.0.0.0/api/course/DH2642'`;
+      let apUrl = `/api/course/DH2642`;
 
       console.log('Port in use at the backend: ' + PORT);
 
