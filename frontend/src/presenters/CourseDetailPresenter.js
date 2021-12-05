@@ -13,8 +13,6 @@ const CourseDetailPresenter = (props) => {
 
       const { data } = await axios.get(apiUrl);
 
-      console.log(data);
-
       props.courseModel.setCourseDetails(data);
 
       setCourseDetail(props.courseModel.getCourseDetails());
