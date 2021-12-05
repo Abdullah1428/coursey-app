@@ -28,4 +28,24 @@ const getCourseDetail = asyncHandler(async (req, res) => {
   return res.json(data)
 })
 
-export { getCourseDetail }
+const getAllCourses = asyncHandler(async (req, res) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() })
+  }
+
+  const KTH_COURSE_DETAIL_API =
+    'https://www.kth.se/api/kopps/v2/courses'
+
+  const config = {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+  }
+
+  const { data } = await axios.get(KTH_COURSE_DETAIL_API, config)
+
+  return res.json(data)
+})
+
+export { getCourseDetail, getAllCourses }
