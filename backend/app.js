@@ -20,7 +20,9 @@ if (process.env.NODE_ENV === 'production') {
 
   app.get('*', (req, res) => {
     res.sendFile(
-      path.resolve('frontend/build/index.html', { root: __dirname })
+      path.resolve('frontend/build/index.html', {
+        root: path.dirname(__dirname),
+      })
     );
   });
 }
