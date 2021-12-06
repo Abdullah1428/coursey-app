@@ -7,6 +7,7 @@ import { Container } from 'react-bootstrap';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 import CourseDetailPresenter from './presenters/CourseDetailPresenter';
+import CoursesPresenter from './presenters/CoursesPresenter';
 
 import CourseModel from './models/CourseModel';
 
