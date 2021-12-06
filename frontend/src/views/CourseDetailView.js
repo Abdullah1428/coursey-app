@@ -6,6 +6,9 @@ import FeedbackCard from '../components/FeedbackCard';
 const CourseDetailView = (props) => {
   const removeHTMLTagIfAny = (string) => {
     const regex = /(<([^>]+)>)/gi;
+
+    if (string === '' || typeof string === 'undefined') return '';
+
     const result = string.replace(regex, '');
 
     return result;
