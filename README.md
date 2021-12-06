@@ -4,6 +4,7 @@ Coursey is an interactive app that lets you provide feedback on KTH courses and 
 
 Bonus feature if we can get time: Coursey also recommends similar courses students can take based on the courses they’ve previously taken.
 
+Available at: http://coursey.herokuapp.com
 
 ### Created by:
 - Abdullah
@@ -55,7 +56,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     - Currently the KTH api takes a really long time to respond each time for /courses
 - Integrating Firebase authentication
 - Creating Firebase database for our user feedback model
-- This will be for user-generated data stored in Firebase backend
+    - This will be for user-generated data stored in Firebase backend
 - Layout for user course feedback form
 - Presenters and views and components related to user feedback flow
 - MyCoursey screen that displays the user’s past feedbacks and courses taken.
