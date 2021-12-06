@@ -4,22 +4,24 @@ import axios from 'axios';
 import CourseDetailView from '../views/CourseDetailView';
 import Loader from '../components/Loader';
 
-const CourseDetailPresenter = (props) => {
+const CourseDetailPresenter = ({ courseModel, match }) => {
   const [courseDetail, setCourseDetail] = useState(null);
 
   useEffect(() => {
     const getCourseDataFromAPI = async () => {
-      let apiUrl = '/api/course/DH2642';
+      let apiUrl = `/api/course/${match.params.id}`;
 
       const { data } = await axios.get(apiUrl);
 
-      props.courseModel.setCourseDetails(data);
+      console.log(data);
 
-      setCourseDetail(props.courseModel.getCourseDetails());
+      courseModel.setCourseDetails(data);
+
+      setCourseDetail(courseModel.getCourseDetails());
     };
 
     getCourseDataFromAPI();
-  }, [props.courseModel]);
+  }, [courseModel, match]);
 
   return (
     <>

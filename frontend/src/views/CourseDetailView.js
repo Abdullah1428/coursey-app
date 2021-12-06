@@ -1,11 +1,21 @@
-import Image from 'react-bootstrap/Image';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import FeedbackCard from '../components/FeedbackCard.js';
+import { Row, Col, Image } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
+import FeedbackCard from '../components/FeedbackCard';
 
 const CourseDetailView = (props) => {
+  const removeHTMLTagIfAny = (string) => {
+    const regex = /(<([^>]+)>)/gi;
+    const result = string.replace(regex, '');
+
+    return result;
+  };
+
   return (
     <div>
+      <Link className='btn btn-dark my-3' to='/courses'>
+        Go Back
+      </Link>
       <Row>
         <h2>
           {props.courseDetail.courseCode} - {props.courseDetail.title},{' '}
@@ -19,7 +29,7 @@ const CourseDetailView = (props) => {
       <Row>
         <Col>
           <Row>
-            <Image src="https://via.placeholder.com/300" fluid rounded />
+            <Image src='https://via.placeholder.com/300' fluid rounded />
           </Row>
           <Row>
             <h4>Course Information</h4>
@@ -27,7 +37,8 @@ const CourseDetailView = (props) => {
             <p>Department Name: {props.courseDetail.department.name}</p>
             <p>
               Valid From Term:{' '}
-              {props.courseDetail.publicSyllabusVersions[0].validFromTerm.term}
+              {props.courseDetail.publicSyllabusVersions.length > 0 &&
+                props.courseDetail.publicSyllabusVersions[0].validFromTerm.term}
             </p>
             <p>Course State: {props.courseDetail.state}</p>
             <p>Cancelled State: {props.courseDetail.cancelled}</p>
@@ -35,35 +46,46 @@ const CourseDetailView = (props) => {
           </Row>
           <Row>
             <h4>Supplementary Information</h4>
-            <p>{props.courseDetail.supplementaryInfo}</p>
+            <p>
+              {props.courseDetail.supplementaryInfo &&
+                removeHTMLTagIfAny(props.courseDetail.supplementaryInfo)}
+            </p>
           </Row>
         </Col>
         <Col>
           <Row>
             <h4>About</h4>
-            <p>{props.courseDetail.recruitmentText}</p>
+            <p>
+              {props.courseDetail.recruitmentText &&
+                removeHTMLTagIfAny(props.courseDetail.recruitmentText)}
+            </p>
           </Row>
           <Row>
             <h4>Goals</h4>
             <p>
-              {
-                props.courseDetail.publicSyllabusVersions[0].courseSyllabus
-                  .goals
-              }
+              {props.courseDetail.publicSyllabusVersions.length > 0 &&
+                removeHTMLTagIfAny(
+                  props.courseDetail.publicSyllabusVersions[0].courseSyllabus
+                    .goals
+                )}
             </p>
           </Row>
           <Row>
             <h4>Course Content</h4>
             <p>
-              {
-                props.courseDetail.publicSyllabusVersions[0].courseSyllabus
-                  .content
-              }
+              {props.courseDetail.publicSyllabusVersions.length > 0 &&
+                removeHTMLTagIfAny(
+                  props.courseDetail.publicSyllabusVersions[0].courseSyllabus
+                    .content
+                )}
             </p>
           </Row>
           <Row>
             <h4>Prerequisites</h4>
-            <p>{props.courseDetail.prerequisites}</p>
+            <p>
+              {props.courseDetail.prerequisites &&
+                removeHTMLTagIfAny(props.courseDetail.prerequisites)}
+            </p>
           </Row>
         </Col>
       </Row>

@@ -14,8 +14,9 @@ const getCourseDetail = asyncHandler(async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const KTH_COURSE_DETAIL_API =
-    'https://www.kth.se/api/kopps/v2/course/DH2642/detailedinformation?l=en';
+  const id = req.params.id;
+
+  const KTH_COURSE_DETAIL_API = `https://www.kth.se/api/kopps/v2/course/${id}/detailedinformation?l=en`;
 
   const config = {
     headers: {

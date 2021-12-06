@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import CoursesView from '../views/Courses';
+import CoursesView from '../views/CoursesView';
 import Loader from '../components/Loader';
 
 const CoursesPresenter = () => {

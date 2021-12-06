@@ -20,13 +20,19 @@ function App() {
         <NavigationBar />
       </header>
       <Container>
-        <main className="py-3">
+        <main className='py-3'>
           <Route
             path={'/course/:id'}
-            render={() => <CourseDetailPresenter courseModel={courseModel} />}
+            render={(props) => (
+              <CourseDetailPresenter courseModel={courseModel} {...props} />
+            )}
             exact
           />
-          <Route path={'/courses'} render={() => <CoursesPresenter />} exact />
+          <Route
+            path={'/courses'}
+            render={(props) => <CoursesPresenter {...props} />}
+            exact
+          />
         </main>
       </Container>
       <footer>
