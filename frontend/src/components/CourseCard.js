@@ -8,7 +8,7 @@ const CourseCard = (props) => {
     <Card className='my-3 p-3 rounded'>
       <Card.Body>
         <Card.Title>{props.course.code}</Card.Title>
-        <Link to={`/course/${props.course.code}`}>
+        <Link to={`/course/${props.course.code}`} target={'_blank'}>
           <Card.Text>{props.course.name}</Card.Text>
         </Link>
         <Card.Text as='div'>
