@@ -6,7 +6,7 @@ import {
   getCourseDetail,
 } from '../controllers/courseController.js';
 
-router.route('/course/:id').get(getCourseDetail);
 router.route('/courses').get(getAllCourses);
+router.route('/course/:id').get(getCourseDetail);
 
 export default router;

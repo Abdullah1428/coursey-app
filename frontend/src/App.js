@@ -1,17 +1,17 @@
-import './App.css'
+import './App.css';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import { Container } from 'react-bootstrap'
+import { Container } from 'react-bootstrap';
 
-import NavigationBar from './components/NavigationBar'
-import Footer from './components/Footer'
-import CourseDetailPresenter from './presenters/CourseDetailPresenter'
+import NavigationBar from './components/NavigationBar';
+import Footer from './components/Footer';
+import CourseDetailPresenter from './presenters/CourseDetailPresenter';
 
-import CourseModel from './models/CourseModel'
+import CourseModel from './models/CourseModel';
 
 function App() {
-  const courseModel = new CourseModel()
+  const courseModel = new CourseModel();
 
   return (
     <Router>
@@ -25,13 +25,14 @@ function App() {
             render={() => <CourseDetailPresenter courseModel={courseModel} />}
             exact
           />
+          <Route path={'/courses'} render={() => <CoursesPresenter />} exact />
         </main>
       </Container>
       <footer>
         <Footer />
       </footer>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

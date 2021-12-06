@@ -8,15 +8,14 @@ const CoursesPresenter = () => {
   const [courseList, setCourseList] = useState(null);
 
   useEffect(() => {
-    const getCourseDataFromAPI = async () => {
-      let apUrl = '/api/courses';
+    const getAllCoursesFromAPI = async () => {
+      let apiUrl = '/api/courses';
 
-      const { data } = await axios.get(apUrl);
-      console.log(data);
+      const { data } = await axios.get(apiUrl);
       setCourseList(data);
     };
 
-    getCourseDataFromAPI();
+    getAllCoursesFromAPI();
   }, []);
 
   return <>{!courseList ? <Loader /> : <CoursesView courses={courseList} />}</>;
