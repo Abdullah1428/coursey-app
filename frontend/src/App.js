@@ -17,11 +17,14 @@ import ProfilePresenter from './presenters/ProfilePresenter';
 import CourseModel from './models/CourseModel';
 import ProfileModel from './models/ProfileModel';
 import RegisterPresenter from './presenters/RegisterPresenter';
+import FeedbackModel from './models/FeedbackModel';
+import FeedbackFormPresenter from './presenters/FeedbackFormPresenter';
 
 
 function App() {
   const courseModel = new CourseModel();
   const profileModel = new ProfileModel();
+  const feedbackModel = new FeedbackModel();
 
   return (
     <Router>
@@ -33,7 +36,7 @@ function App() {
           <Route
             path={'/course/:id'}
             render={(props) => (
-              <CourseDetailPresenter courseModel={courseModel} {...props} />
+              <CourseDetailPresenter courseModel={courseModel} feedbackModel={feedbackModel} {...props} />
             )}
             exact
           />
@@ -50,6 +53,11 @@ function App() {
           <Route
             path={'/register'}
             render={(props) => <RegisterPresenter/>}
+            exact
+          />
+          <Route
+            path={'/feedback'}
+            render={() => <FeedbackFormPresenter feedbackModel={feedbackModel}/>}
             exact
           />
         </main>

@@ -4,8 +4,9 @@ import axios from 'axios';
 import CourseDetailView from '../views/CourseDetailView';
 import Loader from '../components/Loader';
 
-const CourseDetailPresenter = ({ courseModel, match }) => {
+const CourseDetailPresenter = ({ courseModel, feedbackModel, match }) => {
   const [courseDetail, setCourseDetail] = useState(null);
+  const [feedback, setFeedback] = useState(null);
 
   useEffect(() => {
     const getCourseDataFromAPI = async () => {
@@ -17,16 +18,16 @@ const CourseDetailPresenter = ({ courseModel, match }) => {
 
       setCourseDetail(courseModel.getCourseDetails());
     };
-
+    setFeedback(feedbackModel.getFeedback())
     getCourseDataFromAPI();
-  }, [courseModel, match]);
+  }, [courseModel, feedbackModel, match]);
 
   return (
     <>
       {!courseDetail ? (
         <Loader />
       ) : (
-        <CourseDetailView courseDetail={courseDetail} />
+        <CourseDetailView courseDetail={courseDetail} feedback={feedback}/>
       )}
     </>
   );

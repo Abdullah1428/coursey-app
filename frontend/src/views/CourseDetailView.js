@@ -97,35 +97,35 @@ const CourseDetailView = (props) => {
       </Row>
       <Row>
         <Col>
-          <FeedbackCard />
+          <FeedbackCard feedbackDetails={props.feedback}/>
         </Col>
         <Col>
-          <FeedbackCard />
+          <FeedbackCard feedbackDetails={props.feedback}/>
         </Col>
         <Col>
-          <FeedbackCard />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <FeedbackCard />
-        </Col>
-        <Col>
-          <FeedbackCard />
-        </Col>
-        <Col>
-          <FeedbackCard />
+          <FeedbackCard feedbackDetails={props.feedback}/>
         </Col>
       </Row>
       <Row>
         <Col>
-          <FeedbackCard />
+          <FeedbackCard feedbackDetails={props.feedback}/>
         </Col>
         <Col>
-          <FeedbackCard />
+          <FeedbackCard feedbackDetails={props.feedback}/>
         </Col>
         <Col>
-          <FeedbackCard />
+          <FeedbackCard feedbackDetails={props.feedback}/>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <FeedbackCard feedbackDetails={props.feedback}/>
+        </Col>
+        <Col>
+          <FeedbackCard feedbackDetails={props.feedback}/>
+        </Col>
+        <Col>
+          <FeedbackCard feedbackDetails={props.feedback}/>
         </Col>
       </Row>
     </div>
