@@ -1,34 +1,65 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, Row, Col } from "react-bootstrap";
 
 const RegisterForm = () => {
     return(
         <div>
-            <Container>
+            <Container className="noBorder">
                 <Form>
                     <Form.Group controlId = "formGroupFirstName">
-                        <Form.Label></Form.Label>
+                    <Row className="row-g-3">
+                        <Col className= "col-md-2">
+                        First name
+                        </Col>
+                        <Col className="col-sm-4">
                         <Form.Control type="text" placeholder= "First Name"/>
-                    </Form.Group>
-                    <Form.Group controlId = "formGroupLastName">
-                        <Form.Label></Form.Label>     
+                        </Col>
+                        <Col className= "col-sm-2">
+                        Last name
+                        </Col>
+                        <Col className="col-sm-4">
                         <Form.Control type="text" placeholder= "Last Name"/>
+                        </Col>
+                    </Row>
                     </Form.Group>
-                    <Form.Group controlId = "formGroupEmail"> 
-                        <Form.Label></Form.Label>   
-                        <Form.Control type="email" placeholder= "KTH Email"/>
+                    <hr/>
+                    <Form.Group controlId = "formGroupEmail">
+                    <Row className="row-mb-3">
+                        <Col className= "col-sm-2">
+                        Email
+                        </Col>
+                        <Col className="col-sm-10">
+                        <Form.Control type="email" placeholder= "email@kth.se"/>
+                        </Col>
+                    </Row>
                     </Form.Group>
-                    <Form.Group controlId = "formGroupCreatePassword">
-                        <Form.Label></Form.Label> 
-                        <Form.Control type="password" placeholder= "Create a Password"/>
+                    <hr/>
+
+                    <Form.Group controlId = "formGroupPassword">
+                    <Row className="row-mb-3">
+                        <Col className= "col-sm-2">
+                        Password
+                        </Col>
+                        <Col className="col-sm-10">
+                        <Form.Control type="password" placeholder= "password"/>
+                        </Col>
+                    </Row>
                     </Form.Group>
-                    <Form.Group controlId = "formGroupConfirmPassword"> 
-                        <Form.Label></Form.Label>
-                        <Form.Control type="password" placeholder= "Confirm Password"/>
+                    <hr/>
+
+                    <Form.Group controlId = "formGroupFirstName">
+                    <Row className="row-mb-3">
+                        <Col className= "col-sm-2">
+                        Confirm Password
+                        </Col>
+                        <Col className="col-sm-10">
+                        <Form.Control type="password" placeholder= "password"/>
+                        </Col>
+                    </Row>
                     </Form.Group>
                 </Form>
-            
-                <Button>Register</Button>
+                <Button className="mt-3">Register</Button>
+
             </Container>
         </div>
     );

@@ -11,12 +11,17 @@ import Footer from './components/Footer';
 // presenters
 import CourseDetailPresenter from './presenters/CourseDetailPresenter';
 import FindCoursesPresenter from './presenters/FindCoursesPresenter';
+import ProfilePresenter from './presenters/ProfilePresenter';
 
 // model
 import CourseModel from './models/CourseModel';
+import ProfileModel from './models/ProfileModel';
+import RegisterPresenter from './presenters/RegisterPresenter';
+
 
 function App() {
   const courseModel = new CourseModel();
+  const profileModel = new ProfileModel();
 
   return (
     <Router>
@@ -35,6 +40,16 @@ function App() {
           <Route
             path={'/courses'}
             render={(props) => <FindCoursesPresenter {...props} />}
+            exact
+          />
+          <Route
+            path={'/mycoursey'}
+            render={(props) => <ProfilePresenter profileModel={profileModel} {...props} />}
+            exact
+          />
+          <Route
+            path={'/register'}
+            render={(props) => <RegisterPresenter/>}
             exact
           />
         </main>

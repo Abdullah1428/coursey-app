@@ -1,17 +1,13 @@
 import RegisterForm from '../components/RegisterForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Button } from 'react-bootstrap';
 
 const RegisterView = () => {
   return (
     <div>
-      <Container className='m-auto'>
-        <Row>
-          <Col className='m-auto'>hey</Col>
-          <Col className='m-auto'>
-            <RegisterForm />
-          </Col>
-        </Row>
+      <Container className="noBorder">
+        <h3> Make a Coursey account </h3>
+        <RegisterForm />
       </Container>
     </div>
   );
