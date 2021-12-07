@@ -14,6 +14,7 @@ const NavigationBar = () => {
         style={{ backgroundColor: '#DC8665' }}
         expand='lg'
         collapseOnSelect
+        className='px-3'
       >
         <>
           <LinkContainer to='/'>

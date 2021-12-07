@@ -4,11 +4,15 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { Container } from 'react-bootstrap';
 
+// common components
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
-import CourseDetailPresenter from './presenters/CourseDetailPresenter';
-import CoursesPresenter from './presenters/CoursesPresenter';
 
+// presenters
+import CourseDetailPresenter from './presenters/CourseDetailPresenter';
+import FindCoursesPresenter from './presenters/FindCoursesPresenter';
+
+// model
 import CourseModel from './models/CourseModel';
 
 function App() {
@@ -30,7 +34,7 @@ function App() {
           />
           <Route
             path={'/courses'}
-            render={(props) => <CoursesPresenter {...props} />}
+            render={(props) => <FindCoursesPresenter {...props} />}
             exact
           />
         </main>

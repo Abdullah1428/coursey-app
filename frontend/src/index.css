@@ -2,10 +2,10 @@ html {
   align-items: center;
 }
 
-.container {
+/* .container {
   border: 2px solid #000;
   max-width: 1000px;
-}
+} */
 
 main {
   min-height: 80vh;
