@@ -23,9 +23,10 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.2.0",
     "express-validator": "^6.13.0",
-    "concurrently": "^6.4.0"
+    "firebase": "^9.6.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "concurrently": "^6.4.0"
   }
 }

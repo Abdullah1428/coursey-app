@@ -3,6 +3,7 @@ import cors from 'cors';
 import path from 'path';
 
 import courseRoutes from './routes/courseRoutes.js';
+import authroutes from './routes/authRoutes.js';
 
 const app = express();
 
@@ -11,6 +12,10 @@ app.use(express.json());
 
 app.use(cors());
 
+// authentication routes
+app.use('/', authroutes);
+
+// api routes
 app.use('/api', courseRoutes);
 
 // Static assets for production deployment
