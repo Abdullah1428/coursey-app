@@ -9,12 +9,11 @@ import {
 
 const firebase = initializeApp(firebaseConfig);
 
-const auth = getAuth();
+const auth = getAuth(firebase);
 
-const email = 'ayushman.khazanchi@gmail.com';
-const password = 'verysecure';
-
-const register = () => {
+const register = function (req, res) {
+  const email = req.body.email;
+  const password = req.body.password;
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
@@ -30,7 +29,9 @@ const register = () => {
     });
 };
 
-const login = () => {
+const login = function (req, res) {
+  const email = req.body.email;
+  const password = req.body.password;
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
