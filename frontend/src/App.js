@@ -17,9 +17,9 @@ import ProfilePresenter from './presenters/ProfilePresenter';
 import CourseModel from './models/CourseModel';
 import ProfileModel from './models/ProfileModel';
 import RegisterPresenter from './presenters/RegisterPresenter';
+import LoginPresenter from './presenters/LoginPresenter';
 import FeedbackModel from './models/FeedbackModel';
 import FeedbackFormPresenter from './presenters/FeedbackFormPresenter';
-
 
 function App() {
   const courseModel = new CourseModel();
@@ -32,11 +32,15 @@ function App() {
         <NavigationBar />
       </header>
       <Container>
-        <main className='py-3'>
+        <main className="py-3">
           <Route
             path={'/course/:id'}
             render={(props) => (
-              <CourseDetailPresenter courseModel={courseModel} feedbackModel={feedbackModel} {...props} />
+              <CourseDetailPresenter
+                courseModel={courseModel}
+                feedbackModel={feedbackModel}
+                {...props}
+              />
             )}
             exact
           />
@@ -47,17 +51,26 @@ function App() {
           />
           <Route
             path={'/mycoursey'}
-            render={(props) => <ProfilePresenter profileModel={profileModel} {...props} />}
+            render={(props) => (
+              <ProfilePresenter profileModel={profileModel} {...props} />
+            )}
             exact
           />
           <Route
             path={'/register'}
-            render={(props) => <RegisterPresenter/>}
+            render={(props) => <RegisterPresenter {...props} />}
+            exact
+          />
+          <Route
+            path={'/login'}
+            render={(props) => <LoginPresenter {...props} />}
             exact
           />
           <Route
             path={'/feedback'}
-            render={() => <FeedbackFormPresenter feedbackModel={feedbackModel}/>}
+            render={() => (
+              <FeedbackFormPresenter feedbackModel={feedbackModel} />
+            )}
             exact
           />
         </main>
