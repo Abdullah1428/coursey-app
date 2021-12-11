@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 // authentication routes
-app.use('/', authroutes);
+app.use('/auth', authroutes);
 
 // api routes
 app.use('/api', courseRoutes);

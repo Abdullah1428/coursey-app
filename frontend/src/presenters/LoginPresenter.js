@@ -1,50 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import LoginView from '../views/LoginView';
-import axios from 'axios';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-const LoginPresenter = (props) => {
+import LoginView from '../views/LoginView';
+import { useAuth } from '../context/AuthContext';
+
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+
+const LoginPresenter = (_props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
-    console.log('handleSubmit ' + email + ' ' + password);
+  const { loginUser } = useAuth();
+  const history = useHistory();
 
-    const loginUser = async () => {
-      let apiUrl = '/login';
+  const handleSubmit = async () => {
+    setLoading(true);
+    setError('');
+    const status = await loginUser(email, password);
 
-      console.log('started post call');
-
-      let user = {
-        email,
-        password,
-      };
-      const res = await axios
-        .post(apiUrl, user)
-        .then(() => {
-          console.log('post request successful');
-          res.redirect('/courses');
-        })
-        .catch((err) => console.log(err));
-      console.log(res);
-    };
-
-    loginUser();
+    if (status === 200) {
+      setLoading(false);
+      history.push('/');
+    } else if (status === 400) {
+      setLoading(false);
+      setError('Error in Login');
+    }
   };
 
-  // make a call to /login
-  useEffect(() => {
-    setEmail(email);
-    setPassword(password);
-  }, [email, password]);
-
   return (
-    <LoginView
-      email={email}
-      password={password}
-      setEmail={(email) => setEmail(email)}
-      setPassword={(password) => setPassword(password)}
-      handleSubmit={() => handleSubmit()}
-    />
+    <>
+      {loading && <Loader />}
+      {error && <Message>{error}</Message>}
+      <LoginView
+        email={email}
+        password={password}
+        setEmail={(email) => setEmail(email)}
+        setPassword={(password) => setPassword(password)}
+        handleSubmit={() => handleSubmit()}
+      />
+    </>
   );
 };
 

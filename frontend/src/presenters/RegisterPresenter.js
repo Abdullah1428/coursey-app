@@ -1,52 +1,56 @@
-import React, { useEffect, useState } from 'react';
-import RegisterView from '../views/RegisterView';
-import axios from 'axios';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-const RegisterPresenter = (props) => {
+import RegisterView from '../views/RegisterView';
+import { useAuth } from '../context/AuthContext';
+
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+
+const RegisterPresenter = (_props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = () => {
+  const { registerUser } = useAuth();
+  const history = useHistory();
+
+  const handleSubmit = async () => {
     if (password === confirmPassword) {
-      const registerUser = async () => {
-        let apiUrl = '/register';
+      setLoading(true);
+      setError('');
+      const status = await registerUser(email, password);
 
-        let user = {
-          email,
-          password,
-        };
-
-        const { data } = await axios
-          .post(apiUrl, user)
-          .then(() => console.log('post request successful'))
-          .catch((err) => console.log(err));
-      };
-
-      registerUser();
+      if (status === 200) {
+        setLoading(false);
+        history.push('/');
+      } else if (status === 400) {
+        setLoading(false);
+        setError('Error in Registration');
+      }
     } else {
-      console.log("Error: passwords don't match");
+      setError('Passwords do not match');
     }
   };
 
-  useEffect(() => {
-    setEmail(email);
-    setPassword(password);
-    setConfirmPassword(confirmPassword);
-  }, [email, password, confirmPassword]);
-
   return (
-    <RegisterView
-      email={email}
-      password={password}
-      confirmPassword={confirmPassword}
-      setEmail={(email) => setEmail(email)}
-      setPassword={(password) => setPassword(password)}
-      setConfirmPassword={(confirmPassword) =>
-        setConfirmPassword(confirmPassword)
-      }
-      handleSubmit={() => handleSubmit()}
-    />
+    <>
+      {loading && <Loader />}
+      {error && <Message>{error}</Message>}
+      <RegisterView
+        email={email}
+        password={password}
+        confirmPassword={confirmPassword}
+        setEmail={(email) => setEmail(email)}
+        setPassword={(password) => setPassword(password)}
+        setConfirmPassword={(confirmPassword) =>
+          setConfirmPassword(confirmPassword)
+        }
+        handleSubmit={() => handleSubmit()}
+      />
+    </>
   );
 };
 

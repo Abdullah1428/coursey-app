@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Col, Form, Button, Row } from 'react-bootstrap';
+import { Container, Form, Button, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const RegisterView = (props) => {
   const handleSubmit = (e) => {
@@ -7,59 +8,55 @@ const RegisterView = (props) => {
     props.handleSubmit();
   };
   return (
-    <div>
-      <Container className="py-5">
-        <h3> Make a Coursey account </h3>
-        <Form onSubmit={(e) => handleSubmit(e)}>
-          <Form.Group controlId="formGroupEmail">
-            <Row className="row-mb-3">
-              <Col className="col-sm-2">Email</Col>
-              <Col className="col-sm-10">
+    <Container className='d-flex align-items-center justify-content-center'>
+      <div>
+        <Card>
+          <Card.Body>
+            <h2 className='text-center mb-4'> Make a Coursey account </h2>
+            <Form onSubmit={(e) => handleSubmit(e)}>
+              <Form.Group controlId='formGroupEmail'>
+                <Form.Label>Email</Form.Label>
                 <Form.Control
                   value={props.email}
                   onChange={(e) => props.setEmail(e.target.value)}
-                  type="email"
-                  placeholder="email@kth.se"
+                  type='email'
+                  placeholder='email@kth.se'
+                  required
                 />
-              </Col>
-            </Row>
-          </Form.Group>
-          <hr />
-
-          <Form.Group controlId="formGroupPassword">
-            <Row className="row-mb-3">
-              <Col className="col-sm-2">Password</Col>
-              <Col className="col-sm-10">
+              </Form.Group>
+              <div className='p-1' />
+              <Form.Group controlId='formGroupPassword'>
+                <Form.Label>Password</Form.Label>
                 <Form.Control
                   value={props.password}
                   onChange={(e) => props.setPassword(e.target.value)}
-                  type="password"
-                  placeholder="Enter password"
+                  type='password'
+                  placeholder='Enter password'
+                  required
                 />
-              </Col>
-            </Row>
-          </Form.Group>
-          <hr />
-
-          <Form.Group controlId="formGroupFirstName">
-            <Row className="row-mb-3">
-              <Col className="col-sm-2">Confirm Password</Col>
-              <Col className="col-sm-10">
+              </Form.Group>
+              <div className='p-1' />
+              <Form.Group controlId='formGroupFirstName'>
+                <Form.Label>Confirm Password</Form.Label>
                 <Form.Control
                   value={props.confirmPassword}
                   onChange={(e) => props.setConfirmPassword(e.target.value)}
-                  type="password"
-                  placeholder="Confirm password"
+                  type='password'
+                  placeholder='Confirm password'
                 />
-              </Col>
-            </Row>
-          </Form.Group>
-          <Button type="submit" className="mt-3">
-            Register
-          </Button>
-        </Form>
-      </Container>
-    </div>
+              </Form.Group>
+              <div className='p-1' />
+              <Button type='submit' className='mt-3 w-100'>
+                Register
+              </Button>
+            </Form>
+          </Card.Body>
+        </Card>
+        <div className='w-100 text-center mt-2'>
+          Already have an account? <Link to='/login'>Log In</Link>
+        </div>
+      </div>
+    </Container>
   );
 };
 
