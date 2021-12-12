@@ -28,16 +28,12 @@ function App() {
         </header>
         <Container>
           <main className='py-3'>
-            <PrivateRoute
+            <Route
               path={'/course/:id'}
               component={CourseDetailPresenter}
               exact
             />
-            <PrivateRoute
-              path={'/courses'}
-              component={FindCoursesPresenter}
-              exact
-            />
+            <Route path={'/courses'} component={FindCoursesPresenter} exact />
             <Route path={'/register'} component={RegisterPresenter} exact />
             <Route path={'/login'} component={LoginPresenter} exact />
           </main>

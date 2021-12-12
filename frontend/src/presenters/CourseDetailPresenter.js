@@ -28,21 +28,18 @@ const CourseDetailPresenter = ({ match }) => {
       }
     };
 
-    const getFeedbacks = async () => {
-      try {
-        let apiUrl = `/user/feedbacks/all`;
+    // const getFeedbacksForCourse = async (id) => {
+    //   try {
+    //     let apiUrl = `/user/reviews/${match.params.id}`;
 
-        const { data } = await axios.get(apiUrl);
+    //     const { data } = await axios.get(apiUrl);
 
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
 
     getCourseDataFromAPI();
-
-    getFeedbacks();
   }, [match]);
 
   const submitUserFeedback = () => {

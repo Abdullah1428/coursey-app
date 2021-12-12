@@ -61,7 +61,7 @@ const NavigationBar = () => {
                 </Nav>
               )}
               {currentUser ? (
-                <NavDropdown title={'User Name'} id='username'>
+                <NavDropdown title={`User`} id='username'>
                   <NavDropdown.Item onClick={() => handleLogoutHanlder()}>
                     Logout
                   </NavDropdown.Item>

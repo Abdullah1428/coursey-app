@@ -35,7 +35,12 @@ export const CourseDetailView = (props) => {
       <Row>
         <Col>
           <Row>
-            <Image src='https://via.placeholder.com/300' fluid rounded />
+            <Image
+              style={{ height: '300px', width: '300px' }}
+              src={`/assets/kthlogo.png`}
+              fluid
+              rounded
+            />
           </Row>
           <Row>
             <h4>Course Information</h4>
@@ -176,7 +181,8 @@ export const CourseReviews = (props) => {
       <ListGroup variant='flush'>
         <Col md={6}>
           <ListGroup.Item>
-            <h2>Write Your Review</h2>
+            <h2>Taken this course?</h2>
+            <h4>Share your experience with others</h4>
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId='rating'>
                 <Form.Label>Rating</Form.Label>
@@ -209,14 +215,19 @@ export const CourseReviews = (props) => {
           </ListGroup.Item>
         </Col>
         <h2>Course Reviews</h2>
-        {dummyReviews.map((r) => (
-          <ListGroup.Item key={r.id}>
-            <strong>{r.title}</strong>
-            <Rating value={r.rating} />
-            <p>{r.time}</p>
-            <p>{r.review}</p>
-          </ListGroup.Item>
-        ))}
+        <Row>
+          {dummyReviews.map((r) => (
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <div className='mt-4' />
+              <ListGroup.Item key={r.id}>
+                <strong>{r.title}</strong>
+                <Rating value={r.rating} />
+                <p>{r.time}</p>
+                <p>{r.review}</p>
+              </ListGroup.Item>
+            </Col>
+          ))}
+        </Row>
       </ListGroup>
     </>
   );

@@ -21,10 +21,16 @@ const getAllFeedbacks = asyncHandler(async (_req, res) => {
 const addFeedbackForCourse = asyncHandler(async (req, res) => {
   const feedbackCollectionRef = collection(db, 'feedback');
 
-  const { course, title, review, rating } = req.body;
+  const { userId, course, title, review, rating } = req.body;
 
   try {
-    await addDoc(feedbackCollectionRef, { course, title, review, rating });
+    await addDoc(feedbackCollectionRef, {
+      userId,
+      course,
+      title,
+      review,
+      rating,
+    });
 
     res.status(201);
   } catch (error) {

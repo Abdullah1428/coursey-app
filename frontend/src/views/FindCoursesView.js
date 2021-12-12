@@ -1,7 +1,7 @@
 import React from 'react';
-import { Row, Col, Form, Button } from 'react-bootstrap';
-
-import CourseCard from '../components/CourseCard';
+import { Row, Col, Form, Button, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import Rating from '../components/Rating';
 
 export const SearchBar = (props) => {
   return (
@@ -44,37 +44,31 @@ export const SearchResults = (props) => {
       {props.searchResults &&
         props.searchResults.map((search) => (
           <Col key={search.course.courseCode} sm={12} md={6} lg={4} xl={3}>
-            <CourseCard course={search.course} />
-            {/* <Card>
-              <ListGroup variant='flush'>
-                <ListGroup.Item>
-                  <Row>
-                    <Col>Course Code</Col>
-                    <Col>
-                      <strong>{search.course.courseCode}</strong>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-
-                <ListGroup.Item>
-                  <Row>
-                    <Col>Course Title</Col>
-                    <Col>{search.course.title}</Col>
-                  </Row>
-                </ListGroup.Item>
-
-                <ListGroup.Item>
-                  <Button
-                    onClick={() => console.log('hello')}
-                    className='btn-block'
-                    type='button'
-                    block
-                  >
-                    Course Details
-                  </Button>
-                </ListGroup.Item>
-              </ListGroup>
-            </Card> */}
+            {/* <CourseCard course={search.course} /> */}
+            <Card
+              style={{
+                margin: '10px',
+                width: '18rem',
+                boxShadow: '0px 5px 15px 0px rgb(0 0 0 / 20%)',
+              }}
+            >
+              <Card.Img variant='top' src='assets/kth.jpeg' />
+              <Card.Body>
+                <Card.Title>{search.course.courseCode}</Card.Title>
+                <Card.Subtitle className='mb-2 text-muted'>
+                  subtitle
+                </Card.Subtitle>
+                <Link to={`/course/${search.course.courseCode}`}>
+                  <Card.Text className='cardText'>
+                    {search.course.title}
+                  </Card.Text>
+                </Link>
+                <div style={{ margin: 10 }} />
+                <Card.Text as='div'>
+                  <Rating value={4} text={` num of reviews`} />
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Col>
         ))}
     </Row>
