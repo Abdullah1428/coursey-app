@@ -1,31 +1,71 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import CourseDetailView from '../views/CourseDetailView';
+import { CourseDetailView, CourseReviews } from '../views/CourseDetailView';
 import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const CourseDetailPresenter = ({ match }) => {
   const [courseDetail, setCourseDetail] = useState(null);
+  const [rating, setRating] = useState(0);
+  const [review, setReview] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getCourseDataFromAPI = async () => {
-      let apiUrl = `/api/course/${match.params.id}`;
+      setLoading(true);
+      try {
+        let apiUrl = `/api/course/${match.params.id}`;
 
-      const { data } = await axios.get(apiUrl);
+        const { data } = await axios.get(apiUrl);
 
-      setCourseDetail(data);
+        setCourseDetail(data);
+        setLoading(false);
+      } catch (error) {
+        setError('Error in getting course details');
+        setLoading(false);
+      }
+    };
+
+    const getFeedbacks = async () => {
+      try {
+        let apiUrl = `/user/feedbacks/all`;
+
+        const { data } = await axios.get(apiUrl);
+
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     getCourseDataFromAPI();
+
+    getFeedbacks();
   }, [match]);
+
+  const submitUserFeedback = () => {
+    // submit here feedback to firebase.
+  };
 
   return (
     <>
-      {!courseDetail ? (
+      {error ? (
+        <Message>{error}</Message>
+      ) : loading ? (
         <Loader />
       ) : (
-        <CourseDetailView courseDetail={courseDetail} />
+        courseDetail && <CourseDetailView courseDetail={courseDetail} />
       )}
+
+      <CourseReviews
+        rating={rating}
+        review={review}
+        userRating={(rating) => setRating(rating)}
+        userReview={(review) => setReview(review)}
+        onSubmitReview={() => submitUserFeedback()}
+      />
     </>
   );
 };

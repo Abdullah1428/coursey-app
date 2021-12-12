@@ -9,9 +9,13 @@ import {
   signOut,
 } from 'firebase/auth';
 
+import { getFirestore } from 'firebase/firestore';
+
 const firebase = initializeApp(firebaseConfig);
 
 const auth = getAuth(firebase);
+
+export const db = getFirestore(firebase);
 
 const register = asyncHandler((req, res) => {
   const email = req.body.email;

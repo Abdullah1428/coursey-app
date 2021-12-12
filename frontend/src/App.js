@@ -30,24 +30,16 @@ function App() {
           <main className='py-3'>
             <PrivateRoute
               path={'/course/:id'}
-              render={(props) => <CourseDetailPresenter {...props} />}
+              component={CourseDetailPresenter}
               exact
             />
             <PrivateRoute
               path={'/courses'}
-              render={(props) => <FindCoursesPresenter {...props} />}
+              component={FindCoursesPresenter}
               exact
             />
-            <Route
-              path={'/register'}
-              render={(props) => <RegisterPresenter {...props} />}
-              exact
-            />
-            <Route
-              path={'/login'}
-              render={(props) => <LoginPresenter {...props} />}
-              exact
-            />
+            <Route path={'/register'} component={RegisterPresenter} exact />
+            <Route path={'/login'} component={LoginPresenter} exact />
           </main>
         </Container>
         <footer>

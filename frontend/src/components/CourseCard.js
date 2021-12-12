@@ -24,7 +24,6 @@ const CourseCard = (props) => {
               ? `/course/${props.course.code}`
               : `/course/${props.course.courseCode}`
           }
-          target={'_blank'}
         >
           <Card.Text>
             {props.course.name ? props.course.name : props.course.title}

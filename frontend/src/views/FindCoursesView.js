@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Form, Button, Card, ListGroup } from 'react-bootstrap';
+import { Row, Col, Form, Button } from 'react-bootstrap';
 
 import CourseCard from '../components/CourseCard';
 
