@@ -5,14 +5,23 @@ import Rating from './Rating';
 
 const CourseCard = (props) => {
   return (
-    <Card className='my-3 p-3 rounded'>
+    <Card
+      className="my-3 p-3 rounded"
+      bg={'info'}
+      text={'white'}
+      style={{
+        width: '18rem',
+        height: '12rem',
+      }}>
       <Card.Body>
-        <Card.Title>{props.course.code}</Card.Title>
-        <Link to={`/course/${props.course.code}`} target={'_blank'}>
-          <Card.Text>{props.course.name}</Card.Text>
+        <Link to={`/course/${props.course.course}`}>
+          <Card.Title>{props.course.course}</Card.Title>
         </Link>
-        <Card.Text as='div'>
-          <Rating value={4} text={` num of reviews`} />
+
+        <Card.Text>{props.course.title}</Card.Text>
+
+        <Card.Text as="div">
+          <Rating value={props.course.rating} text={` rating`} />
         </Card.Text>
       </Card.Body>
     </Card>
