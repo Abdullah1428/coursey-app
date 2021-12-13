@@ -78,7 +78,7 @@ const CourseDetailPresenter = ({ match }) => {
         let apiUrl = `/user/course/feedback`;
 
         let feedback = {
-          userId: currentUser.userUid,
+          uid: currentUser.uid,
           course: match.params.id,
           title: title,
           review: review,

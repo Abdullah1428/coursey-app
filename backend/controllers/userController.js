@@ -30,11 +30,11 @@ const getAllFeedbacks = asyncHandler(async (_req, res) => {
 const addFeedbackForCourse = asyncHandler(async (req, res) => {
   const feedbackCollectionRef = collection(db, 'feedback');
 
-  const { userId, course, title, review, rating } = req.body;
+  const { uid, course, title, review, rating } = req.body;
 
   try {
     await addDoc(feedbackCollectionRef, {
-      userId,
+      uid,
       course,
       title,
       review,
@@ -73,7 +73,7 @@ const getUserActivity = asyncHandler(async (req, res) => {
   try {
     const q = query(
       collection(db, 'feedback'),
-      where('userId', '==', id),
+      where('uid', '==', id),
       orderBy('createdAt'),
       limit(3)
     );
