@@ -24,7 +24,10 @@ const register = asyncHandler((req, res) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      res.json({ user });
+
+      const response = { userEmail: user.email, userUid: user.uid };
+
+      res.json(response);
     })
     .catch((error) => {
       res.status(404).send('firebase error');
@@ -44,7 +47,9 @@ const login = asyncHandler((req, res) => {
       // Signed in
       const user = userCredential.user;
 
-      res.json({ user });
+      const response = { userEmail: user.email, userUid: user.uid };
+
+      res.json(response);
     })
     .catch((error) => {
       res.status(404).send('firebase error');

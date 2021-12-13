@@ -18,6 +18,7 @@ import LoginPresenter from './presenters/LoginPresenter';
 
 // protected route
 import PrivateRoute from './context/PrivateRoutes';
+import OverviewView from './views/OverviewView';
 
 function App() {
   return (
@@ -28,7 +29,8 @@ function App() {
         </header>
         <Container>
           <main className='py-3'>
-            <Route
+            <PrivateRoute path={'/'} component={OverviewView} exact />
+            <PrivateRoute
               path={'/course/:id'}
               component={CourseDetailPresenter}
               exact

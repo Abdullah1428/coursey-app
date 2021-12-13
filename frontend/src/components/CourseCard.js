@@ -15,20 +15,10 @@ const CourseCard = (props) => {
       }}
     >
       <Card.Body>
-        <Card.Title>
-          {props.course.code ? props.course.code : props.course.courseCode}
-        </Card.Title>
-        <Link
-          to={
-            props.course.code
-              ? `/course/${props.course.code}`
-              : `/course/${props.course.courseCode}`
-          }
-        >
-          <Card.Text>
-            {props.course.name ? props.course.name : props.course.title}
-          </Card.Text>
-        </Link>
+        <Card.Title>{'code'}</Card.Title>
+
+        <Card.Text>{'name'}</Card.Text>
+
         <Card.Text as='div'>
           <Rating value={4} text={` num of reviews`} />
         </Card.Text>

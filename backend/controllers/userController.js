@@ -29,10 +29,10 @@ const addFeedbackForCourse = asyncHandler(async (req, res) => {
       course,
       title,
       review,
-      rating,
+      rating: Number(rating),
     });
 
-    res.status(201);
+    res.status(201).send('feedback added');
   } catch (error) {
     res.status(400).send('Firebase error!');
   }

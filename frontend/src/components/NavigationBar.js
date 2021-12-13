@@ -39,27 +39,26 @@ const NavigationBar = () => {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse className='justify-content-end'>
             <Nav className='ml-auto'>
-              {currentUser && (
-                <Nav className='me-auto'>
-                  <LinkContainer to='/courses'>
-                    <Nav.Link>
-                      <i className='fas fa-search'></i> Find Courses
-                    </Nav.Link>
-                  </LinkContainer>
+              <Nav className='me-auto'>
+                <LinkContainer to='/courses'>
+                  <Nav.Link>
+                    <i className='fas fa-search'></i> Find Courses
+                  </Nav.Link>
+                </LinkContainer>
 
-                  <LinkContainer to='/recommendations'>
+                {/* <LinkContainer to='/recommendations'>
                     <Nav.Link>
                       <i className='fas fa-rocket'></i> Recommendations
                     </Nav.Link>
-                  </LinkContainer>
+                  </LinkContainer> */}
 
-                  <LinkContainer to='/mycoursey'>
-                    <Nav.Link>
-                      <i className='fas fa-book'></i> My Coursey
-                    </Nav.Link>
-                  </LinkContainer>
-                </Nav>
-              )}
+                <LinkContainer to={currentUser ? '/mycoursey' : '/login'}>
+                  <Nav.Link>
+                    <i className='fas fa-book'></i> My Coursey
+                  </Nav.Link>
+                </LinkContainer>
+              </Nav>
+
               {currentUser ? (
                 <NavDropdown title={`User`} id='username'>
                   <NavDropdown.Item onClick={() => handleLogoutHanlder()}>
