@@ -74,9 +74,10 @@ const getUserActivity = asyncHandler(async (req, res) => {
     const q = query(
       collection(db, 'feedback'),
       where('uid', '==', id),
-      orderBy('createdAt'),
       limit(3)
     );
+
+    //orderBy not working when user has no feedbacks
 
     const querySnapshot = await getDocs(q);
 
