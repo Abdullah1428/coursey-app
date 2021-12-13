@@ -9,7 +9,7 @@ import {
   signOut,
 } from 'firebase/auth';
 
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
 
 const firebase = initializeApp(firebaseConfig);
 
@@ -17,26 +17,29 @@ const auth = getAuth(firebase);
 
 export const db = getFirestore(firebase);
 
-const register = asyncHandler((req, res) => {
+const register = asyncHandler(async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
 
-      const response = { userEmail: user.email, userUid: user.uid };
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
+    const data = {
+      uid: user.uid,
+      email: user.email,
+    };
+    console.log(user.uid);
+    console.log(data);
+    await setDoc(doc(db, 'users', user.uid), data);
 
-      res.json(response);
-    })
-    .catch((error) => {
-      res.status(404).send('firebase error');
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(
-        'There was an error in sign up: ' + errorCode + ' ' + errorMessage
-      );
-    });
+    res.json(data);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
 });
 
 const login = asyncHandler((req, res) => {
@@ -47,7 +50,7 @@ const login = asyncHandler((req, res) => {
       // Signed in
       const user = userCredential.user;
 
-      const response = { userEmail: user.email, userUid: user.uid };
+      const response = { email: user.email, uid: user.uid };
 
       res.json(response);
     })

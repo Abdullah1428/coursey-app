@@ -16,7 +16,7 @@ const OverviewPresenter = (props) => {
     const getUserActivity = async () => {
       setLoading(true);
       try {
-        let apiUrl = `/user/activity/${currentUser.userUid}`;
+        let apiUrl = `/user/activity/${currentUser.uid}`;
 
         const { data } = await axios.get(apiUrl);
 
