@@ -29,7 +29,7 @@ const OverviewPresenter = (props) => {
     };
 
     getUserActivity();
-  }, [currentUser.userUid]);
+  }, [currentUser.uid]);
 
   return (
     <>

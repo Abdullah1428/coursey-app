@@ -19,7 +19,7 @@ const ProfilePresenter = (props) => {
   const handleUpdate = async (e) => {
     let apiUrl = '/user/updateProfile';
     const body = {
-      uid: currentUser.userUid,
+      uid: currentUser.uid,
       name: name,
       program: program,
       school: school,
@@ -38,7 +38,7 @@ const ProfilePresenter = (props) => {
     setError('');
     try {
       let apiUrl = '/user/getProfile';
-      const body = { uid: currentUser.userUid };
+      const body = { uid: currentUser.uid };
       const { data } = await axios.post(apiUrl, body);
       setName(data.name);
       setProgram(data.program);
