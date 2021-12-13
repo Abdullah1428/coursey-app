@@ -2,7 +2,15 @@ import asyncHandler from 'express-async-handler';
 
 import { db } from './authController.js';
 
-import { collection, getDocs, addDoc, query, where } from '@firebase/firestore';
+import {
+  collection,
+  getDocs,
+  addDoc,
+  query,
+  where,
+  limit,
+  orderBy,
+} from '@firebase/firestore';
 
 const getAllFeedbacks = asyncHandler(async (_req, res) => {
   const feedbackCollectionRef = collection(db, 'feedback');
@@ -57,7 +65,36 @@ const getFeedbacksByCourseId = asyncHandler(async (req, res) => {
   }
 });
 
-export { getAllFeedbacks, addFeedbackForCourse, getFeedbacksByCourseId };
+const getUserActivity = asyncHandler(async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const q = query(
+      collection(db, 'feedback'),
+      where('userId', '==', id),
+      orderBy('createdAt'),
+      limit(3)
+    );
+
+    const querySnapshot = await getDocs(q);
+
+    const data = querySnapshot.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+
+    res.json(data);
+  } catch (error) {
+    res.status(404).send('Firebase error!');
+  }
+});
+
+export {
+  getAllFeedbacks,
+  addFeedbackForCourse,
+  getFeedbacksByCourseId,
+  getUserActivity,
+};
 
 // to get specific doc
 // const feedback doc = doc(db, collectionName, id)
