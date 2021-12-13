@@ -5,9 +5,12 @@ import { db } from './authController.js';
 import {
   collection,
   getDocs,
-  addDoc,
+  getDoc,
+  doc,
   query,
   where,
+  updateDoc,
+  addDoc,
   serverTimestamp,
   limit,
   orderBy,
@@ -92,11 +95,42 @@ const getUserActivity = asyncHandler(async (req, res) => {
   }
 });
 
+const getProfileDetailsFromAPI = asyncHandler(async (req, res) => {
+  const uid = req.body.uid;
+  try {
+    const docRef = doc(db, 'users', uid);
+    const snapShot = await getDoc(docRef);
+    res.json(snapShot.data());
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+});
+
+const updateProfileDetailsfromAPI = asyncHandler(async (req, res) => {
+  const uid = req.body.uid;
+  try {
+    const docRef = doc(db, 'users', uid);
+
+    const status = await updateDoc(docRef, {
+      name: req.body.name,
+      program: req.body.program,
+      school: req.body.school,
+      year: req.body.year,
+    });
+    console.log(status);
+    res.json(status);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+});
+
 export {
   getAllFeedbacks,
   addFeedbackForCourse,
   getFeedbacksByCourseId,
   getUserActivity,
+  getProfileDetailsFromAPI,
+  updateProfileDetailsfromAPI,
 };
 
 // to get specific doc

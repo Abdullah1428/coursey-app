@@ -20,6 +20,8 @@ app.use('/api', courseRoutes);
 // user routess
 app.use('/user', userRoutes);
 
+
+app.use('/user', userRoutes)
 // Static assets for production deployment
 if (process.env.NODE_ENV === 'production') {
   // Define the static folder

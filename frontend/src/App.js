@@ -15,6 +15,7 @@ import CourseDetailPresenter from './presenters/CourseDetailPresenter';
 import FindCoursesPresenter from './presenters/FindCoursesPresenter';
 import RegisterPresenter from './presenters/RegisterPresenter';
 import LoginPresenter from './presenters/LoginPresenter';
+import ProfilePresenter from './presenters/ProfilePresenter';
 
 // protected route
 import PrivateRoute from './context/PrivateRoutes';
@@ -28,13 +29,19 @@ function App() {
           <NavigationBar />
         </header>
         <Container>
-          <main className='py-3'>
+          <main className="py-3">
             <PrivateRoute path={'/'} component={OverviewPresenter} exact />
             <PrivateRoute
               path={'/course/:id'}
               component={CourseDetailPresenter}
               exact
             />
+            <PrivateRoute
+              path={'/mycoursey'}
+              component={ProfilePresenter}
+              exact
+            />
+
             <Route path={'/courses'} component={FindCoursesPresenter} exact />
             <Route path={'/register'} component={RegisterPresenter} exact />
             <Route path={'/login'} component={LoginPresenter} exact />
