@@ -23,13 +23,13 @@ const OverviewPresenter = (props) => {
         setCourses(data);
         setLoading(false);
       } catch (error) {
-        setError(error.message);
+        setError('Error from API');
         setLoading(false);
       }
     };
 
     getUserActivity();
-  }, []);
+  }, [currentUser.userUid]);
 
   return (
     <>

@@ -23,39 +23,37 @@ const CourseDetailPresenter = ({ match }) => {
   // context
   const { currentUser } = useAuth();
 
+  const getCourseDataFromAPI = async () => {
+    setLoadingCourse(true);
+    try {
+      let apiUrl = `/api/course/${match.params.id}`;
+
+      const { data } = await axios.get(apiUrl);
+
+      setCourseDetail(data);
+      setLoadingCourse(false);
+    } catch (error) {
+      setErrorCourse('Error in getting course details');
+      setLoadingCourse(false);
+    }
+  };
+
+  const getFeedbacksForCourse = async () => {
+    setLoadingReviews(true);
+    try {
+      let apiUrl = `/user/reviews/${match.params.id}`;
+
+      const { data } = await axios.get(apiUrl);
+
+      setCourseReviews(data);
+      setLoadingReviews(false);
+    } catch (error) {
+      setErrorReviews('Error in getting course reviews');
+      setLoadingReviews(false);
+    }
+  };
+
   useEffect(() => {
-    const getCourseDataFromAPI = async () => {
-      setLoadingCourse(true);
-      try {
-        let apiUrl = `/api/course/${match.params.id}`;
-
-        const { data } = await axios.get(apiUrl);
-
-        setCourseDetail(data);
-        setLoadingCourse(false);
-      } catch (error) {
-        setErrorCourse('Error in getting course details');
-        setLoadingCourse(false);
-      }
-    };
-
-    const getFeedbacksForCourse = async () => {
-      setLoadingReviews(true);
-      try {
-        let apiUrl = `/user/reviews/${match.params.id}`;
-
-        const { data } = await axios.get(apiUrl);
-
-        console.log(data);
-
-        setCourseReviews(data);
-        setLoadingReviews(false);
-      } catch (error) {
-        setErrorReviews('Error in getting course reviews');
-        setLoadingReviews(false);
-      }
-    };
-
     getCourseDataFromAPI();
     getFeedbacksForCourse();
   }, [match]);
@@ -89,6 +87,7 @@ const CourseDetailPresenter = ({ match }) => {
 
         if (data === 'feedback added') {
           alert('Feedback Submitted successfully, Thank you for the review');
+          getFeedbacksForCourse();
         }
       } catch (error) {
         console.log('Error in feedback submission ', error.message);

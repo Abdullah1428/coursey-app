@@ -116,6 +116,12 @@ export const CourseReviews = (props) => {
     props.onSubmitReview();
   };
 
+  function toDateTime(secs) {
+    var t = new Date(1970, 0, 1); // Epoch
+    t.setSeconds(secs);
+    return t.toDateString();
+  }
+
   return (
     <>
       <hr />
@@ -180,9 +186,10 @@ export const CourseReviews = (props) => {
             props.courseReviews.map((r) => (
               <Col key={r.id} sm={12} md={6} lg={4} xl={3}>
                 <div className='mt-4' />
-                <ListGroup.Item>
-                  <strong>{r.title}</strong>
-                  <Rating value={r.rating} text={' rating'} />
+                <ListGroup.Item className='my-3 p-3'>
+                  <h4>{r.title}</h4>
+                  <Rating value={r.rating} text={` ${r.rating} stars`} />
+                  <p>{toDateTime(r.createdAt.seconds)}</p>
                   <p>{r.review}</p>
                 </ListGroup.Item>
               </Col>

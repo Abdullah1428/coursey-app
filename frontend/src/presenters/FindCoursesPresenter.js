@@ -49,7 +49,7 @@ const FindCoursesPresenter = () => {
       ) : error && error.length > 0 ? (
         <Message>{error}</Message>
       ) : (
-        <SearchResults searchResults={searchResults} />
+        searchResults && <SearchResults searchResults={searchResults} />
       )}
     </>
   );
