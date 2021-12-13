@@ -2,7 +2,14 @@ import asyncHandler from 'express-async-handler';
 
 import { db } from './authController.js';
 
-import { collection, getDocs, addDoc, query, where } from '@firebase/firestore';
+import {
+  collection,
+  getDocs,
+  addDoc,
+  query,
+  where,
+  serverTimestamp,
+} from '@firebase/firestore';
 
 const getAllFeedbacks = asyncHandler(async (_req, res) => {
   const feedbackCollectionRef = collection(db, 'feedback');
@@ -30,11 +37,12 @@ const addFeedbackForCourse = asyncHandler(async (req, res) => {
       title,
       review,
       rating: Number(rating),
+      createdAt: serverTimestamp(),
     });
 
     res.status(201).send('feedback added');
   } catch (error) {
-    res.status(400).send('Firebase error!');
+    res.status(404).send('Firebase error!');
   }
 });
 
