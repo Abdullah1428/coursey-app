@@ -48,4 +48,25 @@ const getAllCourses = asyncHandler(async (req, res) => {
   return res.json(data);
 });
 
-export { getCourseDetail, getAllCourses };
+const searchCourse = asyncHandler(async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const query = req.params.query;
+
+  const KTH_SEARCH_COURSE_API = `https://www.kth.se/api/kopps/v2/courses/search?text_pattern=${query}&l=en`;
+
+  const config = {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+  };
+
+  const { data } = await axios.get(KTH_SEARCH_COURSE_API, config);
+
+  return res.json(data);
+});
+
+export { getCourseDetail, getAllCourses, searchCourse };

@@ -3,6 +3,12 @@ import cors from 'cors';
 import path from 'path';
 
 import courseRoutes from './routes/courseRoutes.js';
+import authroutes from './routes/authRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 
@@ -11,8 +17,14 @@ app.use(express.json());
 
 app.use(cors());
 
+// authentication routes
+app.use('/auth', authroutes);
+// course routes
 app.use('/api', courseRoutes);
+// user routess
+app.use('/user', userRoutes);
 
+app.use('/user', userRoutes);
 // Static assets for production deployment
 if (process.env.NODE_ENV === 'production') {
   // Define the static folder

@@ -2,10 +2,10 @@ html {
   align-items: center;
 }
 
-.container {
+/* .container {
   border: 2px solid #000;
   max-width: 1000px;
-}
+} */
 
 main {
   min-height: 80vh;
@@ -23,4 +23,12 @@ h1 {
 h2 {
   font-size: 1.4rem;
   padding: 0.5rem 0;
+}
+
+.cardText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
