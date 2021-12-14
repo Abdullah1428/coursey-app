@@ -71,14 +71,17 @@ const getFeedbacksByCourseId = asyncHandler(async (req, res) => {
 });
 
 const getUserActivity = asyncHandler(async (req, res) => {
-  const id = req.params.id;
-
+  const id = req.body.uid;
+  const lim = req.body.limit;
   try {
-    const q = query(
-      collection(db, 'feedback'),
-      where('uid', '==', id),
-      limit(3)
-    );
+    let q;
+    if (lim === 0) {
+      q = query(collection(db, 'feedback'), where('uid', '==', id));
+    } else {
+      q = query(collection(db, 'feedback'), where('uid', '==', id), limit(lim));
+    }
+
+    console.log(q);
 
     //orderBy not working when user has no feedbacks
 
