@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Card } from 'react-bootstrap';
+import { Card, Button, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Rating from './Rating';
+import FeedbackModal from './FeedbackModal';
 
 const CourseCard = (props) => {
+  const [modalShow, setModalShow] = useState(false);
+
   return (
     <Card
       className="my-3 p-3 rounded"
@@ -18,12 +22,25 @@ const CourseCard = (props) => {
           <Card.Title>{props.course.course}</Card.Title>
         </Link>
 
-        <Card.Text>{props.course.title}</Card.Text>
-
+        <Row>
+          <Col className="d-flex align-items-center">
+            <Card.Text>{props.course.title}</Card.Text>
+          </Col>
+          <Col xs={4}>
+            <Button size="sm" onClick={() => setModalShow(true)}>
+              See Full Feedback
+            </Button>
+          </Col>
+        </Row>
         <Card.Text as="div">
           <Rating value={props.course.rating} text={` rating`} />
         </Card.Text>
       </Card.Body>
+      <FeedbackModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        course={props.course}
+      />
     </Card>
   );
 };
