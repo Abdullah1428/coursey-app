@@ -34,6 +34,8 @@ const FindCoursesPresenter = () => {
 
       const { data } = await axios.get(apiUrl);
 
+      console.log(data);
+
       setSearchResults(data.searchHits);
 
       setLoader(false);

@@ -18,20 +18,28 @@ const RegisterPresenter = (_props) => {
   const history = useHistory();
 
   const handleSubmit = async () => {
-    if (password === confirmPassword) {
-      setLoading(true);
-      setError('');
-      const status = await registerUser(email, password);
+    const parts = email.split('@');
 
-      if (status === 200) {
-        setLoading(false);
-        history.push('/');
-      } else if (status === 400) {
-        setLoading(false);
-        setError('Error in Registration');
-      }
-    } else {
-      setError('Passwords do not match');
+    if (parts[1] !== 'kth.se' || parts[1] !== 'ug.kth.se') {
+      alert('Please use your kth mail.');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert("Passwords don't match.");
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+    const status = await registerUser(email, password);
+
+    if (status === 200) {
+      setLoading(false);
+      history.push('/');
+    } else if (status === 400) {
+      setLoading(false);
+      setError('Error in Registration');
     }
   };
 

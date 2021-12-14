@@ -32,7 +32,7 @@ const NavigationBar = () => {
         collapseOnSelect
         className='px-3'
       >
-        <Container>
+        <>
           <LinkContainer to={currentUser ? '/' : '/login'}>
             <Navbar.Brand>Coursey</Navbar.Brand>
           </LinkContainer>
@@ -60,21 +60,19 @@ const NavigationBar = () => {
               </Nav>
 
               {currentUser ? (
-                <NavDropdown title={`User`} id='username'>
-                  <NavDropdown.Item onClick={() => handleLogoutHanlder()}>
-                    Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
+                <Nav.Link onClick={() => handleLogoutHanlder()}>
+                  <i className='fas fa-user'></i> Logout
+                </Nav.Link>
               ) : (
                 <LinkContainer to='/login'>
                   <Nav.Link>
-                    <i className='fas fa-user'></i> Sign In
+                    <i className='fas fa-user'></i> Login
                   </Nav.Link>
                 </LinkContainer>
               )}
             </Nav>
           </Navbar.Collapse>
-        </Container>
+        </>
       </Navbar>
     </>
   );
