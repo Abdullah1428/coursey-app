@@ -1,5 +1,5 @@
 import { Row, Col, Image, Form, Button, ListGroup } from 'react-bootstrap';
-
+import { Link } from 'react-router-dom';
 import Rating from '../components/Rating';
 
 export const CourseDetailView = (props) => {
@@ -125,54 +125,61 @@ export const CourseReviews = (props) => {
         <Col md={6}>
           <ListGroup.Item>
             <h2>Taken this course?</h2>
-            <h4>Share your experience with others</h4>
             {props.currentUser ? (
-              <Form onSubmit={(e) => handleSubmit(e)}>
-                <Form.Group controlId='rating'>
-                  <Form.Label>Rating</Form.Label>
-                  <Form.Control
-                    as='select'
-                    value={props.rating}
-                    onChange={(e) => props.userRating(e.target.value)}
+              <>
+                <h4>Share your experience with others</h4>
+                <Form onSubmit={(e) => handleSubmit(e)}>
+                  <Form.Group controlId='rating'>
+                    <Form.Label>Rating</Form.Label>
+                    <Form.Control
+                      as='select'
+                      value={props.rating}
+                      onChange={(e) => props.userRating(e.target.value)}
+                    >
+                      <option value=''>Select Rating</option>
+                      <option value='1'>1 - Poor</option>
+                      <option value='2'>2 - Fair</option>
+                      <option value='3'>3 - Good</option>
+                      <option value='4'>4 - Very Good</option>
+                      <option value='5'>5 - Excellent</option>
+                    </Form.Control>
+                  </Form.Group>
+                  <Form.Group controlId='title'>
+                    <Form.Label> Review Title </Form.Label>
+                    <Form.Control
+                      value={props.title}
+                      onChange={(e) => props.userTitle(e.target.value)}
+                      type='text'
+                      placeholder='Review title'
+                      required
+                    />
+                  </Form.Group>
+                  <Form.Group controlId='comment'>
+                    <Form.Label>Comment</Form.Label>
+                    <Form.Control
+                      as='textarea'
+                      row='5'
+                      value={props.review}
+                      placeholder='Write your review here...'
+                      onChange={(e) => props.userReview(e.target.value)}
+                    ></Form.Control>
+                  </Form.Group>
+                  <Button
+                    style={{ marginTop: 20 }}
+                    type='submit'
+                    variant='primary'
                   >
-                    <option value=''>Select Rating</option>
-                    <option value='1'>1 - Poor</option>
-                    <option value='2'>2 - Fair</option>
-                    <option value='3'>3 - Good</option>
-                    <option value='4'>4 - Very Good</option>
-                    <option value='5'>5 - Excellent</option>
-                  </Form.Control>
-                </Form.Group>
-                <Form.Group controlId='title'>
-                  <Form.Label> Review Title </Form.Label>
-                  <Form.Control
-                    value={props.title}
-                    onChange={(e) => props.userTitle(e.target.value)}
-                    type='text'
-                    placeholder='Review title'
-                    required
-                  />
-                </Form.Group>
-                <Form.Group controlId='comment'>
-                  <Form.Label>Comment</Form.Label>
-                  <Form.Control
-                    as='textarea'
-                    row='5'
-                    value={props.review}
-                    placeholder='Write your review here...'
-                    onChange={(e) => props.userReview(e.target.value)}
-                  ></Form.Control>
-                </Form.Group>
-                <Button
-                  style={{ marginTop: 20 }}
-                  type='submit'
-                  variant='primary'
-                >
-                  Submit
-                </Button>
-              </Form>
+                    Submit
+                  </Button>
+                </Form>
+              </>
             ) : (
-              <div>Link To Login </div>
+              <>
+                <h4>
+                  <Link to={'/login'}>Login</Link> to share your experience with
+                  others
+                </h4>
+              </>
             )}
           </ListGroup.Item>
         </Col>

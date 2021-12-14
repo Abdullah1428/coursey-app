@@ -29,9 +29,9 @@ function App() {
           <NavigationBar />
         </header>
         <Container>
-          <main className="py-3">
+          <main className='py-3'>
             <PrivateRoute path={'/'} component={OverviewPresenter} exact />
-            <PrivateRoute
+            <Route
               path={'/course/:id'}
               component={CourseDetailPresenter}
               exact
