@@ -39,7 +39,7 @@ const RegisterPresenter = (_props) => {
     if (currentUser) {
       history.push('/');
     }
-  }, [currentUser]);
+  }, [currentUser, history]);
 
   return (
     <>
