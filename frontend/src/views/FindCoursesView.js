@@ -13,6 +13,7 @@ export const SearchBar = (props) => {
             <Form.Control
               type='text'
               name='q'
+              value={props.searchQuery}
               onChange={(e) => props.onChange(e)}
               placeholder='Search Courses by Name and Code...'
               className='mr-sm-2 ml-sm-5'
@@ -47,7 +48,13 @@ export const SearchResults = (props) => {
           <Col key={search.course.courseCode} sm={12} md={6} lg={4} xl={3}>
             <Link
               style={{ textDecoration: 'none' }}
-              to={`/course/${search.course.courseCode}`}
+              to={{
+                pathname: `/course/${search.course.courseCode}`,
+                state: {
+                  searchQuery: props.searchQuery,
+                  searchResults: props.searchResults,
+                },
+              }}
             >
               <Card
                 style={{

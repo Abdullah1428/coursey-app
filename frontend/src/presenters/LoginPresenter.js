@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import LoginView from '../views/LoginView';
@@ -13,7 +13,7 @@ const LoginPresenter = (_props) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const { loginUser } = useAuth();
+  const { loginUser, currentUser } = useAuth();
   const history = useHistory();
 
   const handleSubmit = async () => {
@@ -29,6 +29,12 @@ const LoginPresenter = (_props) => {
       setError('Error in Login');
     }
   };
+
+  useEffect(() => {
+    if (currentUser) {
+      history.push('/');
+    }
+  }, [currentUser]);
 
   return (
     <>

@@ -1,5 +1,4 @@
 import { Row, Col, Image, Form, Button, ListGroup } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 import Rating from '../components/Rating';
 
@@ -16,9 +15,6 @@ export const CourseDetailView = (props) => {
 
   return (
     <div>
-      <Link className='btn btn-dark my-3' to='/courses'>
-        Go Back
-      </Link>
       <Row>
         <h2>
           {props.courseDetail.course.courseCode} -{' '}

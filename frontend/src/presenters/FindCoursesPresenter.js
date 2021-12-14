@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import { SearchBar, SearchResults } from '../views/FindCoursesView';
 import Loader from '../components/Loader';
 import axios from 'axios';
 import Message from '../components/Message';
 
 const FindCoursesPresenter = () => {
-  //const [promise, setPromise] = useState(null);
+  // location to receive search Results and Query
+  const location = useLocation();
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const { query } = location.state ? location.state : '';
+  const { results } = location.state ? location.state : [];
+
+  const [searchQuery, setSearchQuery] = useState(query ? query : '');
+  const [searchResults, setSearchResults] = useState(results ? results : []);
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState('');
 
@@ -41,6 +47,7 @@ const FindCoursesPresenter = () => {
   return (
     <>
       <SearchBar
+        searchQuery={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         onSearch={(e) => searchCourse(e)}
       />
@@ -49,7 +56,12 @@ const FindCoursesPresenter = () => {
       ) : error && error.length > 0 ? (
         <Message>{error}</Message>
       ) : (
-        searchResults && <SearchResults searchResults={searchResults} />
+        searchResults && (
+          <SearchResults
+            searchQuery={searchQuery}
+            searchResults={searchResults}
+          />
+        )
       )}
     </>
   );

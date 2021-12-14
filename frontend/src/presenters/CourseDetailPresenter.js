@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
@@ -22,6 +23,12 @@ const CourseDetailPresenter = ({ match }) => {
 
   // context
   const { currentUser } = useAuth();
+
+  // location to receive search Results and Query
+  const location = useLocation();
+
+  const { searchQuery } = location.state ? location.state : '';
+  const { searchResults } = location.state ? location.state : [];
 
   const getCourseDataFromAPI = async () => {
     setLoadingCourse(true);
@@ -102,7 +109,23 @@ const CourseDetailPresenter = ({ match }) => {
       ) : loadingCourse ? (
         <Loader />
       ) : (
-        courseDetail && <CourseDetailView courseDetail={courseDetail} />
+        courseDetail && (
+          <>
+            <Link
+              className='btn btn-dark my-3'
+              to={{
+                pathname: `/courses`,
+                state: {
+                  query: searchQuery,
+                  results: searchResults,
+                },
+              }}
+            >
+              Go Back
+            </Link>
+            <CourseDetailView courseDetail={courseDetail} />
+          </>
+        )
       )}
 
       {errorReviews ? (

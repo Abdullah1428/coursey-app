@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import RegisterView from '../views/RegisterView';
@@ -14,7 +14,7 @@ const RegisterPresenter = (_props) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const { registerUser } = useAuth();
+  const { registerUser, currentUser } = useAuth();
   const history = useHistory();
 
   const handleSubmit = async () => {
@@ -34,6 +34,12 @@ const RegisterPresenter = (_props) => {
       setError('Passwords do not match');
     }
   };
+
+  useEffect(() => {
+    if (currentUser) {
+      history.push('/');
+    }
+  }, [currentUser]);
 
   return (
     <>

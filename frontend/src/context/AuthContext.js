@@ -9,7 +9,11 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const user = localStorage.getItem('currentUser');
+
+  const [currentUser, setCurrentUser] = useState(
+    user ? JSON.parse(user) : null
+  );
 
   const registerUser = async (email, password) => {
     try {
@@ -21,6 +25,8 @@ export const AuthProvider = ({ children }) => {
       };
 
       const { data } = await axios.post(apiUrl, user);
+
+      localStorage.setItem('currentUser', JSON.stringify(data));
 
       setCurrentUser(data);
 
@@ -42,6 +48,8 @@ export const AuthProvider = ({ children }) => {
       };
       const { data } = await axios.post(apiUrl, user);
 
+      localStorage.setItem('currentUser', JSON.stringify(data));
+
       setCurrentUser(data);
 
       return 200;
@@ -58,6 +66,8 @@ export const AuthProvider = ({ children }) => {
       let apiUrl = '/auth/logout';
 
       await axios.get(apiUrl);
+
+      localStorage.removeItem('currentUser');
 
       setCurrentUser(null);
 
