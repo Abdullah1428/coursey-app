@@ -6,6 +6,10 @@ import courseRoutes from './routes/courseRoutes.js';
 import authroutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 const app = express();
 
 // for parsing requests
@@ -20,8 +24,7 @@ app.use('/api', courseRoutes);
 // user routess
 app.use('/user', userRoutes);
 
-
-app.use('/user', userRoutes)
+app.use('/user', userRoutes);
 // Static assets for production deployment
 if (process.env.NODE_ENV === 'production') {
   // Define the static folder
