@@ -37,7 +37,7 @@ export const SearchBar = (props) => {
 };
 
 export const SearchResults = (props) => {
-  let kthImages = ['kth.jpeg', 'kth-2.jpeg', 'kth-3.jpeg', 'kth-4.jpeg'];
+  // let kthImages = ['kth.jpeg', 'kth-2.jpeg', 'kth-3.jpeg', 'kth-4.jpeg'];
   return (
     <Row>
       <div className='py-2' />
@@ -63,13 +63,13 @@ export const SearchResults = (props) => {
                   boxShadow: '0px 5px 15px 0px rgb(0 0 0 / 20%)',
                 }}
               >
-                <Card.Img
+                {/* <Card.Img
                   variant='top'
                   style={{ height: 200 }}
                   src={`assets/${
                     kthImages[Math.floor(Math.random() * (3 - 0) + 0)]
                   }`}
-                />
+                /> */}
                 <Card.Body>
                   <Card.Title>{search.course.courseCode}</Card.Title>
                   <Card.Subtitle className='mb-2 text-muted'>
