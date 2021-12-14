@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Overview from '../views/OverviewView';
 import { useAuth } from '../context/AuthContext.js';
+import ActivitiesView from '../views/ActivitiesView.js';
 import axios from 'axios';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
-const OverviewPresenter = (props) => {
+const ActivitiesPresenter = (props) => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -13,13 +13,13 @@ const OverviewPresenter = (props) => {
   const { currentUser } = useAuth();
 
   useEffect(() => {
-    const getUserActivity = async () => {
+    const getAllActivities = async () => {
       setLoading(true);
       try {
         let apiUrl = '/user/activity/';
         const body = {
           uid: currentUser.uid,
-          limit: 3,
+          limit: 0,
         };
 
         const { data } = await axios.post(apiUrl, body);
@@ -31,8 +31,7 @@ const OverviewPresenter = (props) => {
         setLoading(false);
       }
     };
-
-    getUserActivity();
+    getAllActivities();
   }, [currentUser.uid]);
 
   return (
@@ -42,10 +41,10 @@ const OverviewPresenter = (props) => {
       ) : error && error.length > 0 ? (
         <Message>{error}</Message>
       ) : (
-        courses && <Overview courses={courses} />
+        courses && <ActivitiesView courses={courses} />
       )}
     </>
   );
 };
 
-export default OverviewPresenter;
+export default ActivitiesPresenter;

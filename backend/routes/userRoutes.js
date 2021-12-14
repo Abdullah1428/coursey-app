@@ -16,6 +16,6 @@ router.route('/updateProfile').post(updateProfileDetailsfromAPI);
 router.route('/reviews/:id').get(getFeedbacksByCourseId);
 router.route('/feedbacks/all').get(getAllFeedbacks);
 router.route('/course/feedback').post(addFeedbackForCourse);
-router.route('/activity/:id').get(getUserActivity);
+router.route('/activity').post(getUserActivity);
 
 export default router;
