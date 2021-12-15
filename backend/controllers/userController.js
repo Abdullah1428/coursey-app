@@ -65,13 +65,22 @@ const getPopularCourses = asyncHandler(async (_req, res) => {
 const addFeedbackForCourse = asyncHandler(async (req, res) => {
   const feedbackCollectionRef = collection(db, 'feedback');
 
-  const { uid, course, title, review, rating, averageRating, totalFeedbacks } =
-    req.body;
+  const {
+    uid,
+    course,
+    courseTitle,
+    title,
+    review,
+    rating,
+    averageRating,
+    totalFeedbacks,
+  } = req.body;
 
   try {
     await addDoc(feedbackCollectionRef, {
       uid,
       course,
+      courseTitle,
       title,
       review,
       rating: Number(rating),

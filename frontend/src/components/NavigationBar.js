@@ -30,8 +30,7 @@ const NavigationBar = () => {
         style={{ backgroundColor: '#ffa500' }}
         expand='lg'
         collapseOnSelect
-        className='px-3'
-      >
+        className='px-3'>
         <>
           <LinkContainer to={currentUser ? '/' : '/login'}>
             <Navbar.Brand>Coursey</Navbar.Brand>
@@ -39,7 +38,7 @@ const NavigationBar = () => {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse className='justify-content-end'>
             <Nav className='ml-auto'>
-              <Nav className='me-auto'>
+              <Nav>
                 <LinkContainer to='/courses'>
                   <Nav.Link>
                     <i className='fas fa-search'></i> Find Courses

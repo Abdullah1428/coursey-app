@@ -6,8 +6,7 @@ const CourseyCarousel = (props) => {
     <Carousel
       style={{ width: 600, height: 400 }}
       pause='hover'
-      className='bg-dark'
-    >
+      className='bg-dark'>
       <Carousel.Item>
         <Image
           style={{ width: 600, height: 400 }}
@@ -36,47 +35,43 @@ const CourseyCarousel = (props) => {
           fluid
         />
         <Carousel.Caption className='carousel-caption'>
-          <h3 style={{ color: 'white', alignSelf: 'center' }}>{'About Us'}</h3>
-          <h3>
+          <h1 className='mb-2 text-white'>{'About Us'}</h1>
+          <p>
             <a
-              style={{ color: 'white' }}
+              className='mb-2 text-white'
               href='https://github.com/Abdullah1428'
               target='_blank'
-              rel='noreferrer'
-            >
+              rel='noreferrer'>
               {'Abdullah'}
             </a>
-          </h3>
-          <h3 style={{ color: 'white', alignSelf: 'center' }}>
+          </p>
+          <p>
             <a
-              style={{ color: 'white' }}
+              className='mb-2 text-white'
               href='https://github.com/Abdullah1428'
               target='_blank'
-              rel='noreferrer'
-            >
+              rel='noreferrer'>
               {'Ayushman Khazanchi'}
             </a>
-          </h3>
-          <h3 style={{ color: 'white', alignSelf: 'center' }}>
+          </p>
+          <p>
             <a
-              style={{ color: 'white' }}
+              className='mb-2 text-white'
               href='https://github.com/Abdullah1428'
               target='_blank'
-              rel='noreferrer'
-            >
+              rel='noreferrer'>
               {'Simon Hallak'}
             </a>
-          </h3>
-          <h3 style={{ color: 'white', alignSelf: 'center' }}>
+          </p>
+          <p>
             <a
-              style={{ color: 'white' }}
+              className='mb-2 text-white'
               href='https://github.com/Abdullah1428'
               target='_blank'
-              rel='noreferrer'
-            >
+              rel='noreferrer'>
               {'David Johansson'}
             </a>
-          </h3>
+          </p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>

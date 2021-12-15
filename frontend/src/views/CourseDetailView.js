@@ -183,11 +183,27 @@ export const CourseReviews = (props) => {
             </ListGroup.Item>
           </Col>
 
-          <Col>
+          <Col className='align-self-center'>
             <ListGroup className='text-center'>
               <ListGroup.Item>
-                <h2 className='courseDetailHeading'>Overall Rating</h2>{' '}
-                <p className='text-center'>4.5/5</p>
+                <h1 className='courseDetailHeading'>Overall Rating</h1>
+                <p
+                  style={{ fontSize: 50 }}
+                  className='text-center mb-2 text-success'>
+                  {`${props.courseReviews[
+                    props.courseReviews.length - 1
+                  ].averageRating.toFixed(2)} / 5`}
+                </p>
+
+                <h1 className='courseDetailHeading'>Number of Reviews</h1>
+                <p
+                  style={{ fontSize: 50 }}
+                  className='text-center mb-2 text-warning'>
+                  {`${
+                    props.courseReviews[props.courseReviews.length - 1]
+                      .totalFeedbacks
+                  }`}
+                </p>
               </ListGroup.Item>
             </ListGroup>
           </Col>

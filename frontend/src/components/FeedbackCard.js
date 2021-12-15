@@ -45,7 +45,7 @@ const FeedbackCard = (props) => {
           </Card.Text>
 
           <Card.Text as='div' className='cardText'>
-            <Rating value={props.course.rating} text={` rating`} />
+            <Rating value={props.course.rating} text={``} />
           </Card.Text>
         </Card.Body>
       </Link>

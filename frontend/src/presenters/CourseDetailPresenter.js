@@ -91,6 +91,7 @@ const CourseDetailPresenter = ({ match }) => {
         let feedback = {
           uid: currentUser.uid,
           course: match.params.id,
+          courseTitle: courseDetail.course.title,
           title: title,
           review: review,
           rating: rating,
@@ -127,8 +128,7 @@ const CourseDetailPresenter = ({ match }) => {
                   query: searchQuery,
                   results: searchResults,
                 },
-              }}
-            >
+              }}>
               Go Back
             </Link>
             <CourseDetailView courseDetail={courseDetail} />
