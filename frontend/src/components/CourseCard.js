@@ -1,8 +1,12 @@
-import { Card } from 'react-bootstrap';
-import Rating from './Rating';
 import { cardStyle } from '../styles/cardStyle';
+import { useState } from 'react';
+import { Card, Button, Col } from 'react-bootstrap';
+import Rating from './Rating';
+import FeedbackModal from './FeedbackModal';
 
 const CourseCard = (props) => {
+  const [modalShow, setModalShow] = useState(false);
+
   return (
     <Card
       className='my-3 p-3 rounded'
@@ -30,6 +34,14 @@ const CourseCard = (props) => {
           </Card.Text>
         )}
       </Card.Body>
+      <Button variant='success' size='sm' onClick={() => setModalShow(true)}>
+        See Review
+      </Button>
+      <FeedbackModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        course={props.course}
+      />
     </Card>
   );
 };
