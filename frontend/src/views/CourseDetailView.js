@@ -144,7 +144,8 @@ export const CourseReviews = (props) => {
                       <Form.Control
                         as='select'
                         value={props.rating}
-                        onChange={(e) => props.userRating(e.target.value)}>
+                        onChange={(e) => props.userRating(e.target.value)}
+                      >
                         <option value=''>Select Rating</option>
                         <option value='1'>1 - Poor</option>
                         <option value='2'>2 - Fair</option>
@@ -170,14 +171,14 @@ export const CourseReviews = (props) => {
                         row='5'
                         value={props.review}
                         placeholder='Write your review here...'
-                        onChange={(e) =>
-                          props.userReview(e.target.value)
-                        }></Form.Control>
+                        onChange={(e) => props.userReview(e.target.value)}
+                      ></Form.Control>
                     </Form.Group>
                     <Button
                       style={{ marginTop: 20 }}
                       type='submit'
-                      variant='primary'>
+                      variant='primary'
+                    >
                       Submit
                     </Button>
                   </Form>
@@ -200,7 +201,8 @@ export const CourseReviews = (props) => {
                 className='my-3 p-3 rounded'
                 bg={cardStyle.bg}
                 text={cardStyle.text}
-                style={cardStyle}>
+                style={cardStyle}
+              >
                 <h2>4.5/5</h2>
                 maybe changes colors based on average, good, poor (red)
               </Card>
@@ -219,16 +221,15 @@ export const CourseReviews = (props) => {
                   className='my-3 p-3 rounded'
                   bg={cardStyle.bg}
                   text={cardStyle.text}
-                  style={cardStyle}>
+                  style={cardStyle}
+                >
                   <Card.Body>
                     <Card.Title>{r.title}</Card.Title>
                     <Card.Subtitle className='mb-2 text-muted'>
                       {toDateTime(r.createdAt.seconds)}
                     </Card.Subtitle>
                     {r.id}
-                    <Card.Text className='cardText'>
-                      <p>{r.review}</p>
-                    </Card.Text>
+                    <Card.Text className='cardText'>{r.review}</Card.Text>
 
                     <div style={{ margin: 10 }} />
                     <Card.Text as='div'>

@@ -10,8 +10,8 @@ import {
   updateProfileDetailsfromAPI,
 } from '../controllers/userController.js';
 
-router.route('/getProfile').post(getProfileDetailsFromAPI);
-router.route('/updateProfile').post(updateProfileDetailsfromAPI);
+router.route('/getprofile').post(getProfileDetailsFromAPI);
+router.route('/updateprofile').post(updateProfileDetailsfromAPI);
 
 router.route('/reviews/:id').get(getFeedbacksByCourseId);
 router.route('/feedbacks/all').get(getAllFeedbacks);

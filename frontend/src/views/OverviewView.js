@@ -13,14 +13,15 @@ const Overview = (props) => {
       </Row>
 
       <Row>
-        {props.courses && props.courses.length > 0 ? (
-          props.courses.map((course) => (
+        {props.recentActivity && props.recentActivity.length > 0 ? (
+          props.recentActivity.map((course) => (
             <Col key={course.id} sm={12} md={6} lg={4} xl={3}>
               <Link
                 style={{ textDecoration: 'none' }}
                 to={{
                   pathname: `/course/${course.course}`,
-                }}>
+                }}
+              >
                 <CourseCard
                   bg={cardStyle.bg}
                   text={cardStyle.text}
@@ -36,7 +37,8 @@ const Overview = (props) => {
         )}
         <Col
           style={{ justifyContent: 'flex-end' }}
-          className='d-flex align-items-center'>
+          className='d-flex align-items-center'
+        >
           {props.courses && props.courses.length > 0 && (
             <Link to={`/mycoursey`}>
               <Button variant='success'>See More</Button>

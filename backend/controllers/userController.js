@@ -13,9 +13,12 @@ import {
   addDoc,
   serverTimestamp,
   limit,
-  orderBy,
 } from '@firebase/firestore';
 
+/*
+ *   @desc   get all feedbacks
+ *   @route  GET /user/feedbacks/all
+ */
 const getAllFeedbacks = asyncHandler(async (_req, res) => {
   const feedbackCollectionRef = collection(db, 'feedback');
 
@@ -30,6 +33,10 @@ const getAllFeedbacks = asyncHandler(async (_req, res) => {
   }
 });
 
+/*
+ *   @desc   add a feedback for course
+ *   @route  POST /user/course/feedback
+ */
 const addFeedbackForCourse = asyncHandler(async (req, res) => {
   const feedbackCollectionRef = collection(db, 'feedback');
 
@@ -51,6 +58,10 @@ const addFeedbackForCourse = asyncHandler(async (req, res) => {
   }
 });
 
+/*
+ *   @desc   get a feedback for course by course code
+ *   @route  GET /user/reviews/:id
+ */
 const getFeedbacksByCourseId = asyncHandler(async (req, res) => {
   const id = req.params.id;
 
@@ -70,6 +81,10 @@ const getFeedbacksByCourseId = asyncHandler(async (req, res) => {
   }
 });
 
+/*
+ *   @desc   get user activity or feedbacks for course
+ *   @route  POST /user/activity
+ */
 const getUserActivity = asyncHandler(async (req, res) => {
   const id = req.body.uid;
   const lim = req.body.limit;
@@ -80,9 +95,6 @@ const getUserActivity = asyncHandler(async (req, res) => {
     } else {
       q = query(collection(db, 'feedback'), where('uid', '==', id), limit(lim));
     }
-
-    console.log(q);
-
     //orderBy not working when user has no feedbacks
 
     const querySnapshot = await getDocs(q);
@@ -98,6 +110,10 @@ const getUserActivity = asyncHandler(async (req, res) => {
   }
 });
 
+/*
+ *   @desc   get user profile
+ *   @route  POST /user/getprofile
+ */
 const getProfileDetailsFromAPI = asyncHandler(async (req, res) => {
   const uid = req.body.uid;
   try {
@@ -109,6 +125,10 @@ const getProfileDetailsFromAPI = asyncHandler(async (req, res) => {
   }
 });
 
+/*
+ *   @desc   update user profile
+ *   @route  POST /user/updateprofile
+ */
 const updateProfileDetailsfromAPI = asyncHandler(async (req, res) => {
   const uid = req.body.uid;
   try {
