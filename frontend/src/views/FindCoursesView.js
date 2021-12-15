@@ -60,6 +60,7 @@ export const SearchResults = (props) => {
                 text={cardStyle.text}
                 style={cardStyle}
                 course={search.course}
+                showRating={false}
               />
             </Link>
           </Col>

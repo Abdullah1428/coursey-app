@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Row, Button, Form } from 'react-bootstrap';
 
 const ProfileView = (props) => {
@@ -77,7 +76,9 @@ const ProfileView = (props) => {
         <Form.Group>
           <Row className='row-g-3 my-3'>
             <Col className='col-sm-12'>
-              <Button type='submit'>Update</Button>
+              <Button type='submit' variant='success'>
+                Update
+              </Button>
             </Col>
           </Row>
         </Form.Group>

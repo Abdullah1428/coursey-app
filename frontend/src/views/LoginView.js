@@ -1,5 +1,12 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Col, Row, Container, Button, Card } from 'react-bootstrap';
+import {
+  Form,
+  Col,
+  Row,
+  Container,
+  Button,
+  Card,
+  Carousel,
+} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const LoginView = (props) => {
@@ -9,10 +16,12 @@ const LoginView = (props) => {
   };
   return (
     <Container className='py-5'>
+      <Row className='py-2 text-center'>
+        <h1>Coursey - Find cool KTH courses</h1>
+      </Row>
       <Row>
         <Col className='py-5'>
-          <h1>Coursey</h1>
-          <h3>Find cool KTH courses</h3>
+          <Carousel></Carousel>
         </Col>
         <Col>
           <Row>

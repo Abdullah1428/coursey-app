@@ -9,7 +9,7 @@ const ActivitiesView = (props) => {
   return (
     <div>
       <Row>
-        <h2>Your Recent Activity</h2>
+        <h2 className='headingColor'>Your Coursey Activity</h2>
       </Row>
 
       <Row>
@@ -26,12 +26,13 @@ const ActivitiesView = (props) => {
                   text={cardStyle.text}
                   style={cardStyle}
                   course={course}
+                  showRating={true}
                 />
               </Link>
             </Col>
           ))
         ) : (
-          <h4>No Recent Activity Yet</h4>
+          <h4>No Activity Yet</h4>
         )}
       </Row>
     </div>

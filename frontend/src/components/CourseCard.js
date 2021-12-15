@@ -1,6 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import Rating from './Rating';
 import { cardStyle } from '../styles/cardStyle';
 
@@ -22,10 +20,15 @@ const CourseCard = (props) => {
           {props.course.credits} {props.course.creditUnitLabel}
         </Card.Text>
 
-        <div style={{ margin: 10 }} />
-        <Card.Text as='div' className='cardText'>
-          <Rating value={props.course.rating} text={` rating`} />
+        <Card.Text className='cardText'>
+          {props.course.educationalLevel}
         </Card.Text>
+
+        {props.showRating && (
+          <Card.Text as='div' className='cardText'>
+            <Rating value={props.course.rating} text={` rating`} />
+          </Card.Text>
+        )}
       </Card.Body>
     </Card>
   );

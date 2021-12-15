@@ -26,6 +26,7 @@ const Overview = (props) => {
                   text={cardStyle.text}
                   style={cardStyle}
                   course={course}
+                  showRating={true}
                 />
               </Link>
             </Col>
@@ -38,7 +39,7 @@ const Overview = (props) => {
           className='d-flex align-items-center'>
           {props.courses && props.courses.length > 0 && (
             <Link to={`/mycoursey`}>
-              <Button>See More</Button>
+              <Button variant='success'>See More</Button>
             </Link>
           )}
         </Col>

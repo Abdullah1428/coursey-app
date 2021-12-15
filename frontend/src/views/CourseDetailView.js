@@ -131,66 +131,84 @@ export const CourseReviews = (props) => {
     <>
       <hr />
       <ListGroup variant='flush'>
-        <Col md={6}>
-          <ListGroup.Item>
-            <h2>Taken this course?</h2>
-            {props.currentUser ? (
-              <>
-                <h4>Share your experience with others</h4>
-                <Form onSubmit={(e) => handleSubmit(e)}>
-                  <Form.Group controlId='rating'>
-                    <Form.Label>Rating</Form.Label>
-                    <Form.Control
-                      as='select'
-                      value={props.rating}
-                      onChange={(e) => props.userRating(e.target.value)}>
-                      <option value=''>Select Rating</option>
-                      <option value='1'>1 - Poor</option>
-                      <option value='2'>2 - Fair</option>
-                      <option value='3'>3 - Good</option>
-                      <option value='4'>4 - Very Good</option>
-                      <option value='5'>5 - Excellent</option>
-                    </Form.Control>
-                  </Form.Group>
-                  <Form.Group controlId='title'>
-                    <Form.Label> Review Title </Form.Label>
-                    <Form.Control
-                      value={props.title}
-                      onChange={(e) => props.userTitle(e.target.value)}
-                      type='text'
-                      placeholder='Review title'
-                      required
-                    />
-                  </Form.Group>
-                  <Form.Group controlId='comment'>
-                    <Form.Label>Comment</Form.Label>
-                    <Form.Control
-                      as='textarea'
-                      row='5'
-                      value={props.review}
-                      placeholder='Write your review here...'
-                      onChange={(e) =>
-                        props.userReview(e.target.value)
-                      }></Form.Control>
-                  </Form.Group>
-                  <Button
-                    style={{ marginTop: 20 }}
-                    type='submit'
-                    variant='primary'>
-                    Submit
-                  </Button>
-                </Form>
-              </>
-            ) : (
-              <>
-                <h4>
-                  <Link to={'/login'}>Login</Link> to share your experience with
-                  others
-                </h4>
-              </>
-            )}
-          </ListGroup.Item>
-        </Col>
+        <Row>
+          <Col md={6}>
+            <ListGroup.Item>
+              <h2>Taken this course?</h2>
+              {props.currentUser ? (
+                <>
+                  <h4>Share your experience with others</h4>
+                  <Form onSubmit={(e) => handleSubmit(e)}>
+                    <Form.Group controlId='rating'>
+                      <Form.Label>Rating</Form.Label>
+                      <Form.Control
+                        as='select'
+                        value={props.rating}
+                        onChange={(e) => props.userRating(e.target.value)}>
+                        <option value=''>Select Rating</option>
+                        <option value='1'>1 - Poor</option>
+                        <option value='2'>2 - Fair</option>
+                        <option value='3'>3 - Good</option>
+                        <option value='4'>4 - Very Good</option>
+                        <option value='5'>5 - Excellent</option>
+                      </Form.Control>
+                    </Form.Group>
+                    <Form.Group controlId='title'>
+                      <Form.Label> Review Title </Form.Label>
+                      <Form.Control
+                        value={props.title}
+                        onChange={(e) => props.userTitle(e.target.value)}
+                        type='text'
+                        placeholder='Review title'
+                        required
+                      />
+                    </Form.Group>
+                    <Form.Group controlId='comment'>
+                      <Form.Label>Comment</Form.Label>
+                      <Form.Control
+                        as='textarea'
+                        row='5'
+                        value={props.review}
+                        placeholder='Write your review here...'
+                        onChange={(e) =>
+                          props.userReview(e.target.value)
+                        }></Form.Control>
+                    </Form.Group>
+                    <Button
+                      style={{ marginTop: 20 }}
+                      type='submit'
+                      variant='primary'>
+                      Submit
+                    </Button>
+                  </Form>
+                </>
+              ) : (
+                <>
+                  <h4>
+                    <Link to={'/login'}>Login</Link> to share your experience
+                    with others
+                  </h4>
+                </>
+              )}
+            </ListGroup.Item>
+          </Col>
+          <Col>
+            <ListGroup>
+              <ListGroup.Item>Overall</ListGroup.Item>
+              <ListGroup.Item>Rating</ListGroup.Item>
+              <Card
+                className='my-3 p-3 rounded'
+                bg={cardStyle.bg}
+                text={cardStyle.text}
+                style={cardStyle}>
+                <h2>4.5/5</h2>
+                maybe changes colors based on average, good, poor (red)
+              </Card>
+              <ListGroup.Item>Best Rating</ListGroup.Item>
+              <ListGroup.Item>Lowest Rating</ListGroup.Item>
+            </ListGroup>
+          </Col>
+        </Row>
         <h2>Course Reviews</h2>
         <Row>
           {props.courseReviews && props.courseReviews.length > 0 ? (
