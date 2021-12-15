@@ -1,6 +1,6 @@
 import { Card } from 'react-bootstrap';
 import Rating from './Rating';
-import { cardStyle } from '../styles/cardStyle';
+import { feedbackCardStyle } from '../styles/feedbackCardStyle';
 
 const PopularCard = (props) => {
   function toDateTime(secs) {
@@ -12,10 +12,9 @@ const PopularCard = (props) => {
   return (
     <Card
       className='my-3 p-3 rounded'
-      bg={cardStyle.bg}
-      text={cardStyle.text}
-      style={cardStyle}
-    >
+      bg={feedbackCardStyle.bg}
+      text={feedbackCardStyle.text}
+      style={feedbackCardStyle}>
       <Card.Body>
         <Card.Title style={{ fontSize: 20 }}>{props.course.course}</Card.Title>
 

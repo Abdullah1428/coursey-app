@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { cardStyle } from '../styles/cardStyle';
+import { courseCardStyle } from '../styles/courseCardStyle';
 import CourseCard from '../components/CourseCard';
 
 export const SearchBar = (props) => {
@@ -17,8 +17,7 @@ export const SearchBar = (props) => {
               value={props.searchQuery}
               onChange={(e) => props.onChange(e)}
               placeholder='Search Courses by Name and Code...'
-              className='mr-sm-2 ml-sm-5'
-            ></Form.Control>
+              className='mr-sm-2 ml-sm-5'></Form.Control>
           </Form>
         </Col>
         <Col>
@@ -27,8 +26,7 @@ export const SearchBar = (props) => {
             type='submit'
             variant='success'
             className='p-2'
-            onClick={(e) => props.onSearch(e)}
-          >
+            onClick={(e) => props.onSearch(e)}>
             Search
           </Button>
         </Col>
@@ -55,12 +53,11 @@ export const SearchResults = (props) => {
                   searchQuery: props.searchQuery,
                   searchResults: props.searchResults,
                 },
-              }}
-            >
+              }}>
               <CourseCard
-                bg={cardStyle.bg}
-                text={cardStyle.text}
-                style={cardStyle}
+                bg={courseCardStyle.bg}
+                text={courseCardStyle.text}
+                style={courseCardStyle}
                 course={search.course}
                 isFeedbackCard={false}
               />

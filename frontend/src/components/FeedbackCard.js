@@ -1,0 +1,55 @@
+import { useState } from 'react';
+import { Card, Button } from 'react-bootstrap';
+import Rating from './Rating';
+import FeedbackModal from './FeedbackModal';
+import { feedbackCardStyle } from '../styles/feedbackCardStyle';
+
+const FeedbackCard = (props) => {
+  const [modalShow, setModalShow] = useState(false);
+  function toDateTime(secs) {
+    var t = new Date(1970, 0, 1); // Epoch
+    t.setSeconds(secs);
+    return t.toDateString();
+  }
+
+  return (
+    <Card
+      className='my-3 p-3 rounded'
+      bg={feedbackCardStyle.bg}
+      text={feedbackCardStyle.text}
+      style={feedbackCardStyle}>
+      <Card.Body>
+        <Card.Title className='cardTitle'>{props.course.title}</Card.Title>
+        <Card.Subtitle className='mb-2 text-muted'>
+          {toDateTime(props.course.createdAt.seconds)}
+        </Card.Subtitle>
+
+        <Card.Text className='mb-2 text-muted'>
+          user: {props.course.id}
+        </Card.Text>
+
+        <Card.Text className='mb-2 text-success'>
+          {props.course.course}
+        </Card.Text>
+
+        <Card.Text className='cardText text-warning'>
+          {props.course.credits} {props.course.creditUnitLabel}
+        </Card.Text>
+
+        <Card.Text as='div' className='cardText'>
+          <Rating value={props.course.rating} text={` rating`} />
+        </Card.Text>
+      </Card.Body>
+      <Button variant='success' size='sm' onClick={() => setModalShow(true)}>
+        See Review
+      </Button>
+      <FeedbackModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        course={props.course}
+      />
+    </Card>
+  );
+};
+
+export default FeedbackCard;

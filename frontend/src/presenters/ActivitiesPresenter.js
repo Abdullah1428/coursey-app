@@ -7,7 +7,7 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 
 const ActivitiesPresenter = (props) => {
-  const [courses, setCourses] = useState([]);
+  const [feedbacks, setFeedbacks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -30,7 +30,7 @@ const ActivitiesPresenter = (props) => {
 
         const { data } = await axios.post(apiUrl, body);
 
-        setCourses(data);
+        setFeedbacks(data);
         setLoading(false);
       } catch (error) {
         setError('Error from API');
@@ -47,7 +47,7 @@ const ActivitiesPresenter = (props) => {
       ) : error && error.length > 0 ? (
         <Message>{error}</Message>
       ) : (
-        courses && <ActivitiesView courses={courses} />
+        feedbacks && <ActivitiesView feedbacks={feedbacks} />
       )}
     </>
   );

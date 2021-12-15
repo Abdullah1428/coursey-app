@@ -1,9 +1,9 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 
-import CourseCard from '../components/CourseCard';
+import FeedbackCard from '../components/FeedbackCard';
 import { Link } from 'react-router-dom';
-import { cardStyle } from '../styles/cardStyle';
+import { feedbackCardStyle } from '../styles/feedbackCardStyle';
 
 const ActivitiesView = (props) => {
   return (
@@ -13,18 +13,18 @@ const ActivitiesView = (props) => {
       </Row>
 
       <Row>
-        {props.courses && props.courses.length > 0 ? (
-          props.courses.map((course) => (
+        {props.feedbacks && props.feedbacks.length > 0 ? (
+          props.feedbacks.map((course) => (
             <Col key={course.id} sm={12} md={6} lg={4} xl={3}>
               <Link
                 style={{ textDecoration: 'none' }}
                 to={{
                   pathname: `/course/${course.course}`,
                 }}>
-                <CourseCard
-                  bg={cardStyle.bg}
-                  text={cardStyle.text}
-                  style={cardStyle}
+                <FeedbackCard
+                  bg={feedbackCardStyle.bg}
+                  text={feedbackCardStyle.text}
+                  style={feedbackCardStyle}
                   course={course}
                   isFeedbackCard={true}
                 />

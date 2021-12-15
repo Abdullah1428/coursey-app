@@ -1,4 +1,4 @@
-import { cardStyle } from '../styles/cardStyle';
+import { courseCardStyle } from '../styles/courseCardStyle';
 import { useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import Rating from './Rating';
@@ -15,9 +15,9 @@ const CourseCard = (props) => {
   return (
     <Card
       className='my-3 p-3 rounded'
-      bg={cardStyle.bg}
-      text={cardStyle.text}
-      style={cardStyle}>
+      bg={courseCardStyle.bg}
+      text={courseCardStyle.text}
+      style={courseCardStyle}>
       <Card.Body>
         <Card.Title className='cardTitle'>{props.course.title}</Card.Title>
         {props.isFeedbackCard && (

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 
-import CourseCard from '../components/CourseCard';
+import FeedbackCard from '../components/FeedbackCard';
 import { Link } from 'react-router-dom';
-import { cardStyle } from '../styles/cardStyle';
+import { courseCardStyle } from '../styles/courseCardStyle';
 import PopularCard from '../components/PopularCard';
-
+import { feedbackCardStyle } from '../styles/feedbackCardStyle';
 export const RecentActivity = (props) => {
   return (
     <div>
@@ -21,12 +21,11 @@ export const RecentActivity = (props) => {
                 style={{ textDecoration: 'none' }}
                 to={{
                   pathname: `/course/${course.course}`,
-                }}
-              >
-                <CourseCard
-                  bg={cardStyle.bg}
-                  text={cardStyle.text}
-                  style={cardStyle}
+                }}>
+                <FeedbackCard
+                  bg={courseCardStyle.bg}
+                  text={courseCardStyle.text}
+                  style={courseCardStyle}
                   course={course}
                   isFeedbackCard={true}
                 />
@@ -38,8 +37,7 @@ export const RecentActivity = (props) => {
         )}
         <Col
           style={{ justifyContent: 'flex-end' }}
-          className='d-flex align-items-center'
-        >
+          className='d-flex align-items-center'>
           {props.recentActivity && props.recentActivity.length > 0 && (
             <Link to={`/mycoursey`}>
               <Button variant='success'>See More</Button>
@@ -66,14 +64,13 @@ export const PopularCourses = (props) => {
                 style={{ textDecoration: 'none' }}
                 to={{
                   pathname: `/course/${course.course}`,
-                }}
-              >
+                }}>
                 <PopularCard
-                  bg={cardStyle.bg}
-                  text={cardStyle.text}
-                  style={cardStyle}
+                  bg={feedbackCardStyle.bg}
+                  text={feedbackCardStyle.text}
+                  style={feedbackCardStyle}
                   course={course}
-                  showRating={true}
+                  isFeedbackCard={true}
                 />
               </Link>
             </Col>
@@ -83,8 +80,7 @@ export const PopularCourses = (props) => {
         )}
         <Col
           style={{ justifyContent: 'flex-end' }}
-          className='d-flex align-items-center'
-        >
+          className='d-flex align-items-center'>
           {props.popularCourses && props.popularCourses.length > 0 && (
             <Link to={`/courses`}>
               <Button variant='success'>See More</Button>

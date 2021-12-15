@@ -1,4 +1,5 @@
 import { Col, Row, Button, Form } from 'react-bootstrap';
+import { shadowStyle } from '../styles/shadowStyle';
 
 const ProfileView = (props) => {
   const handleUpdate = (e) => {
@@ -6,7 +7,7 @@ const ProfileView = (props) => {
     props.handleUpdate(e);
   };
   return (
-    <div>
+    <div style={shadowStyle}>
       <h2>Your Profile</h2>
       <Form onSubmit={(e) => handleUpdate(e)}>
         <Form.Group>

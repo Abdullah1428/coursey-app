@@ -1,13 +1,8 @@
 import { Row, Col, Image, Form, Button, ListGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import CourseCard from '../components/CourseCard';
-import { cardStyle } from '../styles/cardStyle';
-
-export const shadow = {
-  boxShadow: '0px 5px 15px 0px rgb(0 0 0 / 20%)',
-  padding: '1rem',
-  margin: '1rem',
-};
+import { feedbackCardStyle } from '../styles/feedbackCardStyle';
+import { shadowStyle } from '../styles/shadowStyle';
 
 export const CourseDetailView = (props) => {
   const removeHTMLTagIfAny = (string) => {
@@ -22,7 +17,7 @@ export const CourseDetailView = (props) => {
 
   return (
     <div>
-      <Row style={shadow} className='text-center'>
+      <Row style={shadowStyle} className='text-center'>
         <h2 className='courseDetailHeading'>
           {props.courseDetail.course.courseCode} -{' '}
           {props.courseDetail.course.title}, {props.courseDetail.course.credits}{' '}
@@ -35,7 +30,7 @@ export const CourseDetailView = (props) => {
           {props.courseDetail.course.creditUnitLabel})
         </h4>
       </Row>
-      <Row style={shadow}>
+      <Row style={shadowStyle}>
         <Col sm={12} md={3} lg={4} xl={5}>
           <Row>
             <Image
@@ -121,8 +116,7 @@ export const CourseReviews = (props) => {
 
   return (
     <>
-      <hr />
-      <ListGroup variant='flush' style={shadow}>
+      <ListGroup variant='flush' style={shadowStyle}>
         <Row>
           <Col md={6}>
             <ListGroup.Item>
@@ -211,18 +205,18 @@ export const CourseReviews = (props) => {
                     pathname: `/course/${r.course}`,
                   }}>
                   <CourseCard
-                    bg={cardStyle.bg}
-                    text={cardStyle.text}
-                    style={cardStyle}
+                    bg={feedbackCardStyle.bg}
+                    text={feedbackCardStyle.text}
+                    style={feedbackCardStyle}
                     course={r}
                     isFeedbackCard={true}
                   />
                 </Link>
                 {/* <Card
                   className='my-3 p-3 rounded'
-                  bg={cardStyle.bg}
-                  text={cardStyle.text}
-                  style={cardStyle}
+                  bg={feedbackCardStyle.bg}
+                  text={feedbackCardStyle.text}
+                  style={feedbackCardStyle}
                 >
                   <Card.Body>
                     <Card.Title>{r.title}</Card.Title>
