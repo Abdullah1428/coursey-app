@@ -29,14 +29,12 @@ const PopularCard = (props) => {
         <Card.Text as='div'>{`Num of Reviews: ${props.course.totalFeedbacks}`}</Card.Text>
 
         <Card.Text as='div'>Average Rating:</Card.Text>
-        {props.showRating && (
-          <Card.Text as='div'>
-            <Rating
-              value={props.course.averageRating}
-              text={` ${props.course.averageRating.toFixed(2)} stars`}
-            />
-          </Card.Text>
-        )}
+        <Card.Text as='div'>
+          <Rating
+            value={props.course.averageRating}
+            text={` ${props.course.averageRating.toFixed(2)} stars`}
+          />
+        </Card.Text>
       </Card.Body>
     </Card>
   );
