@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Overview from '../views/OverviewView';
+import { RecentActivity, PopularCourses } from '../views/OverviewView';
 import { useAuth } from '../context/AuthContext.js';
 import axios from 'axios';
 import Loader from '../components/Loader';
@@ -38,17 +38,9 @@ const OverviewPresenter = (props) => {
     const getPopularCourses = async () => {
       setLoadingP(true);
       try {
-        let apiUrl = '/user/feedbacks/all';
+        let apiUrl = '/user/feedbacks/popular';
 
         const { data } = await axios.get(apiUrl);
-
-        // course: "DH2643"
-        // createdAt: {seconds: 1639416978, nanoseconds: 267000000}
-        // id: "75UYNpYG0m0jAQHWWuws"
-        // rating: 4
-        // review: "This is a really good course."
-        // title: "Very Gooood"
-        // uid: "jgiee62MHFU6C9TSHGltdMZeo093"
 
         setPopularCourses(data);
         setLoadingP(false);
@@ -59,7 +51,7 @@ const OverviewPresenter = (props) => {
     };
 
     getUserActivity();
-    //getPopularCourses();
+    getPopularCourses();
   }, [currentUser.uid]);
 
   return (
@@ -69,7 +61,15 @@ const OverviewPresenter = (props) => {
       ) : error && error.length > 0 ? (
         <Message>{error}</Message>
       ) : (
-        recentActivity && <Overview recentActivity={recentActivity} />
+        recentActivity && <RecentActivity recentActivity={recentActivity} />
+      )}
+
+      {loadingP ? (
+        <Loader />
+      ) : errorP && errorP.length > 0 ? (
+        <Message>{errorP}</Message>
+      ) : (
+        popularCourses && <PopularCourses popularCourses={popularCourses} />
       )}
     </>
   );

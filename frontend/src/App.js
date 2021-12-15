@@ -15,12 +15,10 @@ import CourseDetailPresenter from './presenters/CourseDetailPresenter';
 import FindCoursesPresenter from './presenters/FindCoursesPresenter';
 import RegisterPresenter from './presenters/RegisterPresenter';
 import LoginPresenter from './presenters/LoginPresenter';
-import ProfilePresenter from './presenters/ProfilePresenter';
-
+import OverviewPresenter from './presenters/OverviewPresenter';
+import MyCourseyPresenter from './presenters/MyCourseyPresenter';
 // protected route
 import PrivateRoute from './context/PrivateRoutes';
-import OverviewPresenter from './presenters/OverviewPresenter';
-import ActivitiesPresenter from './presenters/ActivitiesPresenter';
 
 function App() {
   return (
@@ -32,11 +30,11 @@ function App() {
         <Container>
           <main className='py-3'>
             <PrivateRoute path={'/'} component={OverviewPresenter} exact />
-            <PrivateRoute path={'/mycoursey'} exact>
-              <ProfilePresenter />
-              <ActivitiesPresenter />
-            </PrivateRoute>
-
+            <PrivateRoute
+              path={'/mycoursey'}
+              component={MyCourseyPresenter}
+              exact
+            />
             <Route
               path={'/course/:id'}
               component={CourseDetailPresenter}

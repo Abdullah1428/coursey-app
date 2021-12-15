@@ -228,7 +228,7 @@ export const CourseReviews = (props) => {
                     <Card.Subtitle className='mb-2 text-muted'>
                       {toDateTime(r.createdAt.seconds)}
                     </Card.Subtitle>
-                    {r.id}
+
                     <Card.Text className='cardText'>{r.review}</Card.Text>
 
                     <div style={{ margin: 10 }} />

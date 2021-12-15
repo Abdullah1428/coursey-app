@@ -2,7 +2,7 @@ import { Card } from 'react-bootstrap';
 import Rating from './Rating';
 import { cardStyle } from '../styles/cardStyle';
 
-const CourseCard = (props) => {
+const PopularCard = (props) => {
   function toDateTime(secs) {
     var t = new Date(1970, 0, 1); // Epoch
     t.setSeconds(secs);
@@ -17,26 +17,25 @@ const CourseCard = (props) => {
       style={cardStyle}
     >
       <Card.Body>
-        <Card.Title className='cardTitle'>{props.course.title}</Card.Title>
-        <Card.Subtitle className='mb-2 text-muted'>
-          {props.course.course}
-          {props.course.courseCode}
-        </Card.Subtitle>
+        <Card.Title style={{ fontSize: 20 }}>{props.course.course}</Card.Title>
+
         <Card.Subtitle className='mb-2 text-muted'>
           {toDateTime(props.course.createdAt.seconds)}
         </Card.Subtitle>
 
-        <Card.Text className='cardText'>
+        <Card.Text>
           {props.course.credits} {props.course.creditUnitLabel}
         </Card.Text>
 
-        <Card.Text className='cardText'>
-          {props.course.educationalLevel}
-        </Card.Text>
+        <Card.Text as='div'>{`Num of Reviews: ${props.course.totalFeedbacks}`}</Card.Text>
 
+        <Card.Text as='div'>Average Rating:</Card.Text>
         {props.showRating && (
-          <Card.Text as='div' className='cardText'>
-            <Rating value={props.course.rating} text={` rating`} />
+          <Card.Text as='div'>
+            <Rating
+              value={props.course.averageRating}
+              text={` ${props.course.averageRating} stars`}
+            />
           </Card.Text>
         )}
       </Card.Body>
@@ -44,4 +43,4 @@ const CourseCard = (props) => {
   );
 };
 
-export default CourseCard;
+export default PopularCard;

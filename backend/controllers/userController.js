@@ -13,6 +13,7 @@ import {
   addDoc,
   serverTimestamp,
   limit,
+  orderBy,
 } from '@firebase/firestore';
 
 /*
@@ -34,13 +35,39 @@ const getAllFeedbacks = asyncHandler(async (_req, res) => {
 });
 
 /*
+ *   @desc   get popular courses on the basis of average feedback
+ *   @route  GET /user/feedbacks/popular
+ */
+const getPopularCourses = asyncHandler(async (_req, res) => {
+  try {
+    const q = query(
+      collection(db, 'feedback'),
+      orderBy('averageRating', 'desc'),
+      limit(3)
+    );
+
+    const querySnapshot = await getDocs(q);
+
+    const data = querySnapshot.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+
+    res.json(data);
+  } catch (error) {
+    res.status(400).send('Firebase error!');
+  }
+});
+
+/*
  *   @desc   add a feedback for course
  *   @route  POST /user/course/feedback
  */
 const addFeedbackForCourse = asyncHandler(async (req, res) => {
   const feedbackCollectionRef = collection(db, 'feedback');
 
-  const { uid, course, title, review, rating } = req.body;
+  const { uid, course, title, review, rating, averageRating, totalFeedbacks } =
+    req.body;
 
   try {
     await addDoc(feedbackCollectionRef, {
@@ -49,6 +76,8 @@ const addFeedbackForCourse = asyncHandler(async (req, res) => {
       title,
       review,
       rating: Number(rating),
+      averageRating: Number(averageRating),
+      totalFeedbacks: Number(totalFeedbacks),
       createdAt: serverTimestamp(),
     });
 
@@ -149,6 +178,7 @@ const updateProfileDetailsfromAPI = asyncHandler(async (req, res) => {
 
 export {
   getAllFeedbacks,
+  getPopularCourses,
   addFeedbackForCourse,
   getFeedbacksByCourseId,
   getUserActivity,

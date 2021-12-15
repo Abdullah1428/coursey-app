@@ -79,6 +79,12 @@ const CourseDetailPresenter = ({ match }) => {
       alert('Please write a proper comment which can be helpful for others');
       return;
     } else {
+      let averageRating = rating;
+      courseReviews.map(
+        (review) =>
+          (averageRating = Number(averageRating) + Number(review.rating))
+      );
+
       try {
         let apiUrl = `/user/course/feedback`;
 
@@ -88,6 +94,8 @@ const CourseDetailPresenter = ({ match }) => {
           title: title,
           review: review,
           rating: rating,
+          averageRating: averageRating / (courseReviews.length + 1),
+          totalFeedbacks: courseReviews.length + 1,
         };
 
         const { data } = await axios.post(apiUrl, feedback);
