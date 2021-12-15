@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
 import CourseCard from '../components/CourseCard';
 import { Link } from 'react-router-dom';
@@ -16,12 +16,18 @@ const ActivitiesView = (props) => {
         {props.courses && props.courses.length > 0 ? (
           props.courses.map((course) => (
             <Col key={course.id} sm={12} md={6} lg={4} xl={3}>
-              <CourseCard
-                bg={cardStyle.bg}
-                text={cardStyle.text}
-                style={cardStyle}
-                course={course}
-              />
+              <Link
+                style={{ textDecoration: 'none' }}
+                to={{
+                  pathname: `/course/${course.course}`,
+                }}>
+                <CourseCard
+                  bg={cardStyle.bg}
+                  text={cardStyle.text}
+                  style={cardStyle}
+                  course={course}
+                />
+              </Link>
             </Col>
           ))
         ) : (
