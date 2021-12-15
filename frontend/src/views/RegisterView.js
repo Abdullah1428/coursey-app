@@ -1,5 +1,6 @@
 import { Container, Form, Button, Card, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import CourseyCarousel from '../components/CourseyCarousel';
 
 const RegisterView = (props) => {
   const handleSubmit = (e) => {
@@ -7,11 +8,13 @@ const RegisterView = (props) => {
     props.handleSubmit();
   };
   return (
-    <Container className='py-5'>
+    <Container>
+      <Row className='py-2 text-center'>
+        <h1>Coursey - Find cool KTH courses</h1>
+      </Row>
       <Row>
-        <Col className='py-5'>
-          <h1>Coursey</h1>
-          <h3>Find cool KTH courses</h3>
+        <Col>
+          <CourseyCarousel />
         </Col>
         <Col>
           <Row>

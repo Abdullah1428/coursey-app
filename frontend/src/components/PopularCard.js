@@ -33,7 +33,7 @@ const PopularCard = (props) => {
           <Card.Text as='div'>
             <Rating
               value={props.course.averageRating}
-              text={` ${props.course.averageRating} stars`}
+              text={` ${props.course.averageRating.toFixed(2)} stars`}
             />
           </Card.Text>
         )}

@@ -32,8 +32,6 @@ const register = asyncHandler(async (req, res) => {
       uid: user.uid,
       email: user.email,
     };
-    console.log(user.uid);
-    console.log(data);
     await setDoc(doc(db, 'users', user.uid), data);
 
     res.json(data);
@@ -65,7 +63,7 @@ const login = asyncHandler((req, res) => {
     });
 });
 
-const logout = asyncHandler((req, res) => {
+const logout = asyncHandler((_req, res) => {
   signOut(auth)
     .then(() => {
       res.status(200).send('logged out');
