@@ -16,19 +16,12 @@ const ActivitiesView = (props) => {
         {props.feedbacks && props.feedbacks.length > 0 ? (
           props.feedbacks.map((course) => (
             <Col key={course.id} sm={12} md={6} lg={4} xl={3}>
-              <Link
-                style={{ textDecoration: 'none' }}
-                to={{
-                  pathname: `/course/${course.course}`,
-                }}>
-                <FeedbackCard
-                  bg={feedbackCardStyle.bg}
-                  text={feedbackCardStyle.text}
-                  style={feedbackCardStyle}
-                  course={course}
-                  isFeedbackCard={true}
-                />
-              </Link>
+              <FeedbackCard
+                bg={feedbackCardStyle.bg}
+                text={feedbackCardStyle.text}
+                style={feedbackCardStyle}
+                course={course}
+              />
             </Col>
           ))
         ) : (

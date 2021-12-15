@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import Rating from './Rating';
 import FeedbackModal from './FeedbackModal';
+import { Link } from 'react-router-dom';
 import { feedbackCardStyle } from '../styles/feedbackCardStyle';
 
 const FeedbackCard = (props) => {
@@ -18,28 +19,36 @@ const FeedbackCard = (props) => {
       bg={feedbackCardStyle.bg}
       text={feedbackCardStyle.text}
       style={feedbackCardStyle}>
-      <Card.Body>
-        <Card.Title className='cardTitle'>{props.course.title}</Card.Title>
-        <Card.Subtitle className='mb-2 text-muted'>
-          {toDateTime(props.course.createdAt.seconds)}
-        </Card.Subtitle>
+      <Link
+        style={{ textDecoration: 'none' }}
+        to={{
+          pathname: `/course/${props.course.course}`,
+        }}>
+        <Card.Body>
+          <Card.Title className='cardTitle'>{props.course.title}</Card.Title>
 
-        <Card.Text className='mb-2 text-muted'>
-          user: {props.course.id}
-        </Card.Text>
+          <Card.Text className='mb-2 text-success'>
+            {props.course.course}
+          </Card.Text>
+          <Card.Subtitle className='mb-2 text-muted'>
+            {toDateTime(props.course.createdAt.seconds)}
+          </Card.Subtitle>
 
-        <Card.Text className='mb-2 text-success'>
-          {props.course.course}
-        </Card.Text>
+          <Card.Subtitle className='mb-2 text-muted'>
+            user: {props.course.id}
+          </Card.Subtitle>
 
-        <Card.Text className='cardText text-warning'>
-          {props.course.credits} {props.course.creditUnitLabel}
-        </Card.Text>
+          <Card.Text className='cardText text-warning'>
+            {props.course.review} extra text for checking layoutextra text for
+            checking layoutextra text for checking layoutextra text for checking
+            layout
+          </Card.Text>
 
-        <Card.Text as='div' className='cardText'>
-          <Rating value={props.course.rating} text={` rating`} />
-        </Card.Text>
-      </Card.Body>
+          <Card.Text as='div' className='cardText'>
+            <Rating value={props.course.rating} text={` rating`} />
+          </Card.Text>
+        </Card.Body>
+      </Link>
       <Button variant='success' size='sm' onClick={() => setModalShow(true)}>
         See Review
       </Button>

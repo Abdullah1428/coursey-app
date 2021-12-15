@@ -1,6 +1,6 @@
 import { Row, Col, Image, Form, Button, ListGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import CourseCard from '../components/CourseCard';
+import FeedbackCard from '../components/FeedbackCard';
 import { feedbackCardStyle } from '../styles/feedbackCardStyle';
 import { shadowStyle } from '../styles/shadowStyle';
 
@@ -199,39 +199,12 @@ export const CourseReviews = (props) => {
             props.courseReviews.map((r) => (
               <Col key={r.id} sm={12} md={6} lg={4} xl={3}>
                 <div className='mt-4' />
-                <Link
-                  style={{ textDecoration: 'none' }}
-                  to={{
-                    pathname: `/course/${r.course}`,
-                  }}>
-                  <CourseCard
-                    bg={feedbackCardStyle.bg}
-                    text={feedbackCardStyle.text}
-                    style={feedbackCardStyle}
-                    course={r}
-                    isFeedbackCard={true}
-                  />
-                </Link>
-                {/* <Card
-                  className='my-3 p-3 rounded'
+                <FeedbackCard
                   bg={feedbackCardStyle.bg}
                   text={feedbackCardStyle.text}
                   style={feedbackCardStyle}
-                >
-                  <Card.Body>
-                    <Card.Title>{r.title}</Card.Title>
-                    <Card.Subtitle className='mb-2 text-muted'>
-                      {toDateTime(r.createdAt.seconds)}
-                    </Card.Subtitle>
-
-                    <Card.Text className='cardText'>{r.review}</Card.Text>
-
-                    <div style={{ margin: 10 }} />
-                    <Card.Text as='div'>
-                      <Rating value={r.rating} text={` ${r.rating} stars`} />{' '}
-                    </Card.Text>
-                  </Card.Body>
-                </Card> */}
+                  course={r}
+                />
               </Col>
             ))
           ) : (

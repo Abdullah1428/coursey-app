@@ -7,7 +7,7 @@ import CourseCard from '../components/CourseCard';
 export const SearchBar = (props) => {
   return (
     <>
-      <h2>Find Cool KTH Courses...</h2>
+      <h2>Search Courses by Name or Code</h2>
       <Row className='py-2'>
         <Col>
           <Form>
@@ -36,7 +36,6 @@ export const SearchBar = (props) => {
 };
 
 export const SearchResults = (props) => {
-  // let kthImages = ['kth.jpeg', 'kth-2.jpeg', 'kth-3.jpeg', 'kth-4.jpeg'];
   return (
     <Row>
       <div className='py-2' />
@@ -59,7 +58,6 @@ export const SearchResults = (props) => {
                 text={courseCardStyle.text}
                 style={courseCardStyle}
                 course={search.course}
-                isFeedbackCard={false}
               />
             </Link>
           </Col>
