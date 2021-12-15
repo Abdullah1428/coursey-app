@@ -222,16 +222,15 @@ export const CourseReviews = (props) => {
                   className='my-3 p-3 rounded'
                   bg={cardStyle.bg}
                   text={cardStyle.text}
-                  style={cardStyle}>
+                  style={cardStyle}
+                >
                   <Card.Body>
                     <Card.Title>{r.title}</Card.Title>
                     <Card.Subtitle className='mb-2 text-muted'>
                       {toDateTime(r.createdAt.seconds)}
                     </Card.Subtitle>
-                    {r.id}
-                    <Card.Text className='cardText'>
-                      <p>{r.review}</p>
-                    </Card.Text>
+
+                    <Card.Text className='cardText'>{r.review}</Card.Text>
 
                     <div style={{ margin: 10 }} />
                     <Card.Text as='div'>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import ProfileView from '../views/ProfileView';
 import Loader from '../components/Loader';
 import axios from 'axios';
@@ -17,7 +17,7 @@ const ProfilePresenter = (props) => {
   const { currentUser } = useAuth();
 
   const handleUpdate = async (e) => {
-    let apiUrl = '/user/updateProfile';
+    let apiUrl = '/user/updateprofile';
     const body = {
       uid: currentUser.uid,
       name: name,
@@ -33,11 +33,11 @@ const ProfilePresenter = (props) => {
     }
   };
 
-  const getProfileDataFromAPI = async () => {
+  const getProfileDataFromAPI = useCallback(async () => {
     setLoading(true);
     setError('');
     try {
-      let apiUrl = '/user/getProfile';
+      let apiUrl = '/user/getprofile';
       const body = { uid: currentUser.uid };
       const { data } = await axios.post(apiUrl, body);
       setName(data.name);
@@ -50,11 +50,11 @@ const ProfilePresenter = (props) => {
       setError(error);
       setLoading(false);
     }
-  };
+  }, [currentUser]);
 
   useEffect(() => {
     getProfileDataFromAPI();
-  }, []);
+  }, [getProfileDataFromAPI]);
 
   return (
     <>

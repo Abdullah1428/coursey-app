@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import { useAuth } from '../context/AuthContext.js';
 import ActivitiesView from '../views/ActivitiesView.js';
 import axios from 'axios';
@@ -11,8 +12,13 @@ const ActivitiesPresenter = (props) => {
   const [error, setError] = useState('');
 
   const { currentUser } = useAuth();
+  const history = useHistory();
 
   useEffect(() => {
+    if (!currentUser) {
+      history.push('/login');
+    }
+
     const getAllActivities = async () => {
       setLoading(true);
       try {
@@ -32,7 +38,7 @@ const ActivitiesPresenter = (props) => {
       }
     };
     getAllActivities();
-  }, [currentUser.uid]);
+  }, [currentUser, history]);
 
   return (
     <>

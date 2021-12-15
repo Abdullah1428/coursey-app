@@ -11,6 +11,7 @@ const CourseCard = (props) => {
     t.setSeconds(secs);
     return t.toDateString();
   }
+
   return (
     <Card
       className='my-3 p-3 rounded'

@@ -15,7 +15,7 @@ const ProfileView = (props) => {
               <Form.Text> Email </Form.Text>
               <Form.Control
                 value={props.email}
-                type='disabled'
+                disabled
                 style={{ color: 'grey' }}
               />
             </Col>
