@@ -2,39 +2,33 @@ html {
   align-items: center;
 }
 
-body { margin: 0;
-background-color: '#f23c1e'; }
-
-/* .container {
-  border: 2px solid #000;
-  max-width: 1000px;
-} */
-
-.headingColor {
-  color: "#f23c1e";
-  background-color: "#f23c1e";
-}
-
 main {
   min-height: 80vh;
 }
 
-h3 {
-  padding: 1rem 0;
+h1, h2, h3, h4 {
+  padding: 2rem 0;
 }
 
 h1 {
-  font-size: 1.8rem;
-  padding: 1rem 0;
+  font-size: 1.6rem;
 }
 
 h2 {
   font-size: 1.4rem;
-  padding: 0.5rem 0;
+}
+
+h3 {
+  font-size: 1.2rem;
 }
 
 h4 {
-    color: '#f23c1e';
+  font-size: 1rem;
+}
+
+.courseDetailHeading {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .cardText {

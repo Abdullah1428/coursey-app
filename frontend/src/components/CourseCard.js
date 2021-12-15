@@ -6,7 +6,11 @@ import FeedbackModal from './FeedbackModal';
 
 const CourseCard = (props) => {
   const [modalShow, setModalShow] = useState(false);
-
+  function toDateTime(secs) {
+    var t = new Date(1970, 0, 1); // Epoch
+    t.setSeconds(secs);
+    return t.toDateString();
+  }
   return (
     <Card
       className='my-3 p-3 rounded'
@@ -15,6 +19,16 @@ const CourseCard = (props) => {
       style={cardStyle}>
       <Card.Body>
         <Card.Title className='cardTitle'>{props.course.title}</Card.Title>
+        {props.isFeedbackCard && (
+          <Card.Subtitle className='mb-2 text-muted'>
+            {toDateTime(props.course.createdAt.seconds)}
+          </Card.Subtitle>
+        )}
+
+        {props.isFeedbackCard && (
+          <Card.Text className='mb-2 text-muted'>{props.course.id}</Card.Text>
+        )}
+
         <Card.Text className='mb-2 text-success'>
           {props.course.course}
           {props.course.courseCode}
@@ -41,6 +55,7 @@ const CourseCard = (props) => {
           See Review
         </Button>
       )}
+
       {props.isFeedbackCard && (
         <FeedbackModal
           show={modalShow}

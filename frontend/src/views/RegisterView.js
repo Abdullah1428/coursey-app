@@ -54,7 +54,10 @@ const RegisterView = (props) => {
                       />
                     </Form.Group>
                     <div className='p-1' />
-                    <Button type='submit' className='mt-3 w-100'>
+                    <Button
+                      type='submit'
+                      variant='success'
+                      className='mt-3 w-100'>
                       Register
                     </Button>
                   </Form>

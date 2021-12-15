@@ -32,7 +32,7 @@ const ActivitiesView = (props) => {
             </Col>
           ))
         ) : (
-          <h4>No Activity Yet</h4>
+          <h2>No Activity Yet</h2>
         )}
       </Row>
     </div>

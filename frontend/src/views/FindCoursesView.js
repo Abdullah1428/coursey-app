@@ -1,7 +1,6 @@
 import React from 'react';
-import { Row, Col, Form, Button, Card } from 'react-bootstrap';
+import { Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Rating from '../components/Rating';
 import { cardStyle } from '../styles/cardStyle';
 import CourseCard from '../components/CourseCard';
 
@@ -42,7 +41,7 @@ export const SearchResults = (props) => {
     <Row>
       <div className='py-2' />
       <hr />
-      <h4 className='py-4'>Search Results</h4>
+      <h2>Search Results</h2>
       {props.searchResults &&
         props.searchResults.map((search) => (
           <Col key={search.course.courseCode} sm={12} md={6} lg={4} xl={3}>

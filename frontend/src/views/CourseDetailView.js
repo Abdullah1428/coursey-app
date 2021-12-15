@@ -1,15 +1,13 @@
-import {
-  Row,
-  Col,
-  Image,
-  Form,
-  Button,
-  ListGroup,
-  Card,
-} from 'react-bootstrap';
+import { Row, Col, Image, Form, Button, ListGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Rating from '../components/Rating';
+import CourseCard from '../components/CourseCard';
 import { cardStyle } from '../styles/cardStyle';
+
+export const shadow = {
+  boxShadow: '0px 5px 15px 0px rgb(0 0 0 / 20%)',
+  padding: '1rem',
+  margin: '1rem',
+};
 
 export const CourseDetailView = (props) => {
   const removeHTMLTagIfAny = (string) => {
@@ -24,21 +22,21 @@ export const CourseDetailView = (props) => {
 
   return (
     <div>
-      <Row>
-        <h2>
+      <Row style={shadow} className='text-center'>
+        <h2 className='courseDetailHeading'>
           {props.courseDetail.course.courseCode} -{' '}
           {props.courseDetail.course.title}, {props.courseDetail.course.credits}{' '}
           {props.courseDetail.course.creditUnitLabel}
         </h2>
-        <h6 className='text-muted'>
-          {props.courseDetail.course.courseCode} -{' '}
+        <h4 className='courseDetailHeading text-muted'>
+          ({props.courseDetail.course.courseCode} -{' '}
           {props.courseDetail.course.titleOther},{' '}
           {props.courseDetail.course.credits}{' '}
-          {props.courseDetail.course.creditUnitLabel}
-        </h6>
+          {props.courseDetail.course.creditUnitLabel})
+        </h4>
       </Row>
-      <Row>
-        <Col>
+      <Row style={shadow}>
+        <Col sm={12} md={3} lg={4} xl={5}>
           <Row>
             <Image
               style={{ height: '300px', width: '300px' }}
@@ -48,7 +46,7 @@ export const CourseDetailView = (props) => {
             />
           </Row>
           <Row>
-            <h4>Course Information</h4>
+            <h4 className='courseDetailHeading'>Course Information</h4>
             <p>Department Code: {props.courseDetail.course.department.code}</p>
             <p>Department Name: {props.courseDetail.course.department.name}</p>
             <p>
@@ -67,23 +65,23 @@ export const CourseDetailView = (props) => {
             </p>
           </Row>
           <Row>
-            <h4>Supplementary Information</h4>
+            <h4 className='courseDetailHeading'>Supplementary Information</h4>
             <p>
               {props.courseDetail.course.supplementaryInfo &&
                 removeHTMLTagIfAny(props.courseDetail.course.supplementaryInfo)}
             </p>
           </Row>
         </Col>
-        <Col>
+        <Col sm={12} md={9} lg={8} xl={7}>
           <Row>
-            <h4>About</h4>
+            <h4 className='courseDetailHeading'>About</h4>
             <p>
               {props.courseDetail.course.recruitmentText &&
                 removeHTMLTagIfAny(props.courseDetail.course.recruitmentText)}
             </p>
           </Row>
           <Row>
-            <h4>Goals</h4>
+            <h4 className='courseDetailHeading'>Goals</h4>
             <p>
               {props.courseDetail.publicSyllabusVersions.length > 0 &&
                 removeHTMLTagIfAny(
@@ -93,7 +91,7 @@ export const CourseDetailView = (props) => {
             </p>
           </Row>
           <Row>
-            <h4>Course Content</h4>
+            <h4 className='courseDetailHeading'>Course Content</h4>
             <p>
               {props.courseDetail.publicSyllabusVersions.length > 0 &&
                 removeHTMLTagIfAny(
@@ -103,7 +101,7 @@ export const CourseDetailView = (props) => {
             </p>
           </Row>
           <Row>
-            <h4>Prerequisites</h4>
+            <h4 className='courseDetailHeading'>Prerequisites</h4>
             <p>
               {props.courseDetail.course.prerequisites &&
                 removeHTMLTagIfAny(props.courseDetail.course.prerequisites)}
@@ -121,23 +119,21 @@ export const CourseReviews = (props) => {
     props.onSubmitReview();
   };
 
-  function toDateTime(secs) {
-    var t = new Date(1970, 0, 1); // Epoch
-    t.setSeconds(secs);
-    return t.toDateString();
-  }
-
   return (
     <>
       <hr />
-      <ListGroup variant='flush'>
+      <ListGroup variant='flush' style={shadow}>
         <Row>
           <Col md={6}>
             <ListGroup.Item>
-              <h2>Taken this course?</h2>
+              <h2 className='courseDetailHeading text-center'>
+                Taken this course?
+              </h2>
               {props.currentUser ? (
                 <>
-                  <h4>Share your experience with others</h4>
+                  <h4 className='courseDetailHeading'>
+                    Share your experience with others
+                  </h4>
                   <Form onSubmit={(e) => handleSubmit(e)}>
                     <Form.Group controlId='rating'>
                       <Form.Label>Rating</Form.Label>
@@ -177,14 +173,14 @@ export const CourseReviews = (props) => {
                     <Button
                       style={{ marginTop: 20 }}
                       type='submit'
-                      variant='primary'>
+                      variant='success'>
                       Submit
                     </Button>
                   </Form>
                 </>
               ) : (
                 <>
-                  <h4>
+                  <h4 className='courseDetailHeading'>
                     <Link to={'/login'}>Login</Link> to share your experience
                     with others
                   </h4>
@@ -192,30 +188,37 @@ export const CourseReviews = (props) => {
               )}
             </ListGroup.Item>
           </Col>
+
           <Col>
-            <ListGroup>
-              <ListGroup.Item>Overall</ListGroup.Item>
-              <ListGroup.Item>Rating</ListGroup.Item>
-              <Card
-                className='my-3 p-3 rounded'
-                bg={cardStyle.bg}
-                text={cardStyle.text}
-                style={cardStyle}>
-                <h2>4.5/5</h2>
-                maybe changes colors based on average, good, poor (red)
-              </Card>
-              <ListGroup.Item>Best Rating</ListGroup.Item>
-              <ListGroup.Item>Lowest Rating</ListGroup.Item>
+            <ListGroup className='text-center'>
+              <ListGroup.Item>
+                <h2 className='courseDetailHeading'>Overall Rating</h2>{' '}
+                <p className='text-center'>4.5/5</p>
+              </ListGroup.Item>
             </ListGroup>
           </Col>
         </Row>
-        <h2>Course Reviews</h2>
         <Row>
+          <div className='my-3' />
+          <h2 className='courseDetailHeading text-center'>Course Reviews</h2>
           {props.courseReviews && props.courseReviews.length > 0 ? (
             props.courseReviews.map((r) => (
               <Col key={r.id} sm={12} md={6} lg={4} xl={3}>
                 <div className='mt-4' />
-                <Card
+                <Link
+                  style={{ textDecoration: 'none' }}
+                  to={{
+                    pathname: `/course/${r.course}`,
+                  }}>
+                  <CourseCard
+                    bg={cardStyle.bg}
+                    text={cardStyle.text}
+                    style={cardStyle}
+                    course={r}
+                    isFeedbackCard={true}
+                  />
+                </Link>
+                {/* <Card
                   className='my-3 p-3 rounded'
                   bg={cardStyle.bg}
                   text={cardStyle.text}
@@ -235,11 +238,13 @@ export const CourseReviews = (props) => {
                       <Rating value={r.rating} text={` ${r.rating} stars`} />{' '}
                     </Card.Text>
                   </Card.Body>
-                </Card>
+                </Card> */}
               </Col>
             ))
           ) : (
-            <h4>No Reviews Yet for this Course.</h4>
+            <h4 className='courseDetailHeading'>
+              No Reviews Yet for this Course.
+            </h4>
           )}
         </Row>
       </ListGroup>
