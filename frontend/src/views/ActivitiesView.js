@@ -26,7 +26,7 @@ const ActivitiesView = (props) => {
                   text={cardStyle.text}
                   style={cardStyle}
                   course={course}
-                  showRating={true}
+                  isFeedbackCard={true}
                 />
               </Link>
             </Col>

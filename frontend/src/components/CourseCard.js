@@ -1,6 +1,6 @@
 import { cardStyle } from '../styles/cardStyle';
 import { useState } from 'react';
-import { Card, Button, Col } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import Rating from './Rating';
 import FeedbackModal from './FeedbackModal';
 
@@ -15,33 +15,39 @@ const CourseCard = (props) => {
       style={cardStyle}>
       <Card.Body>
         <Card.Title className='cardTitle'>{props.course.title}</Card.Title>
-        <Card.Subtitle className='mb-2 text-muted'>
+        <Card.Text className='mb-2 text-success'>
           {props.course.course}
           {props.course.courseCode}
-        </Card.Subtitle>
+        </Card.Text>
 
-        <Card.Text className='cardText'>
+        <Card.Text className='cardText text-warning'>
           {props.course.credits} {props.course.creditUnitLabel}
         </Card.Text>
 
-        <Card.Text className='cardText'>
-          {props.course.educationalLevel}
-        </Card.Text>
+        {!props.isFeedbackCard && (
+          <Card.Text className='cardText text-muted'>
+            LEVEL: {props.course.educationalLevel}
+          </Card.Text>
+        )}
 
-        {props.showRating && (
+        {props.isFeedbackCard && (
           <Card.Text as='div' className='cardText'>
             <Rating value={props.course.rating} text={` rating`} />
           </Card.Text>
         )}
       </Card.Body>
-      <Button variant='success' size='sm' onClick={() => setModalShow(true)}>
-        See Review
-      </Button>
-      <FeedbackModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        course={props.course}
-      />
+      {props.isFeedbackCard && (
+        <Button variant='success' size='sm' onClick={() => setModalShow(true)}>
+          See Review
+        </Button>
+      )}
+      {props.isFeedbackCard && (
+        <FeedbackModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          course={props.course}
+        />
+      )}
     </Card>
   );
 };
