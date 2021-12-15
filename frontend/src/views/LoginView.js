@@ -1,13 +1,7 @@
-import {
-  Form,
-  Col,
-  Row,
-  Container,
-  Button,
-  Card,
-  Carousel,
-} from 'react-bootstrap';
+import { Form, Col, Row, Container, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+
+import CourseyCarousel from '../components/CourseyCarousel';
 
 const LoginView = (props) => {
   const handleSubmit = (e) => {
@@ -15,13 +9,13 @@ const LoginView = (props) => {
     props.handleSubmit(e);
   };
   return (
-    <Container className='py-5'>
+    <Container>
       <Row className='py-2 text-center'>
         <h1>Coursey - Find cool KTH courses</h1>
       </Row>
       <Row>
-        <Col className='py-5'>
-          <Carousel></Carousel>
+        <Col>
+          <CourseyCarousel />
         </Col>
         <Col>
           <Row>

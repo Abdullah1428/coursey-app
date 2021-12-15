@@ -52,6 +52,27 @@ export const RecentActivity = (props) => {
 };
 
 export const PopularCourses = (props) => {
+  const doSortingandFiltering = (c) => {
+    let sorted = c.sort(function compareNumOfReviews(a, b) {
+      let ai = Number(a.totalFeedbacks);
+      let bi = Number(b.totalFeedbacks);
+
+      return ai > bi ? -1 : ai < bi ? 1 : 0;
+    });
+
+    // const arrUnique = [
+    //   ...new Map(
+    //     sorted.map((v) => [JSON.stringify([v.totalFeedbacks, v.course]), v])
+    //   ).values(),
+    // ];
+
+    const arrUnique = sorted.filter(
+      (v, i, a) => a.findIndex((t) => t.course === v.course) === i
+    );
+
+    return arrUnique.slice(0, 3);
+  };
+
   return (
     <div>
       <Row>
@@ -60,7 +81,7 @@ export const PopularCourses = (props) => {
 
       <Row>
         {props.popularCourses && props.popularCourses.length > 0 ? (
-          props.popularCourses.map((course) => (
+          doSortingandFiltering([...props.popularCourses]).map((course) => (
             <Col key={course.id} sm={12} md={6} lg={4} xl={3}>
               <Link
                 style={{ textDecoration: 'none' }}

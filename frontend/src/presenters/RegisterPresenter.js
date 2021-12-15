@@ -20,7 +20,7 @@ const RegisterPresenter = (_props) => {
   const handleSubmit = async () => {
     const parts = email.split('@');
 
-    if (parts[1] !== 'kth.se' || parts[1] !== 'ug.kth.se') {
+    if (parts[1] !== 'kth.se' && parts[1] !== 'ug.kth.se') {
       alert('Please use your kth mail.');
       return;
     }

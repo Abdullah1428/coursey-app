@@ -2,8 +2,10 @@ html {
   align-items: center;
 }
 
-body { margin: 0;
-background-color: '#f23c1e'; }
+body {
+  margin: 0;
+  background-color: '#f23c1e';
+}
 
 /* .container {
   border: 2px solid #000;
@@ -11,8 +13,8 @@ background-color: '#f23c1e'; }
 } */
 
 .headingColor {
-  color: "#f23c1e";
-  background-color: "#f23c1e";
+  color: '#f23c1e';
+  background-color: '#f23c1e';
 }
 
 main {
@@ -34,7 +36,7 @@ h2 {
 }
 
 h4 {
-    color: '#f23c1e';
+  color: '#f23c1e';
 }
 
 .cardText {

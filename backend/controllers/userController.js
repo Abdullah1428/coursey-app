@@ -42,8 +42,7 @@ const getPopularCourses = asyncHandler(async (_req, res) => {
   try {
     const q = query(
       collection(db, 'feedback'),
-      orderBy('averageRating', 'desc'),
-      limit(3)
+      orderBy('averageRating', 'desc')
     );
 
     const querySnapshot = await getDocs(q);
@@ -169,7 +168,6 @@ const updateProfileDetailsfromAPI = asyncHandler(async (req, res) => {
       school: req.body.school,
       year: req.body.year,
     });
-    console.log(status);
     res.json(status);
   } catch (error) {
     res.status(400).send(error.message);
