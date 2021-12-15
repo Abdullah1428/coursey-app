@@ -2,25 +2,28 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Rating from './Rating';
+import { cardStyle } from '../styles/cardStyle';
 
 const CourseCard = (props) => {
   return (
     <Card
-      className="my-3 p-3 rounded"
-      bg={'info'}
-      text={'white'}
-      style={{
-        width: '18rem',
-        height: '12rem',
-      }}>
+      className='my-3 p-3 rounded'
+      bg={cardStyle.bg}
+      text={cardStyle.text}
+      style={cardStyle}>
       <Card.Body>
-        <Link to={`/course/${props.course.course}`}>
-          <Card.Title>{props.course.course}</Card.Title>
-        </Link>
+        <Card.Title className='cardTitle'>{props.course.title}</Card.Title>
+        <Card.Subtitle className='mb-2 text-muted'>
+          {props.course.course}
+          {props.course.courseCode}
+        </Card.Subtitle>
 
-        <Card.Text>{props.course.title}</Card.Text>
+        <Card.Text className='cardText'>
+          {props.course.credits} {props.course.creditUnitLabel}
+        </Card.Text>
 
-        <Card.Text as="div">
+        <div style={{ margin: 10 }} />
+        <Card.Text as='div' className='cardText'>
           <Rating value={props.course.rating} text={` rating`} />
         </Card.Text>
       </Card.Body>

@@ -27,11 +27,10 @@ const NavigationBar = () => {
   return (
     <>
       <Navbar
-        style={{ backgroundColor: '#DC8665' }}
+        style={{ backgroundColor: '#ffa500' }}
         expand='lg'
         collapseOnSelect
-        className='px-3'
-      >
+        className='px-3'>
         <>
           <LinkContainer to={currentUser ? '/' : '/login'}>
             <Navbar.Brand>Coursey</Navbar.Brand>

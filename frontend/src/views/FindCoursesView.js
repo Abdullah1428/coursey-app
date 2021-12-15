@@ -2,6 +2,8 @@ import React from 'react';
 import { Row, Col, Form, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Rating from '../components/Rating';
+import { cardStyle } from '../styles/cardStyle';
+import CourseCard from '../components/CourseCard';
 
 export const SearchBar = (props) => {
   return (
@@ -16,8 +18,7 @@ export const SearchBar = (props) => {
               value={props.searchQuery}
               onChange={(e) => props.onChange(e)}
               placeholder='Search Courses by Name and Code...'
-              className='mr-sm-2 ml-sm-5'
-            ></Form.Control>
+              className='mr-sm-2 ml-sm-5'></Form.Control>
           </Form>
         </Col>
         <Col>
@@ -26,8 +27,7 @@ export const SearchBar = (props) => {
             type='submit'
             variant='success'
             className='p-2'
-            onClick={(e) => props.onSearch(e)}
-          >
+            onClick={(e) => props.onSearch(e)}>
             Search
           </Button>
         </Col>
@@ -54,38 +54,13 @@ export const SearchResults = (props) => {
                   searchQuery: props.searchQuery,
                   searchResults: props.searchResults,
                 },
-              }}
-            >
-              <Card
-                style={{
-                  margin: '10px',
-                  width: '18rem',
-                  boxShadow: '0px 5px 15px 0px rgb(0 0 0 / 20%)',
-                }}
-              >
-                {/* <Card.Img
-                  variant='top'
-                  style={{ height: 200 }}
-                  src={`assets/${
-                    kthImages[Math.floor(Math.random() * (3 - 0) + 0)]
-                  }`}
-                /> */}
-                <Card.Body>
-                  <Card.Title>{search.course.courseCode}</Card.Title>
-                  <Card.Subtitle className='mb-2 text-muted'>
-                    subtitle
-                  </Card.Subtitle>
-
-                  <Card.Text className='cardText'>
-                    {search.course.title}
-                  </Card.Text>
-
-                  <div style={{ margin: 10 }} />
-                  <Card.Text as='div'>
-                    <Rating value={4} text={` num of reviews`} />
-                  </Card.Text>
-                </Card.Body>
-              </Card>
+              }}>
+              <CourseCard
+                bg={cardStyle.bg}
+                text={cardStyle.text}
+                style={cardStyle}
+                course={search.course}
+              />
             </Link>
           </Col>
         ))}

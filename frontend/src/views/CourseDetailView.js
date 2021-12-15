@@ -1,6 +1,15 @@
-import { Row, Col, Image, Form, Button, ListGroup } from 'react-bootstrap';
+import {
+  Row,
+  Col,
+  Image,
+  Form,
+  Button,
+  ListGroup,
+  Card,
+} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Rating from '../components/Rating';
+import { cardStyle } from '../styles/cardStyle';
 
 export const CourseDetailView = (props) => {
   const removeHTMLTagIfAny = (string) => {
@@ -134,8 +143,7 @@ export const CourseReviews = (props) => {
                     <Form.Control
                       as='select'
                       value={props.rating}
-                      onChange={(e) => props.userRating(e.target.value)}
-                    >
+                      onChange={(e) => props.userRating(e.target.value)}>
                       <option value=''>Select Rating</option>
                       <option value='1'>1 - Poor</option>
                       <option value='2'>2 - Fair</option>
@@ -161,14 +169,14 @@ export const CourseReviews = (props) => {
                       row='5'
                       value={props.review}
                       placeholder='Write your review here...'
-                      onChange={(e) => props.userReview(e.target.value)}
-                    ></Form.Control>
+                      onChange={(e) =>
+                        props.userReview(e.target.value)
+                      }></Form.Control>
                   </Form.Group>
                   <Button
                     style={{ marginTop: 20 }}
                     type='submit'
-                    variant='primary'
-                  >
+                    variant='primary'>
                     Submit
                   </Button>
                 </Form>
@@ -189,12 +197,27 @@ export const CourseReviews = (props) => {
             props.courseReviews.map((r) => (
               <Col key={r.id} sm={12} md={6} lg={4} xl={3}>
                 <div className='mt-4' />
-                <ListGroup.Item className='my-3 p-3'>
-                  <h4>{r.title}</h4>
-                  <Rating value={r.rating} text={` ${r.rating} stars`} />
-                  <p>{toDateTime(r.createdAt.seconds)}</p>
-                  <p>{r.review}</p>
-                </ListGroup.Item>
+                <Card
+                  className='my-3 p-3 rounded'
+                  bg={cardStyle.bg}
+                  text={cardStyle.text}
+                  style={cardStyle}>
+                  <Card.Body>
+                    <Card.Title>{r.title}</Card.Title>
+                    <Card.Subtitle className='mb-2 text-muted'>
+                      {toDateTime(r.createdAt.seconds)}
+                    </Card.Subtitle>
+                    {r.id}
+                    <Card.Text className='cardText'>
+                      <p>{r.review}</p>
+                    </Card.Text>
+
+                    <div style={{ margin: 10 }} />
+                    <Card.Text as='div'>
+                      <Rating value={r.rating} text={` ${r.rating} stars`} />{' '}
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
               </Col>
             ))
           ) : (
