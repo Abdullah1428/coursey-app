@@ -30,12 +30,12 @@ export const CourseDetailView = (props) => {
           {props.courseDetail.course.title}, {props.courseDetail.course.credits}{' '}
           {props.courseDetail.course.creditUnitLabel}
         </h2>
-        <p>
+        <h6 className='text-muted'>
           {props.courseDetail.course.courseCode} -{' '}
           {props.courseDetail.course.titleOther},{' '}
           {props.courseDetail.course.credits}{' '}
           {props.courseDetail.course.creditUnitLabel}
-        </p>
+        </h6>
       </Row>
       <Row>
         <Col>

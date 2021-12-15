@@ -9,7 +9,7 @@ const Overview = (props) => {
   return (
     <div>
       <Row>
-        <h2>Your Recent Activity:</h2>
+        <h2>Your Recent Activity</h2>
       </Row>
 
       <Row>
@@ -31,7 +31,7 @@ const Overview = (props) => {
             </Col>
           ))
         ) : (
-          <h4>No Recent Activity Yet</h4>
+          <h2>No Recent Activity Yet</h2>
         )}
         <Col
           style={{ justifyContent: 'flex-end' }}
@@ -45,7 +45,7 @@ const Overview = (props) => {
       </Row>
 
       <Row>
-        <h2>Popular Courses:</h2>
+        <h2>Popular Courses</h2>
       </Row>
     </div>
   );

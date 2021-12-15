@@ -9,7 +9,7 @@ const ActivitiesView = (props) => {
   return (
     <div>
       <Row>
-        <h2>Your Recent Activities:</h2>
+        <h2>Your Recent Activity</h2>
       </Row>
 
       <Row>
