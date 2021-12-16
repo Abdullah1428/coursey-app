@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import { useAuth } from '../context/AuthContext.js';
 import ActivitiesView from '../views/ActivitiesView.js';
 import axios from 'axios';
@@ -6,13 +7,18 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 
 const ActivitiesPresenter = (props) => {
-  const [courses, setCourses] = useState([]);
+  const [feedbacks, setFeedbacks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const { currentUser } = useAuth();
+  const history = useHistory();
 
   useEffect(() => {
+    if (!currentUser) {
+      history.push('/login');
+    }
+
     const getAllActivities = async () => {
       setLoading(true);
       try {
@@ -24,7 +30,7 @@ const ActivitiesPresenter = (props) => {
 
         const { data } = await axios.post(apiUrl, body);
 
-        setCourses(data);
+        setFeedbacks(data);
         setLoading(false);
       } catch (error) {
         setError('Error from API');
@@ -32,7 +38,7 @@ const ActivitiesPresenter = (props) => {
       }
     };
     getAllActivities();
-  }, [currentUser.uid]);
+  }, [currentUser, history]);
 
   return (
     <>
@@ -41,7 +47,7 @@ const ActivitiesPresenter = (props) => {
       ) : error && error.length > 0 ? (
         <Message>{error}</Message>
       ) : (
-        courses && <ActivitiesView courses={courses} />
+        feedbacks && <ActivitiesView feedbacks={feedbacks} />
       )}
     </>
   );

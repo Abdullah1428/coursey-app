@@ -1,25 +1,31 @@
 import React from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
-import CourseCard from '../components/CourseCard';
+import FeedbackCard from '../components/FeedbackCard';
 import { Link } from 'react-router-dom';
+import { feedbackCardStyle } from '../styles/feedbackCardStyle';
 
 const ActivitiesView = (props) => {
   return (
     <div>
       <Row>
-        <h2>Your Recent Activities:</h2>
+        <h2 className='headingColor'>Your Coursey Activity</h2>
       </Row>
 
       <Row>
-        {props.courses && props.courses.length > 0 ? (
-          props.courses.map((course) => (
+        {props.feedbacks && props.feedbacks.length > 0 ? (
+          props.feedbacks.map((course) => (
             <Col key={course.id} sm={12} md={6} lg={4} xl={3}>
-              <CourseCard course={course} />
+              <FeedbackCard
+                bg={feedbackCardStyle.bg}
+                text={feedbackCardStyle.text}
+                style={feedbackCardStyle}
+                course={course}
+              />
             </Col>
           ))
         ) : (
-          <h4>No Recent Activity Yet</h4>
+          <h2>No Activity Yet</h2>
         )}
       </Row>
     </div>

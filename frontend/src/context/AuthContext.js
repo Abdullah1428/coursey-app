@@ -26,6 +26,10 @@ export const AuthProvider = ({ children }) => {
 
       const { data } = await axios.post(apiUrl, user);
 
+      // set username from first part of email to send back
+      let unameParts = email.split('@');
+      let uname = unameParts[0];
+      data.username = uname;
       localStorage.setItem('currentUser', JSON.stringify(data));
 
       setCurrentUser(data);
@@ -48,6 +52,10 @@ export const AuthProvider = ({ children }) => {
       };
       const { data } = await axios.post(apiUrl, user);
 
+      // set username from first part of email to send back
+      let unameParts = email.split('@');
+      let uname = unameParts[0];
+      data.username = uname;
       localStorage.setItem('currentUser', JSON.stringify(data));
 
       setCurrentUser(data);

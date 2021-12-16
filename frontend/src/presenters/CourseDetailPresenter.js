@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
@@ -30,7 +30,7 @@ const CourseDetailPresenter = ({ match }) => {
   const { searchQuery } = location.state ? location.state : '';
   const { searchResults } = location.state ? location.state : [];
 
-  const getCourseDataFromAPI = async () => {
+  const getCourseDataFromAPI = useCallback(async () => {
     setLoadingCourse(true);
     try {
       let apiUrl = `/api/course/${match.params.id}`;
@@ -43,9 +43,9 @@ const CourseDetailPresenter = ({ match }) => {
       setErrorCourse('Error in getting course details');
       setLoadingCourse(false);
     }
-  };
+  }, [match]);
 
-  const getFeedbacksForCourse = async () => {
+  const getFeedbacksForCourse = useCallback(async () => {
     setLoadingReviews(true);
     try {
       let apiUrl = `/user/reviews/${match.params.id}`;
@@ -58,12 +58,12 @@ const CourseDetailPresenter = ({ match }) => {
       setErrorReviews('Error in getting course reviews');
       setLoadingReviews(false);
     }
-  };
+  }, [match]);
 
   useEffect(() => {
     getCourseDataFromAPI();
     getFeedbacksForCourse();
-  }, [match]);
+  }, [getCourseDataFromAPI, getFeedbacksForCourse]);
 
   const submitUserFeedback = async () => {
     // submit here feedback to firebase.
@@ -79,15 +79,25 @@ const CourseDetailPresenter = ({ match }) => {
       alert('Please write a proper comment which can be helpful for others');
       return;
     } else {
+      let averageRating = rating;
+      courseReviews.map(
+        (review) =>
+          (averageRating = Number(averageRating) + Number(review.rating))
+      );
+
       try {
         let apiUrl = `/user/course/feedback`;
 
         let feedback = {
           uid: currentUser.uid,
+          username: currentUser.username,
           course: match.params.id,
+          courseTitle: courseDetail.course.title,
           title: title,
           review: review,
           rating: rating,
+          averageRating: averageRating / (courseReviews.length + 1),
+          totalFeedbacks: courseReviews.length + 1,
         };
 
         const { data } = await axios.post(apiUrl, feedback);
@@ -119,8 +129,7 @@ const CourseDetailPresenter = ({ match }) => {
                   query: searchQuery,
                   results: searchResults,
                 },
-              }}
-            >
+              }}>
               Go Back
             </Link>
             <CourseDetailView courseDetail={courseDetail} />

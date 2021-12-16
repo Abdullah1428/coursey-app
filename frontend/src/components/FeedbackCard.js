@@ -1,18 +1,62 @@
-import { Card } from 'react-bootstrap';
+import { useState } from 'react';
+import { Card, Button } from 'react-bootstrap';
 import Rating from './Rating';
+import FeedbackModal from './FeedbackModal';
+import { Link } from 'react-router-dom';
+import { feedbackCardStyle } from '../styles/feedbackCardStyle';
 
 const FeedbackCard = (props) => {
+  const [modalShow, setModalShow] = useState(false);
+  function toDateTime(secs) {
+    var t = new Date(1970, 0, 1); // Epoch
+    t.setSeconds(secs);
+    return t.toDateString();
+  }
+
   return (
-    <Card>
-      <Card.Body>
-        <Card.Title>ChillUserStudent</Card.Title>
-        <Card.Text>
-          {props.feedbackDetails.text}
-        </Card.Text>
-        <Card.Text>
-          <Rating value={props.feedbackDetails.rating} text={` num of reviews`} />
-        </Card.Text>
-      </Card.Body>
+    <Card
+      className='my-3 p-3 rounded'
+      bg={feedbackCardStyle.bg}
+      text={feedbackCardStyle.text}
+      style={feedbackCardStyle}>
+      <Link
+        style={{ textDecoration: 'none' }}
+        to={{
+          pathname: `/course/${props.course.course}`,
+        }}>
+        <Card.Body>
+          <Card.Title className='cardTitle'>{props.course.title}</Card.Title>
+
+          <Card.Text className='mb-2 text-success'>
+            {props.course.course}
+          </Card.Text>
+          <Card.Subtitle className='mb-2 text-muted'>
+            {toDateTime(props.course.createdAt.seconds)}
+          </Card.Subtitle>
+
+          <Card.Subtitle className='mb-2 text-muted'>
+            Review by: {props.course.username}
+          </Card.Subtitle>
+
+          <Card.Text className='cardText text-warning'>
+            {props.course.review} extra text for checking layoutextra text for
+            checking layoutextra text for checking layoutextra text for checking
+            layout
+          </Card.Text>
+
+          <Card.Text as='div' className='cardText'>
+            <Rating value={props.course.rating} text={``} />
+          </Card.Text>
+        </Card.Body>
+      </Link>
+      <Button variant='success' size='sm' onClick={() => setModalShow(true)}>
+        See Review
+      </Button>
+      <FeedbackModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        course={props.course}
+      />
     </Card>
   );
 };

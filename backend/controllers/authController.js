@@ -20,6 +20,8 @@ export const db = getFirestore(firebase);
 const register = asyncHandler(async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
+  const emailParts = email.split('@');
+  const username = emailParts[0]; // first part of email
 
   try {
     const userCredential = await createUserWithEmailAndPassword(
@@ -31,9 +33,8 @@ const register = asyncHandler(async (req, res) => {
     const data = {
       uid: user.uid,
       email: user.email,
+      username: username,
     };
-    console.log(user.uid);
-    console.log(data);
     await setDoc(doc(db, 'users', user.uid), data);
 
     res.json(data);
@@ -65,7 +66,7 @@ const login = asyncHandler((req, res) => {
     });
 });
 
-const logout = asyncHandler((req, res) => {
+const logout = asyncHandler((_req, res) => {
   signOut(auth)
     .then(() => {
       res.status(200).send('logged out');

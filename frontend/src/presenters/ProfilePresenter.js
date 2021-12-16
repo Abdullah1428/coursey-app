@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import ProfileView from '../views/ProfileView';
 import Loader from '../components/Loader';
 import axios from 'axios';
@@ -7,6 +7,7 @@ import { useAuth } from '../context/AuthContext';
 
 const ProfilePresenter = (props) => {
   const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
   const [program, setProgram] = useState('');
   const [school, setSchool] = useState('');
   const [year, setYear] = useState('');
@@ -17,10 +18,11 @@ const ProfilePresenter = (props) => {
   const { currentUser } = useAuth();
 
   const handleUpdate = async (e) => {
-    let apiUrl = '/user/updateProfile';
+    let apiUrl = '/user/updateprofile';
     const body = {
       uid: currentUser.uid,
       name: name,
+      username: username,
       program: program,
       school: school,
       year: year,
@@ -33,14 +35,15 @@ const ProfilePresenter = (props) => {
     }
   };
 
-  const getProfileDataFromAPI = async () => {
+  const getProfileDataFromAPI = useCallback(async () => {
     setLoading(true);
     setError('');
     try {
-      let apiUrl = '/user/getProfile';
+      let apiUrl = '/user/getprofile';
       const body = { uid: currentUser.uid };
       const { data } = await axios.post(apiUrl, body);
       setName(data.name);
+      setUsername(data.username);
       setProgram(data.program);
       setSchool(data.school);
       setYear(data.year);
@@ -50,11 +53,11 @@ const ProfilePresenter = (props) => {
       setError(error);
       setLoading(false);
     }
-  };
+  }, [currentUser]);
 
   useEffect(() => {
     getProfileDataFromAPI();
-  }, []);
+  }, [getProfileDataFromAPI]);
 
   return (
     <>
@@ -65,11 +68,13 @@ const ProfilePresenter = (props) => {
       ) : (
         <ProfileView
           name={name}
+          username={username}
           program={program}
           school={school}
           year={year}
           email={email}
           setName={(e) => setName(e)}
+          setUsername={(e) => setUsername(e)}
           setProgram={(e) => setProgram(e)}
           setSchool={(e) => setSchool(e)}
           setYear={(e) => setYear(e)}

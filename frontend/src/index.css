@@ -2,27 +2,36 @@ html {
   align-items: center;
 }
 
-/* .container {
-  border: 2px solid #000;
-  max-width: 1000px;
-} */
-
 main {
   min-height: 80vh;
 }
 
-h3 {
-  padding: 1rem 0;
+h1,
+h2,
+h3,
+h4 {
+  padding: 2rem 0;
 }
 
 h1 {
-  font-size: 1.8rem;
-  padding: 1rem 0;
+  font-size: 1.6rem;
 }
 
 h2 {
   font-size: 1.4rem;
-  padding: 0.5rem 0;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+h4 {
+  font-size: 1rem;
+}
+
+.courseDetailHeading {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .cardText {
@@ -30,5 +39,13 @@ h2 {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.cardTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
   -webkit-box-orient: vertical;
 }

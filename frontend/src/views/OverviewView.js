@@ -1,42 +1,106 @@
 import React from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 
-import CourseCard from '../components/CourseCard';
+import FeedbackCard from '../components/FeedbackCard';
 import { Link } from 'react-router-dom';
-
-const Overview = (props) => {
+import { courseCardStyle } from '../styles/courseCardStyle';
+import PopularCard from '../components/PopularCard';
+import { feedbackCardStyle } from '../styles/feedbackCardStyle';
+export const RecentActivity = (props) => {
   return (
     <div>
       <Row>
-        <h2>Your Recent Activity:</h2>
+        <h2>Your Recent Activity</h2>
       </Row>
 
       <Row>
-        {props.courses && props.courses.length > 0 ? (
-          props.courses.map((course) => (
+        {props.recentActivity && props.recentActivity.length > 0 ? (
+          props.recentActivity.map((course) => (
             <Col key={course.id} sm={12} md={6} lg={4} xl={3}>
-              <CourseCard course={course} />
+              <FeedbackCard
+                bg={courseCardStyle.bg}
+                text={courseCardStyle.text}
+                style={courseCardStyle}
+                course={course}
+              />
             </Col>
           ))
         ) : (
-          <h4>No Recent Activity Yet</h4>
+          <h2>No Recent Activity Yet</h2>
         )}
         <Col
           style={{ justifyContent: 'flex-end' }}
-          className="d-flex align-items-center">
-          {props.courses && props.courses.length > 0 && (
+          className='d-flex align-items-center'>
+          {props.recentActivity && props.recentActivity.length > 0 && (
             <Link to={`/mycoursey`}>
-              <Button>See More</Button>
+              <Button variant='success'>See More</Button>
             </Link>
           )}
         </Col>
-      </Row>
-
-      <Row>
-        <h2>Popular Courses:</h2>
       </Row>
     </div>
   );
 };
 
-export default Overview;
+export const PopularCourses = (props) => {
+  const doSortingandFiltering = (c) => {
+    let sorted = c.sort(function compareNumOfReviews(a, b) {
+      let ai = Number(a.totalFeedbacks);
+      let bi = Number(b.totalFeedbacks);
+
+      return ai > bi ? -1 : ai < bi ? 1 : 0;
+    });
+
+    // const arrUnique = [
+    //   ...new Map(
+    //     sorted.map((v) => [JSON.stringify([v.totalFeedbacks, v.course]), v])
+    //   ).values(),
+    // ];
+
+    const arrUnique = sorted.filter(
+      (v, i, a) => a.findIndex((t) => t.course === v.course) === i
+    );
+
+    return arrUnique.slice(0, 3);
+  };
+
+  return (
+    <div>
+      <Row>
+        <h2>Popular Courses</h2>
+      </Row>
+
+      <Row>
+        {props.popularCourses && props.popularCourses.length > 0 ? (
+          doSortingandFiltering([...props.popularCourses]).map((course) => (
+            <Col key={course.id} sm={12} md={6} lg={4} xl={3}>
+              <Link
+                style={{ textDecoration: 'none' }}
+                to={{
+                  pathname: `/course/${course.course}`,
+                }}>
+                <PopularCard
+                  bg={feedbackCardStyle.bg}
+                  text={feedbackCardStyle.text}
+                  style={feedbackCardStyle}
+                  course={course}
+                />
+              </Link>
+            </Col>
+          ))
+        ) : (
+          <h2>No Recent Activity Yet</h2>
+        )}
+        <Col
+          style={{ justifyContent: 'flex-end' }}
+          className='d-flex align-items-center'>
+          {props.popularCourses && props.popularCourses.length > 0 && (
+            <Link to={`/courses`}>
+              <Button variant='success'>See More</Button>
+            </Link>
+          )}
+        </Col>
+      </Row>
+    </div>
+  );
+};
