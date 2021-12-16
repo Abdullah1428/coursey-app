@@ -17,6 +17,7 @@ import RegisterPresenter from './presenters/RegisterPresenter';
 import LoginPresenter from './presenters/LoginPresenter';
 import OverviewPresenter from './presenters/OverviewPresenter';
 import MyCourseyPresenter from './presenters/MyCourseyPresenter';
+import PopularPresenter from './presenters/PopularPresenter';
 // protected route
 import PrivateRoute from './context/PrivateRoutes';
 
@@ -43,6 +44,7 @@ function App() {
             <Route path={'/courses'} component={FindCoursesPresenter} exact />
             <Route path={'/register'} component={RegisterPresenter} exact />
             <Route path={'/login'} component={LoginPresenter} exact />
+            <Route path={'/popular'} component={PopularPresenter} exact />
           </main>
         </Container>
         <footer>

@@ -69,7 +69,9 @@ const OverviewPresenter = (props) => {
       ) : errorP && errorP.length > 0 ? (
         <Message>{errorP}</Message>
       ) : (
-        popularCourses && <PopularCourses popularCourses={popularCourses} />
+        popularCourses && (
+          <PopularCourses popularCourses={popularCourses} limit={3} />
+        )
       )}
     </>
   );

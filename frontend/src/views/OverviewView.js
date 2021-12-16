@@ -22,6 +22,7 @@ export const RecentActivity = (props) => {
                 text={courseCardStyle.text}
                 style={courseCardStyle}
                 course={course}
+                path={'home'}
               />
             </Col>
           ))
@@ -61,7 +62,7 @@ export const PopularCourses = (props) => {
       (v, i, a) => a.findIndex((t) => t.course === v.course) === i
     );
 
-    return arrUnique.slice(0, 3);
+    return props.limit === 3 ? arrUnique.slice(0, 3) : arrUnique;
   };
 
   return (
@@ -78,6 +79,9 @@ export const PopularCourses = (props) => {
                 style={{ textDecoration: 'none' }}
                 to={{
                   pathname: `/course/${course.course}`,
+                  state: {
+                    path: 'home',
+                  },
                 }}>
                 <PopularCard
                   bg={feedbackCardStyle.bg}
@@ -94,11 +98,20 @@ export const PopularCourses = (props) => {
         <Col
           style={{ justifyContent: 'flex-end' }}
           className='d-flex align-items-center'>
-          {props.popularCourses && props.popularCourses.length > 0 && (
-            <Link to={`/courses`}>
-              <Button variant='success'>See More</Button>
-            </Link>
-          )}
+          {props.popularCourses &&
+            props.popularCourses.length > 0 &&
+            props.limit !== 0 && (
+              <Link
+                to={{
+                  pathname: '/popular',
+                  state: {
+                    popularCourses: props.popularCourses,
+                    limit: 0,
+                  },
+                }}>
+                <Button variant='success'>See More</Button>
+              </Link>
+            )}
         </Col>
       </Row>
     </div>

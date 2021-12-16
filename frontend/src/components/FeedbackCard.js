@@ -23,6 +23,9 @@ const FeedbackCard = (props) => {
         style={{ textDecoration: 'none' }}
         to={{
           pathname: `/course/${props.course.course}`,
+          state: {
+            path: props.path && props.path,
+          },
         }}>
         <Card.Body>
           <Card.Title className='cardTitle'>{props.course.title}</Card.Title>
