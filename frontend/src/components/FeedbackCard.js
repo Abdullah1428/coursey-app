@@ -3,7 +3,7 @@ import { Card, Button } from 'react-bootstrap';
 import Rating from './Rating';
 import FeedbackModal from './FeedbackModal';
 import { Link } from 'react-router-dom';
-import { feedbackCardStyle } from '../styles/feedbackCardStyle';
+import { feedbackCardStyle } from '../styles/Styles';
 
 const FeedbackCard = (props) => {
   const [modalShow, setModalShow] = useState(false);

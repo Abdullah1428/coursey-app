@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { courseCardStyle } from '../styles/courseCardStyle';
+import { courseCardStyle } from '../styles/Styles';
 import CourseCard from '../components/CourseCard';
 
 export const SearchBar = (props) => {

@@ -1,5 +1,5 @@
 import { Col, Row, Button, Form } from 'react-bootstrap';
-import { shadowStyle } from '../styles/shadowStyle';
+import { shadowStyle } from '../styles/Styles';
 
 const ProfileView = (props) => {
   const handleUpdate = (e) => {

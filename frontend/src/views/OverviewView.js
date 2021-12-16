@@ -3,9 +3,9 @@ import { Row, Col, Button } from 'react-bootstrap';
 
 import FeedbackCard from '../components/FeedbackCard';
 import { Link } from 'react-router-dom';
-import { courseCardStyle } from '../styles/courseCardStyle';
+import { feedbackCardStyle, courseCardStyle } from '../styles/Styles';
 import PopularCard from '../components/PopularCard';
-import { feedbackCardStyle } from '../styles/feedbackCardStyle';
+
 export const RecentActivity = (props) => {
   return (
     <div>

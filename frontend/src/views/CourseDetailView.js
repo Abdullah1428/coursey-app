@@ -1,8 +1,8 @@
 import { Row, Col, Image, Form, Button, ListGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import FeedbackCard from '../components/FeedbackCard';
-import { feedbackCardStyle } from '../styles/feedbackCardStyle';
-import { shadowStyle } from '../styles/shadowStyle';
+import { feedbackCardStyle } from '../styles/Styles';
+import { shadowStyle } from '../styles/Styles';
 
 export const CourseDetailView = (props) => {
   const removeHTMLTagIfAny = (string) => {

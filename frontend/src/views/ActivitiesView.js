@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 
 import FeedbackCard from '../components/FeedbackCard';
-import { feedbackCardStyle } from '../styles/feedbackCardStyle';
+import { feedbackCardStyle } from '../styles/Styles';
 
 const ActivitiesView = (props) => {
   return (

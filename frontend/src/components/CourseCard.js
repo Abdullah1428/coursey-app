@@ -1,4 +1,4 @@
-import { courseCardStyle } from '../styles/courseCardStyle';
+import { courseCardStyle } from '../styles/Styles';
 import { Card } from 'react-bootstrap';
 
 const CourseCard = (props) => {
