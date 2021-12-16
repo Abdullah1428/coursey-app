@@ -1,11 +1,15 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import axios from 'axios';
+
 import ProfileView from '../views/ProfileView';
 import Loader from '../components/Loader';
-import axios from 'axios';
 import Message from '../components/Message';
+import AlertModal from '../components/AlertModal';
+
 import { useAuth } from '../context/AuthContext';
 
 const ProfilePresenter = (props) => {
+  // hold the user data fetched from api
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [program, setProgram] = useState('');
@@ -15,7 +19,13 @@ const ProfilePresenter = (props) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  // storing profile data as whole object to see if user has changed data for update or not
   const [profData, setProfData] = useState({});
+
+  // alert modal state
+  const [showAlert, setShowAlert] = useState(false);
+  const [variant, setVariant] = useState('danger');
+  const [message, setMessage] = useState('');
 
   const { currentUser } = useAuth();
 
@@ -27,7 +37,9 @@ const ProfilePresenter = (props) => {
         school === profData.school &&
         year === profData.year
       ) {
-        alert('Please update something');
+        setVariant('danger');
+        setMessage('Please update something!');
+        setShowAlert(true);
         return;
       }
     }
@@ -45,9 +57,13 @@ const ProfilePresenter = (props) => {
 
     if (status === 200) {
       getProfileDataFromAPI();
-      alert('Profile updated!');
+      setVariant('success');
+      setMessage('Profile updated successfully!');
+      setShowAlert(true);
     } else if (status === 400) {
-      console.log(status);
+      setVariant('danger');
+      setMessage('Profile could not be updated, try again.');
+      setShowAlert(true);
     }
   };
 
@@ -67,7 +83,7 @@ const ProfilePresenter = (props) => {
       setEmail(data.email);
       setLoading(false);
     } catch (error) {
-      setError(error);
+      setError('Profile failed to load, refresh.');
       setLoading(false);
     }
   }, [currentUser]);
@@ -78,6 +94,13 @@ const ProfilePresenter = (props) => {
 
   return (
     <>
+      <AlertModal
+        show={showAlert}
+        onHide={() => setShowAlert(false)}
+        title={'Profile'}
+        message={message}
+        variant={variant}
+      />
       {loading ? (
         <Loader />
       ) : error ? (

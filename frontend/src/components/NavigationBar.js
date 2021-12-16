@@ -1,30 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+
+import AlertModal from './AlertModal';
 
 const NavigationBar = () => {
   const { currentUser, logoutUser } = useAuth();
   const history = useHistory();
   const location = useLocation();
 
+  const [showLogoutAlert, setShowLogoutAlert] = useState(false);
+  const [showLogoutErrorAlert, setShowLogoutErrorAlert] = useState(false);
+
   const handleLogoutHanlder = async () => {
     // logout the user or basically remove the context state or
     // call firebase.
-    if (window.confirm('Are you sure you want to logout?')) {
-      const status = await logoutUser();
+    setShowLogoutAlert(false);
 
-      if (status === 200) {
-        history.push('/login');
-      } else if (status === 400) {
-        alert('Error in logging out!');
-      }
+    const status = await logoutUser();
+
+    if (status === 200) {
+      history.push('/login');
+    } else if (status === 400) {
+      setShowLogoutErrorAlert(true);
     }
   };
 
   return (
     <>
+      <AlertModal
+        show={showLogoutAlert}
+        onHide={() => setShowLogoutAlert(false)}
+        title={'Logout'}
+        message={'Are you sure you want to logout?'}
+        logout={true}
+        logout={() => handleLogoutHanlder()}
+        cancel={() => setShowLogoutAlert(false)}
+      />
+      <AlertModal
+        show={showLogoutErrorAlert}
+        onHide={() => setShowLogoutErrorAlert(false)}
+        title={'Logout'}
+        message={'Error in logging out!'}
+      />
       <Navbar
         style={{ backgroundColor: '#ffa500', height: 60 }}
         expand='lg'
@@ -64,7 +84,7 @@ const NavigationBar = () => {
                 <div className='d-flex justify-content-center'>
                   <i className='fas fa-user align-self-center'></i>
                   <NavDropdown title={`${currentUser.username}`} id='username'>
-                    <NavDropdown.Item onClick={() => handleLogoutHanlder()}>
+                    <NavDropdown.Item onClick={() => setShowLogoutAlert(true)}>
                       <i className='fas fa-sign-out-alt'></i> Logout
                     </NavDropdown.Item>
                   </NavDropdown>

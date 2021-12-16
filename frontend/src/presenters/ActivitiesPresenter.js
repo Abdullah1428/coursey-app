@@ -39,7 +39,7 @@ const ActivitiesPresenter = (props) => {
         setFeedbacks(sorted);
         setLoading(false);
       } catch (error) {
-        setError('Error from API');
+        setError('Activities failed to load, try again.');
         setLoading(false);
       }
     };

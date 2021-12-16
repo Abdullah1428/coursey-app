@@ -26,7 +26,7 @@ const LoginPresenter = (_props) => {
       history.push('/');
     } else if (status === 400) {
       setLoading(false);
-      setError('Error in Login');
+      setError('Error in login, try again.');
     }
   };
 

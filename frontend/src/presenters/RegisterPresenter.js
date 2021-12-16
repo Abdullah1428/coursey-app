@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext';
 
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import AlertModal from '../components/AlertModal';
 
 const RegisterPresenter = (_props) => {
   const [email, setEmail] = useState('');
@@ -17,16 +18,22 @@ const RegisterPresenter = (_props) => {
   const { registerUser, currentUser } = useAuth();
   const history = useHistory();
 
+  // alert modal state
+  const [showAlert, setShowAlert] = useState(false);
+  const [message, setMessage] = useState('');
+
   const handleSubmit = async () => {
     const parts = email.split('@');
 
     if (parts[1] !== 'kth.se' && parts[1] !== 'ug.kth.se') {
-      alert('Please use your kth mail.');
+      setMessage('Please use your KTH email.');
+      setShowAlert(true);
       return;
     }
 
     if (password !== confirmPassword) {
-      alert("Passwords don't match.");
+      setMessage("Passwords don't match.");
+      setShowAlert(true);
       return;
     }
 
@@ -39,7 +46,7 @@ const RegisterPresenter = (_props) => {
       history.push('/');
     } else if (status === 400) {
       setLoading(false);
-      setError('Error in Registration');
+      setError('Error in registration, try again.');
     }
   };
 
@@ -51,6 +58,12 @@ const RegisterPresenter = (_props) => {
 
   return (
     <>
+      <AlertModal
+        show={showAlert}
+        onHide={() => setShowAlert(false)}
+        title={'Register'}
+        message={message}
+      />
       {loading && <Loader />}
       {error && <Message>{error}</Message>}
       <RegisterView
