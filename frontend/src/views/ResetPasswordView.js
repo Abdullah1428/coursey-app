@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Form, Button, Card, Row, Col } from 'react-bootstrap';
 
 const ResetPasswordView = (props) => {

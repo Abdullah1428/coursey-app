@@ -31,10 +31,10 @@ export const RecentActivity = (props) => {
         )}
         <Col
           style={{ justifyContent: 'flex-end' }}
-          className='d-flex align-items-center'>
+          className="d-flex align-items-center">
           {props.recentActivity && props.recentActivity.length > 0 && (
             <Link to={`/mycoursey`}>
-              <Button variant='success'>See More</Button>
+              <Button variant="success">See More</Button>
             </Link>
           )}
         </Col>
@@ -56,7 +56,7 @@ export const PopularCourses = (props) => {
       (v, i, a) => a.findIndex((t) => t.course === v.course) === i
     );
 
-    return props.limit === 3 ? arrUnique.slice(0, 3) : arrUnique;
+    return props.limit === 3 ? arrUnique.slice(0, 3) : arrUnique.slice(0, 20);
   };
 
   return (
@@ -91,7 +91,7 @@ export const PopularCourses = (props) => {
         )}
         <Col
           style={{ justifyContent: 'flex-end' }}
-          className='d-flex align-items-center'>
+          className="d-flex align-items-center">
           {props.popularCourses &&
             props.popularCourses.length > 0 &&
             props.limit !== 0 && (
@@ -103,7 +103,7 @@ export const PopularCourses = (props) => {
                     limit: 0,
                   },
                 }}>
-                <Button variant='success'>See More</Button>
+                <Button variant="success">See More</Button>
               </Link>
             )}
         </Col>
