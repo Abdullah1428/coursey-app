@@ -15,7 +15,7 @@ const FeedbackCard = (props) => {
 
   return (
     <Card
-      className='my-3 p-3 rounded'
+      className="my-3 p-3 rounded"
       bg={feedbackCardStyle.bg}
       text={feedbackCardStyle.text}
       style={feedbackCardStyle}>
@@ -28,31 +28,29 @@ const FeedbackCard = (props) => {
           },
         }}>
         <Card.Body>
-          <Card.Title className='cardTitle'>{props.course.title}</Card.Title>
+          <Card.Title className="cardTitle">{props.course.title}</Card.Title>
 
-          <Card.Text className='mb-2 text-success'>
+          <Card.Text className="mb-2 text-success">
             {props.course.course}
           </Card.Text>
-          <Card.Subtitle className='mb-2 text-muted'>
+          <Card.Subtitle className="mb-2 text-muted">
             {toDateTime(props.course.createdAt.seconds)}
           </Card.Subtitle>
 
-          <Card.Subtitle className='mb-2 text-muted'>
+          <Card.Subtitle className="mb-2 text-muted">
             Review by: {props.course.username}
           </Card.Subtitle>
 
-          <Card.Text className='cardText text-warning'>
-            {props.course.review} extra text for checking layoutextra text for
-            checking layoutextra text for checking layoutextra text for checking
-            layout
+          <Card.Text className="cardText text-warning">
+            {props.course.review}
           </Card.Text>
 
-          <Card.Text as='div' className='cardText'>
+          <Card.Text as="div" className="cardText">
             <Rating value={props.course.rating} text={``} />
           </Card.Text>
         </Card.Body>
       </Link>
-      <Button variant='success' size='sm' onClick={() => setModalShow(true)}>
+      <Button variant="success" size="sm" onClick={() => setModalShow(true)}>
         See Review
       </Button>
       <FeedbackModal
