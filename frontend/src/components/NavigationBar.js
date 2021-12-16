@@ -16,7 +16,6 @@ const NavigationBar = () => {
       const status = await logoutUser();
 
       if (status === 200) {
-        alert('Logged out successfully!');
         history.push('/login');
       } else if (status === 400) {
         alert('Error in logging out!');
