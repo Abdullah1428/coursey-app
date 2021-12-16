@@ -35,7 +35,7 @@ const FeedbackCard = (props) => {
           </Card.Subtitle>
 
           <Card.Subtitle className='mb-2 text-muted'>
-            user: {props.course.id}
+            Review by: {props.course.username}
           </Card.Subtitle>
 
           <Card.Text className='cardText text-warning'>

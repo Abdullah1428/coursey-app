@@ -7,6 +7,7 @@ import { useAuth } from '../context/AuthContext';
 
 const ProfilePresenter = (props) => {
   const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
   const [program, setProgram] = useState('');
   const [school, setSchool] = useState('');
   const [year, setYear] = useState('');
@@ -21,6 +22,7 @@ const ProfilePresenter = (props) => {
     const body = {
       uid: currentUser.uid,
       name: name,
+      username: username,
       program: program,
       school: school,
       year: year,
@@ -41,6 +43,7 @@ const ProfilePresenter = (props) => {
       const body = { uid: currentUser.uid };
       const { data } = await axios.post(apiUrl, body);
       setName(data.name);
+      setUsername(data.username);
       setProgram(data.program);
       setSchool(data.school);
       setYear(data.year);
@@ -65,11 +68,13 @@ const ProfilePresenter = (props) => {
       ) : (
         <ProfileView
           name={name}
+          username={username}
           program={program}
           school={school}
           year={year}
           email={email}
           setName={(e) => setName(e)}
+          setUsername={(e) => setUsername(e)}
           setProgram={(e) => setProgram(e)}
           setSchool={(e) => setSchool(e)}
           setYear={(e) => setYear(e)}

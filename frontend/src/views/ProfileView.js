@@ -8,11 +8,11 @@ const ProfileView = (props) => {
   };
   return (
     <div style={shadowStyle}>
-      <h2>Your Profile</h2>
+      <h2> Your Profile</h2>
       <Form onSubmit={(e) => handleUpdate(e)}>
         <Form.Group>
           <Row className='row-g-3 my-1'>
-            <Col className='col-sm-12'>
+            <Col className='col-sm-6'>
               <Form.Text> Email </Form.Text>
               <Form.Control
                 value={props.email}
@@ -20,11 +20,21 @@ const ProfileView = (props) => {
                 style={{ color: 'grey' }}
               />
             </Col>
+            <Col className='col-sm-6'>
+              <Form.Text> Username </Form.Text>
+              <Form.Control
+                value={props.username}
+                disabled
+                /* username can't be changed because it's used in currentUser 
+                Auth context and sent from there to feedback database */
+                placeholder={props.username}
+              />
+            </Col>
           </Row>
         </Form.Group>
         <Form.Group>
           <Row className='row-g-3 my-1'>
-            <Col className='col-sm-12'>
+            <Col className='col-sm-6'>
               <Form.Text> Name </Form.Text>
               <Form.Control
                 value={props.name}
@@ -33,24 +43,7 @@ const ProfileView = (props) => {
                 placeholder={props.name}
               />
             </Col>
-          </Row>
-        </Form.Group>
-        <Form.Group>
-          <Row className='row-g-3 my-1'>
-            <Col className='col-sm-12'>
-              <Form.Text>Program </Form.Text>
-              <Form.Control
-                value={props.program}
-                onChange={(e) => props.setProgram(e.target.value)}
-                type='text'
-                placeholder={props.program}
-              />
-            </Col>
-          </Row>
-        </Form.Group>
-        <Form.Group>
-          <Row className='row-g-3 my-1'>
-            <Col className='col-sm-12'>
+            <Col className='col-sm-6'>
               <Form.Text> School </Form.Text>
               <Form.Control
                 value={props.school}
@@ -63,8 +56,17 @@ const ProfileView = (props) => {
         </Form.Group>
         <Form.Group>
           <Row className='row-g-3 my-1'>
-            <Col className='col-sm-12'>
-              <Form.Text> Year </Form.Text>
+            <Col className='col-sm-6'>
+              <Form.Text>Program </Form.Text>
+              <Form.Control
+                value={props.program}
+                onChange={(e) => props.setProgram(e.target.value)}
+                type='text'
+                placeholder={props.program}
+              />
+            </Col>
+            <Col className='col-sm-6'>
+              <Form.Text> Graduation Year </Form.Text>
               <Form.Control
                 value={props.year}
                 onChange={(e) => props.setYear(e.target.value)}

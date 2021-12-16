@@ -90,6 +90,7 @@ const CourseDetailPresenter = ({ match }) => {
 
         let feedback = {
           uid: currentUser.uid,
+          username: currentUser.username,
           course: match.params.id,
           courseTitle: courseDetail.course.title,
           title: title,

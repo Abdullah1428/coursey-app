@@ -67,6 +67,7 @@ const addFeedbackForCourse = asyncHandler(async (req, res) => {
 
   const {
     uid,
+    username,
     course,
     courseTitle,
     title,
@@ -79,6 +80,7 @@ const addFeedbackForCourse = asyncHandler(async (req, res) => {
   try {
     await addDoc(feedbackCollectionRef, {
       uid,
+      username,
       course,
       courseTitle,
       title,
@@ -132,7 +134,7 @@ const getUserActivity = asyncHandler(async (req, res) => {
     } else {
       q = query(collection(db, 'feedback'), where('uid', '==', id), limit(lim));
     }
-    //orderBy not working when user has no feedbacks
+    //orderBy doesn't work with equality clause as per firestore docs
 
     const querySnapshot = await getDocs(q);
 
@@ -176,6 +178,7 @@ const updateProfileDetailsfromAPI = asyncHandler(async (req, res) => {
       program: req.body.program,
       school: req.body.school,
       year: req.body.year,
+      username: req.body.username,
     });
     res.json(status);
   } catch (error) {
