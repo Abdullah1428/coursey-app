@@ -27,18 +27,18 @@ const NavigationBar = () => {
   return (
     <>
       <Navbar
-        style={{ backgroundColor: '#ffa500' }}
+        style={{ backgroundColor: '#ffa500', height: 60 }}
         expand='lg'
         collapseOnSelect
         className='px-3'>
         <>
-          <LinkContainer to={currentUser ? '/' : '/login'}>
+          <LinkContainer to={'/'}>
             <Navbar.Brand>Coursey</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse className='justify-content-end'>
-            <Nav activeKey={location.pathname} className='ml-auto'>
-              <Nav>
+            <Nav className='ml-auto'>
+              <Nav activeKey={location.pathname}>
                 <LinkContainer to='/'>
                   <Nav.Link>
                     <i className='fas fa-home'></i> Home
@@ -54,7 +54,7 @@ const NavigationBar = () => {
                     <i className='fas fa-fire-alt'></i> Popular
                   </Nav.Link>
                 </LinkContainer>
-                <LinkContainer to={currentUser ? '/mycoursey' : '/login'}>
+                <LinkContainer to={'/mycoursey'}>
                   <Nav.Link>
                     <i className='fas fa-book'></i> My Coursey
                   </Nav.Link>
@@ -72,11 +72,9 @@ const NavigationBar = () => {
                 </div>
               ) : (
                 <LinkContainer to='/login'>
-                  <Nav activeKey={location.pathname}>
-                    <Nav.Link>
-                      <i className='fas fa-user'></i> Login
-                    </Nav.Link>
-                  </Nav>
+                  <Nav.Link>
+                    <i className='fas fa-user'></i> Login
+                  </Nav.Link>
                 </LinkContainer>
               )}
             </Nav>
