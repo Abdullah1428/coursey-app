@@ -14,9 +14,12 @@ const CourseyCarousel = (props) => {
           alt={'Coursey'}
           fluid
         />
-        <Carousel.Caption className='carousel-caption'>
-          <h3 style={{ color: 'white', alignSelf: 'center' }}>
-            {'My Coursey'}
+        <Carousel.Caption
+          className='carousel-caption'
+          style={{ background: 'rgba(0,0,0,0.3)' }}>
+          <h3
+            style={{ padding: '0.5rem', color: 'white', alignSelf: 'center' }}>
+            {'Coursey'}
           </h3>
 
           <p>
@@ -34,8 +37,13 @@ const CourseyCarousel = (props) => {
           alt={'Coursey'}
           fluid
         />
-        <Carousel.Caption className='carousel-caption'>
-          <h1 className='mb-2 text-white'>{'About Us'}</h1>
+        <Carousel.Caption
+          className='carousel-caption'
+          style={{ background: 'rgba(0,0,0,0.4)' }}>
+          <h3
+            style={{ padding: '0.5rem', color: 'white', alignSelf: 'center' }}>
+            {'About Us'}
+          </h3>
           <p>
             <a
               className='mb-2 text-white'
@@ -82,11 +90,15 @@ const CourseyCarousel = (props) => {
           fluid
         />
         <Carousel.Caption className='carousel-caption'>
-          <Button variant='warning'>
-            <h3 style={{ color: 'white', alignSelf: 'center' }}>
-              {'My Coursey'}
+          <Button style={{ background: 'rgba(0,0,0,0.7)' }}>
+            <h3
+              style={{
+                padding: '0.5rem',
+                color: 'white',
+                alignSelf: 'center',
+              }}>
+              {'Coursey'}
             </h3>
-
             <p>{'Coursey Project built as part of DH2642'}</p>
           </Button>
         </Carousel.Caption>
