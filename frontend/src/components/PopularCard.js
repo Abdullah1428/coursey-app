@@ -1,6 +1,6 @@
 import { Card } from 'react-bootstrap';
 import Rating from './Rating';
-import { feedbackCardStyle } from '../styles/feedbackCardStyle';
+import { feedbackCardStyle } from '../styles/Styles';
 
 const PopularCard = (props) => {
   return (

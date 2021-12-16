@@ -3,7 +3,7 @@ import { Card, Button } from 'react-bootstrap';
 import Rating from './Rating';
 import FeedbackModal from './FeedbackModal';
 import { Link } from 'react-router-dom';
-import { feedbackCardStyle } from '../styles/feedbackCardStyle';
+import { feedbackCardStyle } from '../styles/Styles';
 
 const FeedbackCard = (props) => {
   const [modalShow, setModalShow] = useState(false);
@@ -23,6 +23,9 @@ const FeedbackCard = (props) => {
         style={{ textDecoration: 'none' }}
         to={{
           pathname: `/course/${props.course.course}`,
+          state: {
+            path: props.path && props.path,
+          },
         }}>
         <Card.Body>
           <Card.Title className='cardTitle'>{props.course.title}</Card.Title>
@@ -56,6 +59,7 @@ const FeedbackCard = (props) => {
         show={modalShow}
         onHide={() => setModalShow(false)}
         course={props.course}
+        path={props.path}
       />
     </Card>
   );

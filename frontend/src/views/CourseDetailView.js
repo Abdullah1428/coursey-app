@@ -1,8 +1,8 @@
 import { Row, Col, Image, Form, Button, ListGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import FeedbackCard from '../components/FeedbackCard';
-import { feedbackCardStyle } from '../styles/feedbackCardStyle';
-import { shadowStyle } from '../styles/shadowStyle';
+import { feedbackCardStyle } from '../styles/Styles';
+import { shadowStyle } from '../styles/Styles';
 
 export const CourseDetailView = (props) => {
   const removeHTMLTagIfAny = (string) => {
@@ -187,25 +187,22 @@ export const CourseReviews = (props) => {
             <ListGroup className='text-center'>
               <ListGroup.Item>
                 <h1 className='courseDetailHeading'>Overall Rating</h1>
-                {/* <p
+                <p
                   style={{ fontSize: 50 }}
                   className='text-center mb-2 text-success'>
                   {props.courseReviews &&
-                    `${props.courseReviews[
-                      props.courseReviews.length - 1
-                    ].averageRating.toFixed(2)} / 5`}
-                </p> */}
+                    props.courseReviews.length > 0 &&
+                    `${props.courseReviews[0].averageRating.toFixed(2)} / 5`}
+                </p>
 
                 <h1 className='courseDetailHeading'>Number of Reviews</h1>
-                {/* <p
+                <p
                   style={{ fontSize: 50 }}
                   className='text-center mb-2 text-warning'>
                   {props.courseReviews &&
-                    `${
-                      props.courseReviews[props.courseReviews.length - 1]
-                        .totalFeedbacks
-                    }`}
-                </p> */}
+                    props.courseReviews.length > 0 &&
+                    `${props.courseReviews[0].totalFeedbacks}`}
+                </p>
               </ListGroup.Item>
             </ListGroup>
           </Col>

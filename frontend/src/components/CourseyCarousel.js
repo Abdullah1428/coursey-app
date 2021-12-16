@@ -10,13 +10,13 @@ const CourseyCarousel = (props) => {
       <Carousel.Item>
         <Image
           style={{ width: 600, height: 400 }}
-          src={`/assets/carousel1.jpeg`}
+          src={`/assets/kth-2.jpeg`}
           alt={'Coursey'}
           fluid
         />
         <Carousel.Caption
           className='carousel-caption'
-          style={{ background: 'rgba(0,0,0,0.3)' }}>
+          style={{ background: 'rgba(0,0,0,0.7)' }}>
           <h3
             style={{ padding: '0.5rem', color: 'white', alignSelf: 'center' }}>
             {'Coursey'}
@@ -24,7 +24,7 @@ const CourseyCarousel = (props) => {
 
           <p>
             {
-              'Coursey is an interactive app that lets you provide feedback on KTH courses and helps you find new and interesting courses to take.'
+              'Coursey is an interactive app that lets you provide feedback on KTH courses'
             }
           </p>
         </Carousel.Caption>
@@ -47,7 +47,7 @@ const CourseyCarousel = (props) => {
           <p>
             <a
               className='mb-2 text-white'
-              href='https://github.com/Abdullah1428'
+              href='https://www.linkedin.com/in/abdullahcse/'
               target='_blank'
               rel='noreferrer'>
               {'Abdullah'}
@@ -56,7 +56,7 @@ const CourseyCarousel = (props) => {
           <p>
             <a
               className='mb-2 text-white'
-              href='https://github.com/Abdullah1428'
+              href='https://www.linkedin.com/in/aykhazanchi/'
               target='_blank'
               rel='noreferrer'>
               {'Ayushman Khazanchi'}
@@ -65,7 +65,7 @@ const CourseyCarousel = (props) => {
           <p>
             <a
               className='mb-2 text-white'
-              href='https://github.com/Abdullah1428'
+              href='https://www.linkedin.com/in/simon-hallak-2738a318b/'
               target='_blank'
               rel='noreferrer'>
               {'Simon Hallak'}
@@ -74,7 +74,7 @@ const CourseyCarousel = (props) => {
           <p>
             <a
               className='mb-2 text-white'
-              href='https://github.com/Abdullah1428'
+              href='https://gits-15.sys.kth.se/davidjo9'
               target='_blank'
               rel='noreferrer'>
               {'David Johansson'}
@@ -85,12 +85,12 @@ const CourseyCarousel = (props) => {
       <Carousel.Item>
         <Image
           style={{ width: 600, height: 400 }}
-          src={`/assets/kth-2.jpeg`}
+          src={`/assets/carousel1.jpeg`}
           alt={'Coursey'}
           fluid
         />
         <Carousel.Caption className='carousel-caption'>
-          <Button style={{ background: 'rgba(0,0,0,0.7)' }}>
+          <Button style={{ background: 'rgba(0,0,0,0.3)' }}>
             <h3
               style={{
                 padding: '0.5rem',

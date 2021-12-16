@@ -126,15 +126,8 @@ const getFeedbacksByCourseId = asyncHandler(async (req, res) => {
  */
 const getUserActivity = asyncHandler(async (req, res) => {
   const id = req.body.uid;
-  const lim = req.body.limit;
   try {
-    let q;
-    if (lim === 0) {
-      q = query(collection(db, 'feedback'), where('uid', '==', id));
-    } else {
-      q = query(collection(db, 'feedback'), where('uid', '==', id), limit(lim));
-    }
-    //orderBy doesn't work with equality clause as per firestore docs
+    let q = query(collection(db, 'feedback'), where('uid', '==', id));
 
     const querySnapshot = await getDocs(q);
 

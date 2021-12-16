@@ -12,7 +12,7 @@ const CourseDetailPresenter = ({ match }) => {
   const [title, setTitle] = useState('');
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
-  const [courseReviews, setCourseReviews] = useState([]);
+  const [courseReviews, setCourseReviews] = useState(null);
 
   // api calling states for course
   const [errorCourse, setErrorCourse] = useState('');
@@ -29,6 +29,7 @@ const CourseDetailPresenter = ({ match }) => {
 
   const { searchQuery } = location.state ? location.state : '';
   const { searchResults } = location.state ? location.state : [];
+  const { path } = location.state ? location.state : '';
 
   const getCourseDataFromAPI = useCallback(async () => {
     setLoadingCourse(true);
@@ -52,7 +53,14 @@ const CourseDetailPresenter = ({ match }) => {
 
       const { data } = await axios.get(apiUrl);
 
-      setCourseReviews(data);
+      let sorted = data.sort(function compareNumOfReviews(a, b) {
+        let ai = new Date(a.createdAt.seconds);
+        let bi = new Date(b.createdAt.seconds);
+
+        return ai > bi ? -1 : ai < bi ? 1 : 0;
+      });
+
+      setCourseReviews(sorted);
       setLoadingReviews(false);
     } catch (error) {
       setErrorReviews('Error in getting course reviews');
@@ -124,7 +132,7 @@ const CourseDetailPresenter = ({ match }) => {
             <Link
               className='btn btn-dark my-3'
               to={{
-                pathname: `/courses`,
+                pathname: path && path === 'home' ? '/' : `/courses`,
                 state: {
                   query: searchQuery,
                   results: searchResults,

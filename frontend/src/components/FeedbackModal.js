@@ -6,8 +6,8 @@ const FeedbackModal = (props) => {
   return (
     <Modal
       {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
+      size='lg'
+      aria-labelledby='contained-modal-title-vcenter'
       centered>
       <Modal.Header closeButton>
         <Modal.Title>{props.course.title}</Modal.Title>
@@ -16,7 +16,15 @@ const FeedbackModal = (props) => {
         <p>{props.course.review}</p>
       </Modal.Body>
       <Modal.Footer>
-        <Link to={`/course/${props.course.course}`}>Course Details</Link>
+        <Link
+          to={{
+            pathname: `/course/${props.course.course}`,
+            state: {
+              path: props.path && props.path,
+            },
+          }}>
+          Course Details
+        </Link>
       </Modal.Footer>
     </Modal>
   );
