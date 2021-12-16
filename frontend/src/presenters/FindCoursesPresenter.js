@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { SearchBar, SearchResults } from '../views/FindCoursesView';
@@ -34,8 +34,6 @@ const FindCoursesPresenter = () => {
 
       const { data } = await axios.get(apiUrl);
 
-      console.log(data);
-
       setSearchResults(data.searchHits);
 
       setLoader(false);
@@ -45,6 +43,21 @@ const FindCoursesPresenter = () => {
       setLoader(false);
     }
   };
+
+  useEffect(() => {
+    function logKey(e) {
+      if (e.keyCode === 13) {
+        e.preventDefault();
+        return false;
+      }
+    }
+
+    const listener = window.addEventListener('keydown', logKey);
+
+    return () => {
+      window.removeEventListener('keydown', listener);
+    };
+  }, []);
 
   return (
     <>

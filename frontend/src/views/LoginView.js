@@ -45,7 +45,6 @@ const LoginView = (props) => {
                         required
                       />
                     </Form.Group>
-                    <div className='p-2' />
                     <Button
                       type='submit'
                       variant='success'
@@ -55,6 +54,11 @@ const LoginView = (props) => {
                   </Form>
                 </Card.Body>
               </Card>
+            </div>
+          </Row>
+          <Row>
+            <div className='w-100 mt-2 text-center'>
+              <Link to='/reset'>Forgot password?</Link>
             </div>
           </Row>
           <Row>

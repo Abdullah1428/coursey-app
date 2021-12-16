@@ -15,9 +15,23 @@ const ProfilePresenter = (props) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const [profData, setProfData] = useState({});
+
   const { currentUser } = useAuth();
 
   const handleUpdate = async (e) => {
+    if (profData) {
+      if (
+        name === profData.name &&
+        program === profData.program &&
+        school === profData.school &&
+        year === profData.year
+      ) {
+        alert('Please update something');
+        return;
+      }
+    }
+
     let apiUrl = '/user/updateprofile';
     const body = {
       uid: currentUser.uid,
@@ -27,9 +41,11 @@ const ProfilePresenter = (props) => {
       school: school,
       year: year,
     };
-    const status = await axios.post(apiUrl, body);
+    const { status } = await axios.post(apiUrl, body);
+
     if (status === 200) {
       getProfileDataFromAPI();
+      alert('Profile updated!');
     } else if (status === 400) {
       console.log(status);
     }
@@ -42,6 +58,7 @@ const ProfilePresenter = (props) => {
       let apiUrl = '/user/getprofile';
       const body = { uid: currentUser.uid };
       const { data } = await axios.post(apiUrl, body);
+      setProfData(data);
       setName(data.name);
       setUsername(data.username);
       setProgram(data.program);
