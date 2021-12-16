@@ -59,6 +59,7 @@ const FeedbackCard = (props) => {
         show={modalShow}
         onHide={() => setModalShow(false)}
         course={props.course}
+        path={props.path}
       />
     </Card>
   );

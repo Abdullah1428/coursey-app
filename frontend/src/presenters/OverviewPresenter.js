@@ -22,12 +22,18 @@ const OverviewPresenter = (props) => {
         let apiUrl = '/user/activity/';
         const body = {
           uid: currentUser.uid,
-          limit: 3,
         };
 
         const { data } = await axios.post(apiUrl, body);
 
-        setRecentActivity(data);
+        let sorted = data.sort(function compareNumOfReviews(a, b) {
+          let ai = new Date(a.createdAt.seconds);
+          let bi = new Date(b.createdAt.seconds);
+
+          return ai > bi ? -1 : ai < bi ? 1 : 0;
+        });
+
+        setRecentActivity(sorted.slice(0, 3));
         setLoading(false);
       } catch (error) {
         setError('Error from API');

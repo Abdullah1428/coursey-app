@@ -25,12 +25,18 @@ const ActivitiesPresenter = (props) => {
         let apiUrl = '/user/activity/';
         const body = {
           uid: currentUser.uid,
-          limit: 0,
         };
 
         const { data } = await axios.post(apiUrl, body);
 
-        setFeedbacks(data);
+        let sorted = data.sort(function compareNumOfReviews(a, b) {
+          let ai = new Date(a.createdAt.seconds);
+          let bi = new Date(b.createdAt.seconds);
+
+          return ai > bi ? -1 : ai < bi ? 1 : 0;
+        });
+
+        setFeedbacks(sorted);
         setLoading(false);
       } catch (error) {
         setError('Error from API');
