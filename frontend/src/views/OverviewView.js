@@ -87,7 +87,7 @@ export const PopularCourses = (props) => {
             </Col>
           ))
         ) : (
-          <h2>No Recent Activity Yet</h2>
+          <h2>Not enough reviews yet to show popular courses...</h2>
         )}
         <Col
           style={{ justifyContent: 'flex-end' }}
