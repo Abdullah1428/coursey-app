@@ -27,9 +27,11 @@ const ProfilePresenter = (props) => {
       school: school,
       year: year,
     };
-    const status = await axios.post(apiUrl, body);
+    const { status } = await axios.post(apiUrl, body);
+
     if (status === 200) {
       getProfileDataFromAPI();
+      alert('Profile updated!');
     } else if (status === 400) {
       console.log(status);
     }

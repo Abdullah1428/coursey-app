@@ -23,21 +23,26 @@ const ResetPasswordPresenter = (_props) => {
     }
 
     setLoading(true);
-    setError('');
     let apiUrl = '/auth/resetpassword';
     const body = {
       email: email,
     };
     try {
-      const { status } = await axios.post(apiUrl, body);
+      const response = await axios.post(apiUrl, body);
 
-      if (status === 200) {
-        alert('Password reset email sent if it excist!');
-        history.push('/login');
+      setLoading(false);
+
+      if (response.data.error.code === 'auth/user-not-found') {
+        setError('User not found. Try to enter correct email');
+        setLoading(false);
+        return;
       }
+
+      alert('Password reset email sent if it excist!');
+      history.push('/login');
     } catch (error) {
       setLoading(false);
-      setError('Error in resetting password');
+      setError('Errror');
     }
   };
 
