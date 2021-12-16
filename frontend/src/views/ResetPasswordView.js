@@ -6,29 +6,29 @@ const ResetPasswordView = (props) => {
     props.handleSubmit();
   };
   return (
-    <Container className="py-5">
+    <Container className='py-5'>
       <Row>
         <Col>
           <Row>
-            <div className="d-flex align-items-center justify-content-center">
+            <div className='d-flex align-items-center justify-content-center'>
               <Card style={{ width: 400 }}>
                 <Card.Body>
-                  <h2 className="text-center mb-4"> Reset Password </h2>
+                  <h2 className='text-center mb-4'> Reset Password </h2>
                   <Form onSubmit={(e) => handleSubmit(e)}>
-                    <Form.Group controlId="formGroupEmail">
+                    <Form.Group controlId='formGroupEmail'>
                       <Form.Label>Email</Form.Label>
                       <Form.Control
                         value={props.email}
-                        type="email"
-                        placeholder="email@kth.se"
+                        type='email'
+                        placeholder='email@kth.se'
                         onChange={(e) => props.setEmail(e.target.value)}
                         required
                       />
                     </Form.Group>
                     <Button
-                      variant="success"
-                      type="submit"
-                      className="mt-3 w-100">
+                      variant='success'
+                      type='submit'
+                      className='mt-3 w-100'>
                       Reset Password
                     </Button>
                   </Form>

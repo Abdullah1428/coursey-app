@@ -28,7 +28,13 @@ const FeedbackCard = (props) => {
           },
         }}>
         <Card.Body>
+<<<<<<< HEAD
           <Card.Title className="cardTitle">{props.course.title}</Card.Title>
+=======
+          <Card.Title style={{ height: 40 }} className='cardTitle'>
+            {props.course.title}
+          </Card.Title>
+>>>>>>> 3c931645e5df8fd035e12aded0d6506b0bef130f
 
           <Card.Text className="mb-2 text-success">
             {props.course.course}

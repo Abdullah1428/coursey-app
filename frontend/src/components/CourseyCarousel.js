@@ -10,7 +10,7 @@ const CourseyCarousel = (props) => {
       <Carousel.Item>
         <Image
           style={{ width: 600, height: 400 }}
-          src={`/assets/kth-2.jpeg`}
+          src={`/assets/carousel1.jpg`}
           alt={'Coursey'}
           fluid
         />
@@ -33,7 +33,7 @@ const CourseyCarousel = (props) => {
         <Image
           style={{ width: 600, height: 400 }}
           className='d-block w-100'
-          src={`/assets/carousel2.jpg`}
+          src={`/assets/carousel2.jpeg`}
           alt={'Coursey'}
           fluid
         />
@@ -85,7 +85,7 @@ const CourseyCarousel = (props) => {
       <Carousel.Item>
         <Image
           style={{ width: 600, height: 400 }}
-          src={`/assets/carousel1.jpeg`}
+          src={`/assets/carousel3.jpeg`}
           alt={'Coursey'}
           fluid
         />

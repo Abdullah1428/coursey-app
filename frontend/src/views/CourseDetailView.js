@@ -44,11 +44,6 @@ export const CourseDetailView = (props) => {
             <h4 className='courseDetailHeading'>Course Information</h4>
             <p>Department Code: {props.courseDetail.course.department.code}</p>
             <p>Department Name: {props.courseDetail.course.department.name}</p>
-            <p>
-              Valid From Term:{' '}
-              {props.courseDetail.publicSyllabusVersions.length > 0 &&
-                props.courseDetail.publicSyllabusVersions[0].validFromTerm.term}
-            </p>
             <p>Course State: {props.courseDetail.course.state}</p>
             <p>
               Course Cancelled:{' '}
@@ -63,7 +58,36 @@ export const CourseDetailView = (props) => {
             <h4 className='courseDetailHeading'>Supplementary Information</h4>
             <p>
               {props.courseDetail.course.supplementaryInfo &&
-                removeHTMLTagIfAny(props.courseDetail.course.supplementaryInfo)}
+                `${
+                  removeHTMLTagIfAny(
+                    props.courseDetail.course.supplementaryInfo
+                  ).split('see:')[0]
+                }, see`}
+            </p>
+            <a
+              target='_blank'
+              rel='noreferrer'
+              className='text-success'
+              href={
+                props.courseDetail.course.supplementaryInfo &&
+                removeHTMLTagIfAny(
+                  props.courseDetail.course.supplementaryInfo
+                ).split('see:')[1]
+              }>
+              {'here'}
+            </a>
+          </Row>
+          <div className='py-3' />
+          <Row>
+            <p>
+              Visit official course page at KTH :{' '}
+              <a
+                target='_blank'
+                rel='noreferrer'
+                className='text-success'
+                href={`https://www.kth.se/student/kurser/kurs/${props.courseDetail.course.courseCode}?l=en`}>
+                here
+              </a>
             </p>
           </Row>
         </Col>

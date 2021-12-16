@@ -85,7 +85,7 @@ const resetPassword = asyncHandler(async (req, res) => {
       res.status(200).send('Password reset email is sent');
     })
     .catch((error) => {
-      res.status(404).send('Error in resetting password ' + error);
+      res.status(200).send({ error });
     });
 });
 

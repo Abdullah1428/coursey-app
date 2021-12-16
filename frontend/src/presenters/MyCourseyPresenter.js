@@ -1,5 +1,4 @@
 import React from 'react';
-
 import ProfilePresenter from './ProfilePresenter';
 import ActivitiesPresenter from './ActivitiesPresenter';
 
