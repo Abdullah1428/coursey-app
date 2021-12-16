@@ -21,6 +21,7 @@ import PopularPresenter from './presenters/PopularPresenter';
 // protected route
 import PrivateRoute from './context/PrivateRoutes';
 import NotFound from './components/NotFound';
+import ResetPasswordPresenter from './presenters/ResetPasswordPresenter';
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
           <NavigationBar />
         </header>
         <Container>
-          <main className='py-3'>
+          <main className="py-3">
             <Switch>
               <PrivateRoute path={'/'} component={OverviewPresenter} exact />
               <PrivateRoute
@@ -47,6 +48,7 @@ function App() {
               <Route path={'/register'} component={RegisterPresenter} exact />
               <Route path={'/login'} component={LoginPresenter} exact />
               <Route path={'/popular'} component={PopularPresenter} exact />
+              <Route path={'/reset'} component={ResetPasswordPresenter} exact />
               <Route component={NotFound} />
             </Switch>
           </main>

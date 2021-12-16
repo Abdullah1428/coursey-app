@@ -9,6 +9,7 @@ const LoginView = (props) => {
     props.handleSubmit(e);
   };
   return (
+<<<<<<< Updated upstream
     <Container>
       <Row className='text-center'>
         <h1>Coursey - Find cool KTH courses</h1>
@@ -16,40 +17,52 @@ const LoginView = (props) => {
       <Row>
         <Col>
           <CourseyCarousel />
+=======
+    <Container className="py-5">
+      <Row>
+        <Col className="py-5">
+          <h1>Coursey</h1>
+          <h3>Find cool KTH courses</h3>
+>>>>>>> Stashed changes
         </Col>
         <Col>
           <Row>
-            <div className='d-flex align-items-center justify-content-center'>
+            <div className="d-flex align-items-center justify-content-center">
               <Card style={{ width: 400 }}>
                 <Card.Body>
-                  <h2 className='text-center mb-4'>Login to Coursey Account</h2>
+                  <h2 className="text-center mb-4">Login to Coursey Account</h2>
                   <Form onSubmit={(e) => handleSubmit(e)}>
-                    <Form.Group controlId='formEmail'>
+                    <Form.Group controlId="formEmail">
                       <Form.Label> Email Address </Form.Label>
                       <Form.Control
                         value={props.email}
                         onChange={(e) => props.setEmail(e.target.value)}
-                        type='email'
-                        placeholder='example@kth.se'
+                        type="email"
+                        placeholder="example@kth.se"
                         required
                       />
                       <Form.Text>Login with your kth-email address</Form.Text>
                     </Form.Group>
-                    <Form.Group controlId='formPassword'>
+                    <Form.Group controlId="formPassword">
                       <Form.Label> Password </Form.Label>
                       <Form.Control
                         value={props.password}
                         onChange={(e) => props.setPassword(e.target.value)}
-                        type='password'
-                        placeholder='Password'
+                        type="password"
+                        placeholder="Password"
                         required
                       />
                     </Form.Group>
+<<<<<<< Updated upstream
                     <div className='p-2' />
                     <Button
                       type='submit'
                       variant='success'
                       className='mt-3 w-100'>
+=======
+                    <div className="p-2" />
+                    <Button type="submit" className="mt-3 w-100">
+>>>>>>> Stashed changes
                       Login
                     </Button>
                   </Form>
@@ -58,8 +71,13 @@ const LoginView = (props) => {
             </div>
           </Row>
           <Row>
-            <div className='w-100 text-center mt-2'>
-              Don't have an account? <Link to='/register'>Register</Link>
+            <div className="w-100 text-center mt-2">
+              Don't have an account? <Link to="/register">Register</Link>
+            </div>
+          </Row>
+          <Row>
+            <div className="w-100 text-center mt-2">
+              <Link to="/reset">Forgot password?</Link>
             </div>
           </Row>
         </Col>

@@ -73,8 +73,19 @@ const logout = asyncHandler((_req, res) => {
     })
     .catch((error) => {
       res.status(404).send('firebase error');
-      console.log('Error in signing out ' + error);
     });
 });
 
-export { register, login, logout };
+const resetPassword = asyncHandler(async (req, res) => {
+  const email = req.body.email;
+
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+      res.status(200).send('Password reset email is sent');
+    })
+    .catch((error) => {
+      res.status(404).send('Error in resetting password ' + error);
+    });
+});
+
+export { register, login, logout, resetPassword };
