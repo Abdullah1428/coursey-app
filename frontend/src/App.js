@@ -1,6 +1,6 @@
 import './App.css';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { Container } from 'react-bootstrap';
 
@@ -20,6 +20,7 @@ import MyCourseyPresenter from './presenters/MyCourseyPresenter';
 import PopularPresenter from './presenters/PopularPresenter';
 // protected route
 import PrivateRoute from './context/PrivateRoutes';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
@@ -30,21 +31,24 @@ function App() {
         </header>
         <Container>
           <main className='py-3'>
-            <PrivateRoute path={'/'} component={OverviewPresenter} exact />
-            <PrivateRoute
-              path={'/mycoursey'}
-              component={MyCourseyPresenter}
-              exact
-            />
-            <Route
-              path={'/course/:id'}
-              component={CourseDetailPresenter}
-              exact
-            />
-            <Route path={'/courses'} component={FindCoursesPresenter} exact />
-            <Route path={'/register'} component={RegisterPresenter} exact />
-            <Route path={'/login'} component={LoginPresenter} exact />
-            <Route path={'/popular'} component={PopularPresenter} exact />
+            <Switch>
+              <PrivateRoute path={'/'} component={OverviewPresenter} exact />
+              <PrivateRoute
+                path={'/mycoursey'}
+                component={MyCourseyPresenter}
+                exact
+              />
+              <Route
+                path={'/course/:id'}
+                component={CourseDetailPresenter}
+                exact
+              />
+              <Route path={'/courses'} component={FindCoursesPresenter} exact />
+              <Route path={'/register'} component={RegisterPresenter} exact />
+              <Route path={'/login'} component={LoginPresenter} exact />
+              <Route path={'/popular'} component={PopularPresenter} exact />
+              <Route component={NotFound} />
+            </Switch>
           </main>
         </Container>
         <footer>

@@ -1,13 +1,13 @@
 import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Nav, Navbar } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
-
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const NavigationBar = () => {
   const { currentUser, logoutUser } = useAuth();
   const history = useHistory();
+  const location = useLocation();
 
   const handleLogoutHanlder = async () => {
     // logout the user or basically remove the context state or
@@ -37,7 +37,7 @@ const NavigationBar = () => {
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse className='justify-content-end'>
-            <Nav className='ml-auto'>
+            <Nav activeKey={location.pathname} className='ml-auto'>
               <Nav>
                 <LinkContainer to='/'>
                   <Nav.Link>
@@ -49,11 +49,11 @@ const NavigationBar = () => {
                     <i className='fas fa-search'></i> Find Courses
                   </Nav.Link>
                 </LinkContainer>
-                {/* <LinkContainer to='/recommendations'>
-                    <Nav.Link>
-                      <i className='fas fa-rocket'></i> Recommendations
-                    </Nav.Link>
-                  </LinkContainer> */}
+                <LinkContainer to='/popular'>
+                  <Nav.Link>
+                    <i className='fas fa-fire-alt'></i> Popular
+                  </Nav.Link>
+                </LinkContainer>
                 <LinkContainer to={currentUser ? '/mycoursey' : '/login'}>
                   <Nav.Link>
                     <i className='fas fa-book'></i> My Coursey
@@ -62,14 +62,21 @@ const NavigationBar = () => {
               </Nav>
 
               {currentUser ? (
-                <Nav.Link onClick={() => handleLogoutHanlder()}>
-                  <i className='fas fa-user'></i> Logout
-                </Nav.Link>
+                <div className='d-flex justify-content-center'>
+                  <i className='fas fa-user align-self-center'></i>
+                  <NavDropdown title={`${currentUser.username}`} id='username'>
+                    <NavDropdown.Item onClick={() => handleLogoutHanlder()}>
+                      <i className='fas fa-sign-out-alt'></i> Logout
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </div>
               ) : (
                 <LinkContainer to='/login'>
-                  <Nav.Link>
-                    <i className='fas fa-user'></i> Login
-                  </Nav.Link>
+                  <Nav activeKey={location.pathname}>
+                    <Nav.Link>
+                      <i className='fas fa-user'></i> Login
+                    </Nav.Link>
+                  </Nav>
                 </LinkContainer>
               )}
             </Nav>

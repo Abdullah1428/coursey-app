@@ -52,12 +52,6 @@ export const PopularCourses = (props) => {
       return ai > bi ? -1 : ai < bi ? 1 : 0;
     });
 
-    // const arrUnique = [
-    //   ...new Map(
-    //     sorted.map((v) => [JSON.stringify([v.totalFeedbacks, v.course]), v])
-    //   ).values(),
-    // ];
-
     const arrUnique = sorted.filter(
       (v, i, a) => a.findIndex((t) => t.course === v.course) === i
     );

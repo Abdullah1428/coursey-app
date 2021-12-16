@@ -2,7 +2,6 @@ import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 
 import FeedbackCard from '../components/FeedbackCard';
-import { Link } from 'react-router-dom';
 import { feedbackCardStyle } from '../styles/feedbackCardStyle';
 
 const ActivitiesView = (props) => {
