@@ -39,18 +39,21 @@ const NavigationBar = () => {
           <Navbar.Collapse className='justify-content-end'>
             <Nav className='ml-auto'>
               <Nav>
+                <LinkContainer to='/'>
+                  <Nav.Link>
+                    <i className='fas fa-home'></i> Home
+                  </Nav.Link>
+                </LinkContainer>
                 <LinkContainer to='/courses'>
                   <Nav.Link>
                     <i className='fas fa-search'></i> Find Courses
                   </Nav.Link>
                 </LinkContainer>
-
                 {/* <LinkContainer to='/recommendations'>
                     <Nav.Link>
                       <i className='fas fa-rocket'></i> Recommendations
                     </Nav.Link>
                   </LinkContainer> */}
-
                 <LinkContainer to={currentUser ? '/mycoursey' : '/login'}>
                   <Nav.Link>
                     <i className='fas fa-book'></i> My Coursey
