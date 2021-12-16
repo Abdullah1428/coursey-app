@@ -65,7 +65,7 @@ const OverviewPresenter = (props) => {
       {loading ? (
         <Loader />
       ) : error && error.length > 0 ? (
-        <Message>{error}</Message>
+        <Message hide={() => setError('')}>{error}</Message>
       ) : (
         recentActivity && <RecentActivity recentActivity={recentActivity} />
       )}
@@ -73,7 +73,7 @@ const OverviewPresenter = (props) => {
       {loadingP ? (
         <Loader />
       ) : errorP && errorP.length > 0 ? (
-        <Message>{errorP}</Message>
+        <Message hide={() => setErrorP('')}>{errorP}</Message>
       ) : (
         popularCourses && (
           <PopularCourses popularCourses={popularCourses} limit={3} />

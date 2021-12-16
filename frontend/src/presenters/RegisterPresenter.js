@@ -65,7 +65,9 @@ const RegisterPresenter = (_props) => {
         message={message}
       />
       {loading && <Loader />}
-      {error && <Message>{error}</Message>}
+      {error && error.length > 0 && (
+        <Message hide={() => setError('')}>{error}</Message>
+      )}
       <RegisterView
         email={email}
         password={password}

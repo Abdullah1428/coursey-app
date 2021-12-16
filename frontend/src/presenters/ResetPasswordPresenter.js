@@ -62,7 +62,9 @@ const ResetPasswordPresenter = (_props) => {
       />
 
       {loading && <Loader />}
-      {error && <Message>{error}</Message>}
+      {error && error.length > 0 && (
+        <Message hide={() => setError('')}>{error}</Message>
+      )}
 
       <ResetPasswordView
         email={email}

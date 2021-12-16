@@ -51,7 +51,7 @@ const ActivitiesPresenter = (props) => {
       {loading ? (
         <Loader />
       ) : error && error.length > 0 ? (
-        <Message>{error}</Message>
+        <Message hide={() => setError('')}>{error}</Message>
       ) : (
         feedbacks && <ActivitiesView feedbacks={feedbacks} />
       )}

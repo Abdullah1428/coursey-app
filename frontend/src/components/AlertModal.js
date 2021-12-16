@@ -22,7 +22,7 @@ const AlertModal = (props) => {
       <Modal.Body>
         <p>{props.message}</p>
       </Modal.Body>
-      {props.logout && (
+      {props.logOut && (
         <Modal.Footer>
           <Button onClick={() => props.cancel()} variant='secondary'>
             No

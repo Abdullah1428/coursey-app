@@ -39,7 +39,9 @@ const LoginPresenter = (_props) => {
   return (
     <>
       {loading && <Loader />}
-      {error && <Message>{error}</Message>}
+      {error && error.length > 0 && (
+        <Message hide={() => setError('')}>{error}</Message>
+      )}
       <LoginView
         email={email}
         password={password}

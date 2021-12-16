@@ -152,8 +152,8 @@ const CourseDetailPresenter = ({ match }) => {
         variant={variant}
       />
 
-      {errorCourse ? (
-        <Message>{errorCourse}</Message>
+      {errorCourse && errorCourse.length > 0 ? (
+        <Message hide={() => setErrorCourse('')}>{errorCourse}</Message>
       ) : loadingCourse ? (
         <Loader />
       ) : (
@@ -175,8 +175,8 @@ const CourseDetailPresenter = ({ match }) => {
         )
       )}
 
-      {errorReviews ? (
-        <Message>{errorReviews}</Message>
+      {errorReviews && errorReviews.length > 0 ? (
+        <Message hide={() => setErrorReviews('')}>{errorReviews}</Message>
       ) : loadingReviews ? (
         <Loader />
       ) : (

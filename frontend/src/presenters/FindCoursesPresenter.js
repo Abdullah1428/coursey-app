@@ -79,7 +79,7 @@ const FindCoursesPresenter = () => {
       {loader ? (
         <Loader />
       ) : error && error.length > 0 ? (
-        <Message>{error}</Message>
+        <Message hide={() => setError('')}>{error}</Message>
       ) : (
         searchResults && (
           <SearchResults

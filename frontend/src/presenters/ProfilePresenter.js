@@ -103,8 +103,8 @@ const ProfilePresenter = (props) => {
       />
       {loading ? (
         <Loader />
-      ) : error ? (
-        <Message>{error}</Message>
+      ) : error && error.length > 0 ? (
+        <Message hide={() => setError('')}>{error}</Message>
       ) : (
         <ProfileView
           name={name}
