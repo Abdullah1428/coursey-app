@@ -9,21 +9,13 @@ const LoginView = (props) => {
     props.handleSubmit(e);
   };
   return (
-<<<<<<< Updated upstream
     <Container>
-      <Row className='text-center'>
+      <Row className="text-center">
         <h1>Coursey - Find cool KTH courses</h1>
       </Row>
       <Row>
         <Col>
           <CourseyCarousel />
-=======
-    <Container className="py-5">
-      <Row>
-        <Col className="py-5">
-          <h1>Coursey</h1>
-          <h3>Find cool KTH courses</h3>
->>>>>>> Stashed changes
         </Col>
         <Col>
           <Row>
@@ -53,16 +45,11 @@ const LoginView = (props) => {
                         required
                       />
                     </Form.Group>
-<<<<<<< Updated upstream
-                    <div className='p-2' />
-                    <Button
-                      type='submit'
-                      variant='success'
-                      className='mt-3 w-100'>
-=======
                     <div className="p-2" />
-                    <Button type="submit" className="mt-3 w-100">
->>>>>>> Stashed changes
+                    <Button
+                      type="submit"
+                      variant="success"
+                      className="mt-3 w-100">
                       Login
                     </Button>
                   </Form>

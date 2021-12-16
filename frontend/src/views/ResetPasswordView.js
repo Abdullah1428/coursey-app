@@ -26,8 +26,11 @@ const ResetPasswordView = (props) => {
                         required
                       />
                     </Form.Group>
-                    <Button type="submit" className="mt-3 w-100">
-                      ResetPassword
+                    <Button
+                      variant="success"
+                      type="submit"
+                      className="mt-3 w-100">
+                      Reset Password
                     </Button>
                   </Form>
                 </Card.Body>
