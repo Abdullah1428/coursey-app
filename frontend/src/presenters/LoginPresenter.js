@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import LoginView from '../views/LoginView';
@@ -16,6 +16,11 @@ const LoginPresenter = (_props) => {
   const { loginUser, currentUser } = useAuth();
   const history = useHistory();
 
+  // Fix for this Warning: Can't perform a React state update on an unmounted component.
+  // This is a no-op, but it indicates a memory leak in your application. To fix, cancel
+  // all subscriptions and asynchronous tasks in a useEffect cleanup function.
+  let componentLoaded = useRef(true); //
+
   const handleSubmit = async () => {
     setLoading(true);
     setError('');
@@ -31,9 +36,15 @@ const LoginPresenter = (_props) => {
   };
 
   useEffect(() => {
-    if (currentUser) {
-      history.push('/');
+    if (componentLoaded.current) {
+      if (currentUser) {
+        history.push('/');
+      }
     }
+
+    return () => {
+      componentLoaded.current = false;
+    };
   }, [currentUser, history]);
 
   return (

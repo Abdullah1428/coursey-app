@@ -45,7 +45,8 @@ const RegisterView = (props) => {
                       />
                     </Form.Group>
                     <div className='p-1' />
-                    <Form.Group controlId='formGroupPassword'>
+                    {/* fix for warning on console = controlId should not be the same. */}
+                    <Form.Group controlId='formGroupConfirmPassword'>
                       <Form.Label>Confirm Password</Form.Label>
                       <Form.Control
                         value={props.confirmPassword}
