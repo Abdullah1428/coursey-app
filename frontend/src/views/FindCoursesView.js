@@ -49,7 +49,7 @@ export const SearchResults = (props) => {
               to={{
                 pathname: `/course/${search.course.courseCode}`,
                 state: {
-                  path: 'courses',
+                  path: '/courses',
                   searchQuery: props.searchQuery,
                   searchResults: props.searchResults,
                 },
