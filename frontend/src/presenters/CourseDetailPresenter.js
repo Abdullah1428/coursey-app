@@ -6,12 +6,16 @@ import { useAuth } from '../context/AuthContext';
 import { CourseDetailView, CourseReviews } from '../views/CourseDetailView';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import AlertModal from '../components/AlertModal';
 
 const CourseDetailPresenter = ({ match }) => {
+  // for storing course detail from kth api
   const [courseDetail, setCourseDetail] = useState(null);
+  // for storing feedback fields
   const [title, setTitle] = useState('');
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
+  // for storing couesw reviews fetched from firebase
   const [courseReviews, setCourseReviews] = useState(null);
 
   // api calling states for course
@@ -20,6 +24,11 @@ const CourseDetailPresenter = ({ match }) => {
   // api callling states for reviews
   const [errorReviews, setErrorReviews] = useState('');
   const [loadingReviews, setLoadingReviews] = useState(false);
+
+  // alert modal state
+  const [showAlert, setShowAlert] = useState(false);
+  const [variant, setVariant] = useState('danger');
+  const [message, setMessage] = useState('');
 
   // context
   const { currentUser } = useAuth();
@@ -41,7 +50,7 @@ const CourseDetailPresenter = ({ match }) => {
       setCourseDetail(data);
       setLoadingCourse(false);
     } catch (error) {
-      setErrorCourse('Error in getting course details');
+      setErrorCourse('Course details failed to load, try again.');
       setLoadingCourse(false);
     }
   }, [match]);
@@ -63,7 +72,7 @@ const CourseDetailPresenter = ({ match }) => {
       setCourseReviews(sorted);
       setLoadingReviews(false);
     } catch (error) {
-      setErrorReviews('Error in getting course reviews');
+      setErrorReviews('Course reviews failed to load, try again.');
       setLoadingReviews(false);
     }
   }, [match]);
@@ -76,15 +85,21 @@ const CourseDetailPresenter = ({ match }) => {
   const submitUserFeedback = async () => {
     // submit here feedback to firebase.
     if (Number(rating) < 1 && review.length < 10) {
-      alert(
-        'Please write a proper review with rating which can be helpful for others'
+      setVariant('danger');
+      setMessage(
+        'Please write a review with rating which can be helpful for others.'
       );
+      setShowAlert(true);
       return;
     } else if (Number(rating) < 1) {
-      alert('Please select a proper rating for this course from 1-5.');
+      setVariant('danger');
+      setMessage('Please select a rating for the course.');
+      setShowAlert(true);
       return;
     } else if (review.length < 10) {
-      alert('Please write a proper comment which can be helpful for others');
+      setVariant('danger');
+      setMessage('Please write a comment which can be helpful for others.');
+      setShowAlert(true);
       return;
     } else {
       let averageRating = rating;
@@ -111,19 +126,34 @@ const CourseDetailPresenter = ({ match }) => {
         const { data } = await axios.post(apiUrl, feedback);
 
         if (data === 'feedback added') {
-          alert('Feedback Submitted successfully, Thank you for the review');
+          setVariant('success');
+          setMessage(
+            'Feedback submitted successfully, thank you for the review!'
+          );
+          setShowAlert(true);
           getFeedbacksForCourse();
         }
       } catch (error) {
-        console.log('Error in feedback submission ', error.message);
+        // console.log('Error in feedback submission ', error.message);
+        setVariant('danger');
+        setMessage('Feedback submission failed, try again.');
+        setShowAlert(true);
       }
     }
   };
 
   return (
     <>
-      {errorCourse ? (
-        <Message>{errorCourse}</Message>
+      <AlertModal
+        show={showAlert}
+        onHide={() => setShowAlert(false)}
+        title={'Feedback'}
+        message={message}
+        variant={variant}
+      />
+
+      {errorCourse && errorCourse.length > 0 ? (
+        <Message hide={() => setErrorCourse('')}>{errorCourse}</Message>
       ) : loadingCourse ? (
         <Loader />
       ) : (
@@ -145,8 +175,8 @@ const CourseDetailPresenter = ({ match }) => {
         )
       )}
 
-      {errorReviews ? (
-        <Message>{errorReviews}</Message>
+      {errorReviews && errorReviews.length > 0 ? (
+        <Message hide={() => setErrorReviews('')}>{errorReviews}</Message>
       ) : loadingReviews ? (
         <Loader />
       ) : (

@@ -28,7 +28,7 @@ const PopularPresenter = (props) => {
       setPCourses(data);
       setLoading(false);
     } catch (error) {
-      setError('Error from API');
+      setError('Popular courses failed to load, try again.');
       setLoading(false);
     }
   }, []);
@@ -48,7 +48,7 @@ const PopularPresenter = (props) => {
       {loading ? (
         <Loader />
       ) : error && error.length > 0 ? (
-        <Message>{error}</Message>
+        <Message hide={() => setError('')}>{error}</Message>
       ) : (
         <>
           {/* <Link

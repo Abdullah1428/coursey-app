@@ -36,7 +36,7 @@ const OverviewPresenter = (props) => {
         setRecentActivity(sorted.slice(0, 3));
         setLoading(false);
       } catch (error) {
-        setError('Error from API');
+        setError('Activities failed to load, try again.');
         setLoading(false);
       }
     };
@@ -51,7 +51,7 @@ const OverviewPresenter = (props) => {
         setPopularCourses(data);
         setLoadingP(false);
       } catch (error) {
-        setErrorP('Error from API');
+        setErrorP('Popular courses failed to load, try again.');
         setLoadingP(false);
       }
     };
@@ -65,7 +65,7 @@ const OverviewPresenter = (props) => {
       {loading ? (
         <Loader />
       ) : error && error.length > 0 ? (
-        <Message>{error}</Message>
+        <Message hide={() => setError('')}>{error}</Message>
       ) : (
         recentActivity && <RecentActivity recentActivity={recentActivity} />
       )}
@@ -73,7 +73,7 @@ const OverviewPresenter = (props) => {
       {loadingP ? (
         <Loader />
       ) : errorP && errorP.length > 0 ? (
-        <Message>{errorP}</Message>
+        <Message hide={() => setErrorP('')}>{errorP}</Message>
       ) : (
         popularCourses && (
           <PopularCourses popularCourses={popularCourses} limit={3} />

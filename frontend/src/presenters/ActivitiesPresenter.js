@@ -39,7 +39,7 @@ const ActivitiesPresenter = (props) => {
         setFeedbacks(sorted);
         setLoading(false);
       } catch (error) {
-        setError('Error from API');
+        setError('Activities failed to load, try again.');
         setLoading(false);
       }
     };
@@ -51,7 +51,7 @@ const ActivitiesPresenter = (props) => {
       {loading ? (
         <Loader />
       ) : error && error.length > 0 ? (
-        <Message>{error}</Message>
+        <Message hide={() => setError('')}>{error}</Message>
       ) : (
         feedbacks && <ActivitiesView feedbacks={feedbacks} />
       )}
