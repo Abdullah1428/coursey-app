@@ -17,7 +17,7 @@ const CourseyCarousel = (props) => {
           />
           <Carousel.Caption
             className='carousel-caption'
-            style={{ background: 'rgba(0,0,0,0.7)' }}>
+            style={{ background: 'rgba(0,0,0,0.4)' }}>
             <h3
               style={{
                 padding: '0.5rem',
@@ -29,7 +29,7 @@ const CourseyCarousel = (props) => {
 
             <p>
               {
-                'Coursey is an interactive app that lets you provide feedback on KTH courses'
+                'Coursey is an interactive app that helps you find and review cool KTH courses'
               }
             </p>
           </Carousel.Caption>
@@ -44,10 +44,10 @@ const CourseyCarousel = (props) => {
           />
           <Carousel.Caption
             className='carousel-caption'
-            style={{ background: 'rgba(0,0,0,0.4)' }}>
+            style={{ background: 'rgba(0,0,0,0.7)' }}>
             <h3
               style={{
-                padding: '0.5rem',
+                padding: '0.2rem',
                 color: 'white',
                 alignSelf: 'center',
               }}>
@@ -111,7 +111,7 @@ const CourseyCarousel = (props) => {
 
               <p>
                 {
-                  'Coursey is an interactive app that lets you provide feedback on KTH courses'
+                  'Coursey was built at KTH as part of a class project for DH2642.'
                 }
               </p>
             </Button>

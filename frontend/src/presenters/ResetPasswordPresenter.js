@@ -6,11 +6,15 @@ import ResetPasswordView from '../views/ResetPasswordView';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import axios from 'axios';
+import AlertModal from '../components/AlertModal';
 
 const ResetPasswordPresenter = (_props) => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const [showAlert, setShowAlert] = useState(false);
+  const [message, setMessage] = useState('');
 
   const history = useHistory();
 
@@ -18,7 +22,8 @@ const ResetPasswordPresenter = (_props) => {
     const parts = email.split('@');
 
     if (parts[1] !== 'kth.se' && parts[1] !== 'ug.kth.se') {
-      alert('Please use your kth mail.');
+      setMessage('Please use your KTH email.');
+      setShowAlert(true);
       return;
     }
 
@@ -33,23 +38,33 @@ const ResetPasswordPresenter = (_props) => {
       setLoading(false);
 
       if (response.data.error.code === 'auth/user-not-found') {
-        setError('User not found. Try to enter correct email');
+        setError('User not found, try again with correct email.');
         setLoading(false);
         return;
       }
 
-      alert('Password reset email sent if it excist!');
+      setMessage('Password reset email sent successfully!');
+      setShowAlert(true);
       history.push('/login');
     } catch (error) {
       setLoading(false);
-      setError('Errror');
+      setError('Password reset failed, try again.');
     }
   };
 
   return (
     <>
+      <AlertModal
+        show={showAlert}
+        onHide={() => setShowAlert(false)}
+        title={'Reset Password'}
+        message={message}
+      />
+
       {loading && <Loader />}
-      {error && <Message>{error}</Message>}
+      {error && error.length > 0 && (
+        <Message hide={() => setError('')}>{error}</Message>
+      )}
 
       <ResetPasswordView
         email={email}

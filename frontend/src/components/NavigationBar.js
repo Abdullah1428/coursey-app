@@ -1,38 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown, Image } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+
+import AlertModal from './AlertModal';
 
 const NavigationBar = () => {
   const { currentUser, logoutUser } = useAuth();
   const history = useHistory();
   const location = useLocation();
 
+  const [showLogoutAlert, setShowLogoutAlert] = useState(false);
+  const [showLogoutErrorAlert, setShowLogoutErrorAlert] = useState(false);
+
   const handleLogoutHanlder = async () => {
     // logout the user or basically remove the context state or
     // call firebase.
-    if (window.confirm('Are you sure you want to logout?')) {
-      const status = await logoutUser();
+    setShowLogoutAlert(false);
 
-      if (status === 200) {
-        history.push('/login');
-      } else if (status === 400) {
-        alert('Error in logging out!');
-      }
+    const status = await logoutUser();
+
+    if (status === 200) {
+      history.push('/login');
+    } else if (status === 400) {
+      setShowLogoutErrorAlert(true);
     }
   };
 
   return (
     <>
+      <AlertModal
+        show={showLogoutAlert}
+        onHide={() => setShowLogoutAlert(false)}
+        title={'Logout'}
+        message={'Are you sure you want to logout?'}
+        logOut={true}
+        logout={() => handleLogoutHanlder()}
+        cancel={() => setShowLogoutAlert(false)}
+      />
+      <AlertModal
+        show={showLogoutErrorAlert}
+        onHide={() => setShowLogoutErrorAlert(false)}
+        title={'Logout'}
+        message={'Error in logging out!'}
+      />
       <Navbar
-        style={{ backgroundColor: '#ffa500', height: 60 }}
+        style={{ backgroundColor: '#ffa500', height: 75 }}
         expand='lg'
         collapseOnSelect
         className='px-3'>
         <>
           <LinkContainer to={'/'}>
-            <Navbar.Brand>Coursey</Navbar.Brand>
+            <Navbar.Brand>
+              <Image src='/assets/CourseyLogo.png' width='180' />
+            </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse className='justify-content-end'>

@@ -182,6 +182,7 @@ export const CourseReviews = (props) => {
                       <Form.Control
                         as='textarea'
                         row='5'
+                        required
                         value={props.review}
                         placeholder='Write your review here...'
                         onChange={(e) =>

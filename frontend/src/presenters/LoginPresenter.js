@@ -26,7 +26,7 @@ const LoginPresenter = (_props) => {
       history.push('/');
     } else if (status === 400) {
       setLoading(false);
-      setError('Error in Login');
+      setError('Error in login, try again.');
     }
   };
 
@@ -39,7 +39,9 @@ const LoginPresenter = (_props) => {
   return (
     <>
       {loading && <Loader />}
-      {error && <Message>{error}</Message>}
+      {error && error.length > 0 && (
+        <Message hide={() => setError('')}>{error}</Message>
+      )}
       <LoginView
         email={email}
         password={password}

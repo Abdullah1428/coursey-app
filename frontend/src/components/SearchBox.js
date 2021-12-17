@@ -8,7 +8,7 @@ const SearchBox = () => {
     e.preventDefault();
 
     if (search.length < 4) {
-      alert('Please search for appropraite course!');
+      alert('Length of search is too short, try adding more detail.');
     }
   };
 
@@ -22,8 +22,7 @@ const SearchBox = () => {
               name='q'
               onChange={(e) => setSearch(e.target.value)}
               placeholder='Search Courses by Name and Code...'
-              className='mr-sm-2 ml-sm-5'
-            ></Form.Control>
+              className='mr-sm-2 ml-sm-5'></Form.Control>
           </Form>
         </Col>
         <Col>
@@ -32,8 +31,7 @@ const SearchBox = () => {
             type='submit'
             variant='success'
             className='p-2'
-            onClick={submitHandler}
-          >
+            onClick={submitHandler}>
             Search
           </Button>
         </Col>
