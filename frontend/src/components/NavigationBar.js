@@ -46,55 +46,55 @@ const NavigationBar = () => {
         message={'Error in logging out!'}
       />
       <Navbar
-        style={{ backgroundColor: '#ffa500', height: 60 }}
-        expand="lg"
+        style={{ backgroundColor: '#ffa500', height: 75 }}
+        expand='lg'
         collapseOnSelect
-        className="px-3">
+        className='px-3'>
         <>
           <LinkContainer to={'/'}>
             <Navbar.Brand>
-              <Image src="/assets/CourseyLogo.png" width="210px" />
+              <Image src='/assets/CourseyLogo.png' width='180' />
             </Navbar.Brand>
           </LinkContainer>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse className="justify-content-end">
-            <Nav className="ml-auto">
+          <Navbar.Toggle aria-controls='basic-navbar-nav' />
+          <Navbar.Collapse className='justify-content-end'>
+            <Nav className='ml-auto'>
               <Nav activeKey={location.pathname}>
-                <LinkContainer to="/">
+                <LinkContainer to='/'>
                   <Nav.Link>
-                    <i className="fas fa-home"></i> Home
+                    <i className='fas fa-home'></i> Home
                   </Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/courses">
+                <LinkContainer to='/courses'>
                   <Nav.Link>
-                    <i className="fas fa-search"></i> Find Courses
+                    <i className='fas fa-search'></i> Find Courses
                   </Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/popular">
+                <LinkContainer to='/popular'>
                   <Nav.Link>
-                    <i className="fas fa-fire-alt"></i> Popular
+                    <i className='fas fa-fire-alt'></i> Popular
                   </Nav.Link>
                 </LinkContainer>
                 <LinkContainer to={'/mycoursey'}>
                   <Nav.Link>
-                    <i className="fas fa-book"></i> My Coursey
+                    <i className='fas fa-book'></i> My Coursey
                   </Nav.Link>
                 </LinkContainer>
               </Nav>
 
               {currentUser ? (
-                <div className="d-flex justify-content-center">
-                  <i className="fas fa-user align-self-center"></i>
-                  <NavDropdown title={`${currentUser.username}`} id="username">
+                <div className='d-flex justify-content-center'>
+                  <i className='fas fa-user align-self-center'></i>
+                  <NavDropdown title={`${currentUser.username}`} id='username'>
                     <NavDropdown.Item onClick={() => handleLogoutHanlder()}>
-                      <i className="fas fa-sign-out-alt"></i> Logout
+                      <i className='fas fa-sign-out-alt'></i> Logout
                     </NavDropdown.Item>
                   </NavDropdown>
                 </div>
               ) : (
-                <LinkContainer to="/login">
+                <LinkContainer to='/login'>
                   <Nav.Link>
-                    <i className="fas fa-user"></i> Login
+                    <i className='fas fa-user'></i> Login
                   </Nav.Link>
                 </LinkContainer>
               )}

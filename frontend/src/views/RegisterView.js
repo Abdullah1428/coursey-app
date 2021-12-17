@@ -10,7 +10,7 @@ const RegisterView = (props) => {
   return (
     <Container>
       <Row className='text-center'>
-        <h1>Coursey - Find cool KTH courses</h1>
+        <h1>Coursey helps you find and review cool KTH courses</h1>
       </Row>
       <Row>
         <Col>
