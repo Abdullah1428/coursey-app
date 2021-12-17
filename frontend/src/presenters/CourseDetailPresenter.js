@@ -162,7 +162,7 @@ const CourseDetailPresenter = ({ match }) => {
             <Link
               className='btn btn-dark my-3'
               to={{
-                pathname: path && path === 'home' ? '/' : `/courses`,
+                pathname: path ? path : `/courses`,
                 state: {
                   query: searchQuery,
                   results: searchResults,

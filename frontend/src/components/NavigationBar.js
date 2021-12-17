@@ -35,7 +35,7 @@ const NavigationBar = () => {
         onHide={() => setShowLogoutAlert(false)}
         title={'Logout'}
         message={'Are you sure you want to logout?'}
-        logOut={true}
+        out={true}
         logout={() => handleLogoutHanlder()}
         cancel={() => setShowLogoutAlert(false)}
       />
@@ -46,7 +46,7 @@ const NavigationBar = () => {
         message={'Error in logging out!'}
       />
       <Navbar
-        style={{ backgroundColor: '#ffa500', height: 75 }}
+        style={{ backgroundColor: '#ffa500' }}
         expand='lg'
         collapseOnSelect
         className='px-3'>
@@ -83,14 +83,18 @@ const NavigationBar = () => {
               </Nav>
 
               {currentUser ? (
-                <div className='d-flex justify-content-center'>
-                  <i className='fas fa-user align-self-center'></i>
-                  <NavDropdown title={`${currentUser.username}`} id='username'>
-                    <NavDropdown.Item onClick={() => handleLogoutHanlder()}>
-                      <i className='fas fa-sign-out-alt'></i> Logout
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </div>
+                <NavDropdown
+                  title={
+                    <span>
+                      <i className='fas fa-user'></i>
+                      {currentUser.username}
+                    </span>
+                  }
+                  id='username'>
+                  <NavDropdown.Item onClick={() => setShowLogoutAlert(true)}>
+                    <i className='fas fa-sign-out-alt'></i> Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
               ) : (
                 <LinkContainer to='/login'>
                   <Nav.Link>

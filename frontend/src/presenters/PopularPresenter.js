@@ -58,7 +58,11 @@ const PopularPresenter = (props) => {
             }}>
             Go Back
           </Link> */}
-          <PopularCourses popularCourses={pCourses} limit={limit ? limit : 0} />
+          <PopularCourses
+            popularCourses={pCourses}
+            limit={limit ? limit : 0}
+            path={'/popular'}
+          />
         </>
       )}
     </>

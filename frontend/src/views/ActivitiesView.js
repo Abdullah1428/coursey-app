@@ -20,6 +20,7 @@ const ActivitiesView = (props) => {
                 text={feedbackCardStyle.text}
                 style={feedbackCardStyle}
                 course={course}
+                path={'/mycoursey'}
               />
             </Col>
           ))

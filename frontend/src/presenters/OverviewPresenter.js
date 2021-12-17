@@ -76,7 +76,11 @@ const OverviewPresenter = (props) => {
         <Message hide={() => setErrorP('')}>{errorP}</Message>
       ) : (
         popularCourses && (
-          <PopularCourses popularCourses={popularCourses} limit={3} />
+          <PopularCourses
+            popularCourses={popularCourses}
+            limit={3}
+            path={'/'}
+          />
         )
       )}
     </>
