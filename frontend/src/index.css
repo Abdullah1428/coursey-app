@@ -46,20 +46,28 @@ h4 {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-line-clamp: 5; /* number of lines to show */
   -webkit-box-orient: vertical;
-  height: 40%;
+  height: 50%;
+}
+
+.cardTitleFeedback {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+  height: 40px;
 }
 
 @media screen and (max-width: 768px) {
   .CarouselContainer {
-    display:none !important;
+    display: none !important;
   }
-  
 }
 
 @media screen and (max-width: 680px) {
   .CarouselContainer {
-    display:none !important;
+    display: none !important;
   }
 }
