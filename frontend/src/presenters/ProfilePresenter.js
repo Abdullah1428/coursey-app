@@ -7,12 +7,14 @@ import Message from '../components/Message';
 import AlertModal from '../components/AlertModal';
 
 import { useAuth } from '../context/AuthContext';
+import { KTH_SCHOOLS_AND_PROGRAMS } from '../kth/schools-programs';
 
 const ProfilePresenter = (props) => {
   // hold the user data fetched from api
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [program, setProgram] = useState('');
+  const [programs, setPrograms] = useState([]);
   const [school, setSchool] = useState('');
   const [year, setYear] = useState('');
   const [email, setEmail] = useState('');
@@ -92,6 +94,10 @@ const ProfilePresenter = (props) => {
     getProfileDataFromAPI();
   }, [getProfileDataFromAPI]);
 
+  useEffect(() => {
+    setPrograms(KTH_SCHOOLS_AND_PROGRAMS[school]);
+  }, [school]);
+
   return (
     <>
       <AlertModal
@@ -110,6 +116,7 @@ const ProfilePresenter = (props) => {
           name={name}
           username={username}
           program={program}
+          programs={programs}
           school={school}
           year={year}
           email={email}
