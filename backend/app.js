@@ -6,10 +6,6 @@ import courseRoutes from './routes/courseRoutes.js';
 import authroutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 
-import dotenv from 'dotenv';
-
-dotenv.config();
-
 const app = express();
 // for parsing requests
 app.use(express.json());
